@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
+import React from 'react';
+import loadable from '@loadable/component';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+
+const SignIn = loadable(() => import('@page/auth/SignIn'));
+const SignUp = loadable(() => import('@page/auth/SignUp'));
+const Dashboard = loadable(() => import('@page/dashboard/Dashboard'));
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Routes>
+          <Route path={'/'} element={<SignIn />}></Route>
+          <Route path={'/sign-in'} element={<SignIn />}></Route>
+          <Route path={'/sign-up'} element={<SignUp />}></Route>
+          <Route path={'/dashboard'} element={<Dashboard />}></Route>
+        </Routes>
+      </BrowserRouter>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }
