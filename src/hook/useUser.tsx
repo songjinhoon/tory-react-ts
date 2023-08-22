@@ -9,7 +9,11 @@ import { ISignInUser, ISignUpUser } from '@typing/user';
 
 const useUser = () => {
   const navigate = useNavigate();
-  const { data: user, mutate: userMutate } = useSWR<IUser | boolean>(`/api/users`, fetcher, {
+  const {
+    data: user,
+    mutate: userMutate,
+    isLoading,
+  } = useSWR<IUser | boolean>(`/api/users`, fetcher, {
     dedupingInterval: 60000, // 60초동안은 캐쉬에서 호출하겠다.
   });
 
@@ -63,11 +67,13 @@ const useUser = () => {
         await userMutate(false, {
           revalidate: false,
         });
+        navigate('/sign-in');
       });
-  }, [userMutate]);
+  }, [userMutate, navigate]);
 
   return {
     user,
+    isLoading,
     signUp,
     signIn,
     logout,

@@ -56,12 +56,12 @@ const SignUp = () => {
               {...register('nickname', {
                 required: '닉네임은 필수입니다.',
                 minLength: {
-                  value: 10,
-                  message: '10~20 사이의 길이만 가질 수 있습니다.',
+                  value: 5,
+                  message: '5~20 사이의 길이만 가질 수 있습니다.',
                 },
                 maxLength: {
                   value: 20,
-                  message: '10~20 사이의 길이만 가질 수 있습니다.',
+                  message: '5~20 사이의 길이만 가질 수 있습니다.',
                 },
               })}
             />
@@ -75,14 +75,6 @@ const SignUp = () => {
               type={'password'}
               {...register('password', {
                 required: '비밀번호는 필수입니다.',
-                minLength: {
-                  value: 10,
-                  message: '10~20 사이의 길이만 가질 수 있습니다.',
-                },
-                maxLength: {
-                  value: 20,
-                  message: '10~20 사이의 길이만 가질 수 있습니다.',
-                },
               })}
             />
             {errors.password && <Error>{errors.password.message}</Error>}
