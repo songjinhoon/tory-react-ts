@@ -12,6 +12,14 @@ export const ModalContainerBlock = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
+export const ModalsContainerBlock = styled.div`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
+
 export const ModalBlock = styled.div`
   z-index: 1011;
   display: inline-block;

@@ -6,7 +6,10 @@ const ModalSecond = () => {
   const { actions }: Partial<ModalContextValue> = useContext(ModalContext);
 
   return (
-    <ModalLayout onClose={actions?.closeModal}>
+    <ModalLayout
+      style={{ width: 300, height: 400 }}
+      onClose={actions?.closeModal}
+    >
       <div>이거는 세컨드모달이요!!</div>
       <div>이거는 세컨드모달이요!!</div>
     </ModalLayout>

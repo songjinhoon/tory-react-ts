@@ -13,6 +13,7 @@ export type ModalContextValue = {
   };
   actions: {
     setModals: (component: ReactNode) => void;
+    addModal: (component: ReactNode) => void;
     closeModal: () => void;
   };
 };
@@ -35,7 +36,8 @@ export const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
     },
     actions: {
       setModals,
-      closeModal: () => setModals([modalType.default]),
+      addModal: (component: ReactNode) => setModals(modals.concat(component)),
+      closeModals: () => setModals([modalType.default]),
     },
   };
 

@@ -1,4 +1,10 @@
-import React, { FC, MouseEvent, ReactNode, useCallback } from 'react';
+import React, {
+  CSSProperties,
+  FC,
+  MouseEvent,
+  ReactNode,
+  useCallback,
+} from 'react';
 import {
   ModalBlock,
   ModalContent,
@@ -6,18 +12,19 @@ import {
 } from '@component/popup/modal/styles';
 
 type Props = {
+  style?: CSSProperties;
   onClose?: () => void;
   children?: ReactNode;
 };
 
-const ModalLayout: FC<Props> = ({ children, onClose }) => {
+const ModalLayout: FC<Props> = ({ style, children, onClose }) => {
   const stopPropagation = useCallback(
     (e: MouseEvent) => e.stopPropagation(),
     [],
   );
 
   return (
-    <ModalBlock onClick={stopPropagation}>
+    <ModalBlock onClick={stopPropagation} style={style}>
       <ModalHeader>
         <div>
           <span>타이틀이 필요한가요?</span>
