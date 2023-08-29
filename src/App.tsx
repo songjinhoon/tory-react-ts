@@ -5,7 +5,7 @@ import loadable from '@loadable/component';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import ModalContainer from '@component/popup/modal/ModalContainer';
-import ModalProvider from './context/modal';
+import { ModalProvider } from './context/modal';
 
 const SignIn = loadable(() => import('@page/auth/SignIn'));
 const SignUp = loadable(() => import('@page/auth/SignUp'));

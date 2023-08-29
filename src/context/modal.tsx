@@ -4,10 +4,9 @@ import ModalFirst from '@component/popup/modal/ModalFirst';
 
 export const modals = [<ModalSample />, <ModalFirst />];
 
-export const ModalStateContext = createContext({});
-export const ModalActionsContext = createContext({});
+const ModalContext = createContext({});
 
-const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
+export const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [modal, setModal] = useState({});
 
   const value = {
@@ -19,11 +18,13 @@ const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
     },
   };
 
-  return (
-    <ModalStateContext.Provider value={value.state}>
-      <ModalActionsContext.Provider value={value.actions}>{children}</ModalActionsContext.Provider>
-    </ModalStateContext.Provider>
-  );
+  return <ModalContext.Provider value={value}>{children}</ModalContext.Provider>;
+
+  /*  return (
+                      <ModalStateContext.Provider value={value.state}>
+                        <ModalActionsContext.Provider value={value.actions}>{children}</ModalActionsContext.Provider>
+                      </ModalStateContext.Provider>
+                    );*/
 };
 
-export default ModalProvider;
+export default ModalContext;

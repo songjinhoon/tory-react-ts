@@ -1,9 +1,11 @@
 import ModalLayout from '@component/popup/modal/ModalLayout';
 import { useContext } from 'react';
-import { ModalActionsContext } from '../../../context/modal';
+import ModalContext from '../../../context/modal';
 
 const ModalFirst = () => {
-  const { setModal }: any = useContext(ModalActionsContext);
+  const {
+    actions: { setModal },
+  }: any = useContext(ModalContext);
 
   console.log('ModalFirst');
 

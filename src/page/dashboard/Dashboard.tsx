@@ -1,9 +1,11 @@
 import Header from '@component/layout/Header';
 import { useContext } from 'react';
-import { ModalActionsContext, modals } from '../../context/modal';
+import ModalContext, { modals } from '../../context/modal';
 
 const Dashboard = () => {
-  const { setModal }: any = useContext(ModalActionsContext);
+  const {
+    actions: { setModal },
+  }: any = useContext(ModalContext);
 
   const onClickButton1 = () => {
     setModal(modals[0]);

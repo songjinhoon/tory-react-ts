@@ -1,8 +1,10 @@
 import { useContext } from 'react';
-import { ModalStateContext } from '../../../context/modal';
+import ModalContext from '../../../context/modal';
 
 const ModalContainer = () => {
-  const { modal }: any = useContext(ModalStateContext);
+  const {
+    state: { modal },
+  }: any = useContext(ModalContext);
 
   if (Object.keys(modal).length === 0) {
     return null;
