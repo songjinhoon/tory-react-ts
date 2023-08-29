@@ -1,5 +1,5 @@
 import React, { FC, MouseEvent, ReactNode, useCallback } from 'react';
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const CreateModal = styled.div`
   position: fixed;
@@ -16,8 +16,9 @@ export const CreateModal = styled.div`
     width: 440px;
     background: white;
     --saf-0: rgba(var(--sk_foreground_low, 29, 28, 29), 0.13);
-    box-shadow: 0 0 0 1px var(--saf-0),
-    0 4px 12px 0 rgba(0, 0, 0, 0.12);
+    box-shadow:
+      0 0 0 1px var(--saf-0),
+      0 4px 12px 0 rgba(0, 0, 0, 0.12);
     background-color: rgba(var(--sk_foreground_min_solid, 248, 248, 248), 1);
     border-radius: 6px;
     user-select: none;
@@ -38,13 +39,13 @@ export const CloseModalButton = styled.button`
   cursor: pointer;
 `;
 
-interface Props {
+type Props = {
   isShow: boolean;
   onClose: (e: any) => void;
   children?: ReactNode;
-}
+};
 
-const Modal: FC<Props> = ({ isShow, children, onClose }) => {
+const ModalLayout: FC<Props> = ({ isShow, children, onClose }) => {
   const stopPropagation = useCallback((e: MouseEvent) => {
     e.stopPropagation();
   }, []);
@@ -63,4 +64,4 @@ const Modal: FC<Props> = ({ isShow, children, onClose }) => {
   );
 };
 
-export default Modal;
+export default ModalLayout;
