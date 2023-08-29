@@ -1,25 +1,26 @@
 import Header from '@component/layout/Header';
 import { useContext } from 'react';
-import ModalContext, { modals } from '../../context/modal';
+import ModalContext, {
+  ModalContextValue,
+  modalType,
+} from '../../context/modal';
 
 const Dashboard = () => {
-  const {
-    actions: { setModal },
-  }: any = useContext(ModalContext);
+  const { actions }: Partial<ModalContextValue> = useContext(ModalContext);
 
   const onClickButton1 = () => {
-    setModal(modals[0]);
+    actions?.setModals([modalType.sample]);
   };
 
   const onClickButton2 = () => {
-    setModal(modals[1]);
+    actions?.setModals([modalType.first]);
   };
 
   return (
     <div>
       <Header></Header>
-      <button onClick={onClickButton1}>1번 모달창 열기</button>
-      <button onClick={onClickButton2}>2번 모달창 열기</button>
+      <button onClick={onClickButton1}>샘플 모달창 열기</button>
+      <button onClick={onClickButton2}>첫번째 모달창 열기</button>
     </div>
   );
 };

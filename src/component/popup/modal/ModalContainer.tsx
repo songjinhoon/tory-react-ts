@@ -1,16 +1,29 @@
 import { useContext } from 'react';
-import ModalContext from '../../../context/modal';
+import ModalContext, {
+  ModalContextValue,
+  modalType,
+} from '../../../context/modal';
+import { ModalContainerBlock } from '@component/popup/modal/styles';
 
 const ModalContainer = () => {
-  const {
-    state: { modal },
-  }: any = useContext(ModalContext);
+  const { state, actions }: Partial<ModalContextValue> =
+    useContext(ModalContext);
 
-  if (Object.keys(modal).length === 0) {
+  const _onClick = () => {
+    actions?.setModals([modalType.default]);
+  };
+
+  if (state?.modals[0] === modalType.default) {
     return null;
   }
 
-  return <div>{modal}</div>;
+  return (
+    <ModalContainerBlock onClick={_onClick}>
+      {state?.modals.map((data, index) => {
+        return <div key={index}>{data}</div>;
+      })}
+    </ModalContainerBlock>
+  );
 };
 
 export default ModalContainer;

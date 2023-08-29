@@ -1,30 +1,47 @@
 import React, { createContext, FC, ReactNode, useState } from 'react';
 import ModalSample from '@component/popup/modal/ModalSample';
 import ModalFirst from '@component/popup/modal/ModalFirst';
+import ModalSecond from '@component/popup/modal/ModalSecond';
 
-export const modals = [<ModalSample />, <ModalFirst />];
+type ModalNames = 'default' | 'sample' | 'first' | 'second';
+
+type Modals = Record<ModalNames, ReactNode>;
+
+export type ModalContextValue = {
+  state: {
+    modals: [ReactNode];
+  };
+  actions: {
+    setModals: (component: ReactNode) => void;
+    closeModal: () => void;
+  };
+};
+
+export const modalType: Modals = {
+  default: <div></div>,
+  sample: <ModalSample />,
+  first: <ModalFirst />,
+  second: <ModalSecond />,
+};
 
 const ModalContext = createContext({});
 
 export const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [modal, setModal] = useState({});
+  const [modals, setModals] = useState([modalType.default]);
 
   const value = {
     state: {
-      modal,
+      modals,
     },
     actions: {
-      setModal,
+      setModals,
+      closeModal: () => setModals([modalType.default]),
     },
   };
 
-  return <ModalContext.Provider value={value}>{children}</ModalContext.Provider>;
-
-  /*  return (
-                      <ModalStateContext.Provider value={value.state}>
-                        <ModalActionsContext.Provider value={value.actions}>{children}</ModalActionsContext.Provider>
-                      </ModalStateContext.Provider>
-                    );*/
+  return (
+    <ModalContext.Provider value={value}>{children}</ModalContext.Provider>
+  );
 };
 
 export default ModalContext;

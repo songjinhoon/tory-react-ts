@@ -1,66 +1,31 @@
 import React, { FC, MouseEvent, ReactNode, useCallback } from 'react';
-import styled from '@emotion/styled';
-
-export const CreateModal = styled.div`
-  position: fixed;
-  text-align: center;
-  left: 0;
-  bottom: 0;
-  top: 0;
-  right: 0;
-  z-index: 1022;
-
-  & > div {
-    margin-top: 200px;
-    display: inline-block;
-    width: 440px;
-    background: white;
-    --saf-0: rgba(var(--sk_foreground_low, 29, 28, 29), 0.13);
-    box-shadow:
-      0 0 0 1px var(--saf-0),
-      0 4px 12px 0 rgba(0, 0, 0, 0.12);
-    background-color: rgba(var(--sk_foreground_min_solid, 248, 248, 248), 1);
-    border-radius: 6px;
-    user-select: none;
-    max-width: 440px;
-    padding: 30px 40px 0;
-    z-index: 1012;
-    position: relative;
-  }
-`;
-
-export const CloseModalButton = styled.button`
-  position: absolute;
-  right: 10px;
-  top: 6px;
-  background: transparent;
-  border: none;
-  font-size: 30px;
-  cursor: pointer;
-`;
+import {
+  ModalBlock,
+  ModalContent,
+  ModalHeader,
+} from '@component/popup/modal/styles';
 
 type Props = {
-  isShow: boolean;
-  onClose: (e: any) => void;
+  onClose?: () => void;
   children?: ReactNode;
 };
 
-const ModalLayout: FC<Props> = ({ isShow, children, onClose }) => {
-  const stopPropagation = useCallback((e: MouseEvent) => {
-    e.stopPropagation();
-  }, []);
+const ModalLayout: FC<Props> = ({ children, onClose }) => {
+  const stopPropagation = useCallback(
+    (e: MouseEvent) => e.stopPropagation(),
+    [],
+  );
 
   return (
-    <>
-      {isShow && (
-        <CreateModal onClick={onClose}>
-          <div onClick={stopPropagation}>
-            <CloseModalButton onClick={onClose}>&times;</CloseModalButton>
-            {children}
-          </div>
-        </CreateModal>
-      )}
-    </>
+    <ModalBlock onClick={stopPropagation}>
+      <ModalHeader>
+        <div>
+          <span>타이틀이 필요한가요?</span>
+          <button onClick={onClose}>&times;</button>
+        </div>
+      </ModalHeader>
+      <ModalContent>{children}</ModalContent>
+    </ModalBlock>
   );
 };
 
