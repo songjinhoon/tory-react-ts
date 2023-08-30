@@ -1,8 +1,5 @@
 import { useContext } from 'react';
-import ModalContext, {
-  ModalContextValue,
-  modalType,
-} from '../../../context/modal';
+import ModalContext, { ModalContextValue } from '../../../context/modal';
 import {
   ModalContainerBlock,
   ModalsContainerBlock,
@@ -14,24 +11,22 @@ const ModalContainer = () => {
   const { state, actions }: Partial<ModalContextValue> =
     useContext(ModalContext);
 
-  const _onClick = () => {
-    actions?.setModals([modalType.default]);
-  };
+  if (!state || !actions) return null;
 
-  if (state?.modals[0] === modalType.default) {
+  if (state.modals.length === 1) {
     return null;
   }
 
-  if (state?.modals.length === 1) {
+  if (state.modals.length === 2) {
     return (
-      <ModalContainerBlock onClick={_onClick}>
+      <ModalContainerBlock onClick={actions.closeModals}>
         {state?.modals.map((data, index) => <div key={index}>{data}</div>)}
       </ModalContainerBlock>
     );
   }
 
   return (
-    <ModalsContainerBlock onClick={_onClick}>
+    <ModalsContainerBlock onClick={actions.closeModals}>
       {state?.modals.map((data, index) => (
         <div
           key={index}

@@ -8,19 +8,19 @@ import ModalContext, {
 const Dashboard = () => {
   const { actions }: Partial<ModalContextValue> = useContext(ModalContext);
 
-  const onClickButton1 = () => {
-    actions?.setModals([modalType.sample]);
+  const sampleModalOpen = () => {
+    actions?.addModal(modalType.sample);
   };
 
-  const onClickButton2 = () => {
-    actions?.setModals([modalType.first]);
+  const firstModalOpen = () => {
+    actions?.addModal(modalType.first);
   };
 
   return (
     <div>
       <Header></Header>
-      <button onClick={onClickButton1}>샘플 모달창 열기</button>
-      <button onClick={onClickButton2}>첫번째 모달창 열기</button>
+      <button onClick={sampleModalOpen}>샘플 모달창 열기</button>
+      <button onClick={firstModalOpen}>첫번째 모달창 열기</button>
     </div>
   );
 };

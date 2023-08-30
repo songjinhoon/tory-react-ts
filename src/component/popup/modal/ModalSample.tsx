@@ -6,7 +6,7 @@ const ModalSample = () => {
   const { actions }: Partial<ModalContextValue> = useContext(ModalContext);
 
   return (
-    <ModalLayout onClose={actions?.closeModal}>이게진짜 리얼이다.</ModalLayout>
+    <ModalLayout onClose={actions?.closeModals}>이게진짜 리얼이다.</ModalLayout>
   );
 };
 
