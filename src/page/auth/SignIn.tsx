@@ -1,4 +1,12 @@
-import { Button, Error, Form, Header, Input, Label, LinkContainer } from '@page/auth/styles';
+import {
+  Button,
+  Error,
+  Form,
+  Header,
+  Input,
+  Label,
+  LinkContainer,
+} from '@page/auth/styles';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { ISignInUser } from '@typing/user';
@@ -41,7 +49,8 @@ const SignIn = () => {
                   message: '10~20 사이의 길이만 가질 수 있습니다.',
                 },
                 pattern: {
-                  value: /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
+                  value:
+                    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
                   message: '이메일 형식을 확인해주세요.',
                 },
               })}

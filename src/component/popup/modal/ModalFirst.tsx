@@ -13,7 +13,7 @@ const ModalFirst = () => {
   }, [actions]);
 
   return (
-    <ModalLayout onClose={actions?.closeModals}>
+    <ModalLayout>
       <div>FIRST MODAL!!!</div>
       <div>FIRST MODAL!!!</div>
       <div>FIRST MODAL!!!</div>

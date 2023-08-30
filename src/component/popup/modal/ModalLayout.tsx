@@ -4,31 +4,43 @@ import React, {
   MouseEvent,
   ReactNode,
   useCallback,
+  useContext,
 } from 'react';
 import {
   ModalBlock,
   ModalContent,
   ModalHeader,
 } from '@component/popup/modal/styles';
+import ModalContext, { ModalContextValue } from '../../../context/modal';
 
 type Props = {
-  style?: CSSProperties;
+  children: ReactNode;
+  isClose?: boolean;
   onClose?: () => void;
-  children?: ReactNode;
+  title?: string;
+  style?: CSSProperties;
 };
 
-const ModalLayout: FC<Props> = ({ style, children, onClose }) => {
+const ModalLayout: FC<Props> = ({
+  children,
+  isClose = false,
+  onClose,
+  title = 'DEMO PROJECT',
+  style,
+}) => {
   const stopPropagation = useCallback(
     (e: MouseEvent) => e.stopPropagation(),
     [],
   );
+  const { actions }: Partial<ModalContextValue> = useContext(ModalContext);
+  const _onClose: Function = onClose || actions?.closeModals!;
 
   return (
     <ModalBlock onClick={stopPropagation} style={style}>
       <ModalHeader>
         <div>
-          <span>타이틀이 필요한가요?</span>
-          <button onClick={onClose}>&times;</button>
+          <span>{title}</span>
+          {isClose && <button onClick={() => _onClose()}>&times;</button>}
         </div>
       </ModalHeader>
       <ModalContent>{children}</ModalContent>

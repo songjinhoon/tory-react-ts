@@ -8,8 +8,9 @@ import React, {
 import ModalSample from '@component/popup/modal/ModalSample';
 import ModalFirst from '@component/popup/modal/ModalFirst';
 import ModalSecond from '@component/popup/modal/ModalSecond';
+import UserUpdateModal from '@component/popup/modal/UserUpdateModal';
 
-type ModalNames = 'default' | 'sample' | 'first' | 'second';
+type ModalNames = 'default' | 'sample' | 'first' | 'second' | 'userUpdate';
 
 type Modals = Record<ModalNames, ReactNode>;
 
@@ -30,6 +31,7 @@ export const modalType: Modals = {
   sample: <ModalSample />,
   first: <ModalFirst />,
   second: <ModalSecond />,
+  userUpdate: <UserUpdateModal></UserUpdateModal>,
 };
 
 const ModalContext = createContext({});
