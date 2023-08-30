@@ -23,7 +23,9 @@ const useUser = () => {
         .post(`/api/users`, params, { withCredentials: true })
         .then(async (response) => {
           if (response.status === 201) {
-            toast.success('회원가입 성공~ 로그인 창으로 이동합니다~', { position: toast.POSITION.BOTTOM_CENTER });
+            toast.success('회원가입 성공~ 로그인 창으로 이동합니다~', {
+              position: toast.POSITION.BOTTOM_CENTER,
+            });
             await userMutate();
             navigate('/sign-in');
           }
@@ -52,7 +54,9 @@ const useUser = () => {
           navigate('/dashboard');
         })
         .catch((error) => {
-          toast.error(error.response?.data, { position: toast.POSITION.BOTTOM_CENTER });
+          toast.error(error.response?.data, {
+            position: toast.POSITION.BOTTOM_CENTER,
+          });
         });
     },
     [userMutate, navigate],
@@ -71,12 +75,17 @@ const useUser = () => {
       });
   }, [userMutate, navigate]);
 
+  const isEqualPassword = useCallback((param: string) => {
+    return param === '123';
+  }, []);
+
   return {
     user,
     isLoading,
     signUp,
     signIn,
     logout,
+    isEqualPassword,
   };
 };
 

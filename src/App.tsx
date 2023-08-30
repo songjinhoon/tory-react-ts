@@ -4,7 +4,6 @@ import React from 'react';
 import loadable from '@loadable/component';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import ModalContainer from '@component/popup/modal/ModalContainer';
 import { ModalProvider } from './context/modal';
 
 const SignIn = loadable(() => import('@page/auth/SignIn'));
@@ -23,7 +22,6 @@ function App() {
             <Route path={'/dashboard'} element={<Dashboard />}></Route>
           </Routes>
         </BrowserRouter>
-        <ModalContainer></ModalContainer>
         <ToastContainer></ToastContainer>
       </div>
     </ModalProvider>
