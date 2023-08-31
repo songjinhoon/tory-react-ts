@@ -1,44 +1,69 @@
-import { createContext, FC, ReactNode, useState } from 'react';
+import {
+  createContext,
+  Dispatch,
+  FC,
+  ReactNode,
+  useContext,
+  useReducer,
+} from 'react';
 
-type ModeTypeNames = 'confirm' | 'create' | 'update';
+type ModeActionType = 'updateMode';
 
-type ModeTypes = Record<ModeTypeNames, string>;
+type ModeType = 'confirm' | 'create' | 'update';
 
-export const modeType: ModeTypes = {
-  confirm: 'confirm',
-  create: 'create',
-  update: 'update',
-};
+type ModeKey = 'userUpdateModal';
 
-type ModeKeyNames = 'userUpdateModal';
+type ModeState = { [name in ModeKey]: ModeType };
 
-type ModeKeys = Record<ModeKeyNames, string>;
+type ModeAction = { type: ModeActionType; key: ModeKey; value: ModeType };
 
-export const modeKey: ModeKeys = {
-  userUpdateModal: 'userUpdateModal',
-};
+type ModeDispatch = Dispatch<ModeAction>;
 
-const ModeContext = createContext({});
+const ModeStateContext = createContext<ModeState | null>(null);
+const ModeDispatchContext = createContext<ModeDispatch | null>(null);
 
 export const ModeProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [mode, setMode] = useState({
-    [modeKey.userUpdateModal as any]: modeType.confirm,
+  const [state, dispatch] = useReducer(reducer, {
+    userUpdateModal: 'confirm',
   });
 
-  const value = {
-    state: {
-      mode,
-    },
-    actions: {
-      updateMode: ({ key, type }: { key: string; type: string }) =>
-        setMode({
-          ...mode,
-          [key]: type,
-        }),
-    },
-  };
-
-  return <ModeContext.Provider value={value}>{children}</ModeContext.Provider>;
+  return (
+    <ModeStateContext.Provider value={state}>
+      <ModeDispatchContext.Provider value={dispatch}>
+        {children}
+      </ModeDispatchContext.Provider>
+    </ModeStateContext.Provider>
+  );
 };
 
-export default ModeContext;
+function reducer(state: ModeState, action: ModeAction): ModeState {
+  switch (action.type) {
+    case 'updateMode':
+      return {
+        ...state,
+        [action.key]: action.value,
+      };
+    default:
+      throw new Error('Unhandled action');
+  }
+}
+
+// 'ModeStateContext' 를 export 해야지 별도의 훅 파일을 생성할 수 있으므로 해당 컨텍스트 파일에서 관리한다.
+export const useModeState = () => {
+  const state = useContext(ModeStateContext);
+  if (!state) throw new Error('Cannot find ModeProvider');
+  return state;
+};
+
+export const useModeDispatch = () => {
+  const dispatch = useContext(ModeDispatchContext);
+  if (!dispatch) throw new Error('Cannot find ModeProvider');
+  return dispatch;
+};
+
+// 이걸 넣어야하나 말아야하나 고민이이다 -> 현재 시점 바닐라에서는 저게 필요한거 같고, TS는 필요가 없다고 본다.
+// 어차피 정의하지 않은 데이터로 비교를 할 경우 TS 오류가 발생하기 때문에...
+/*
+export const _modeType: any = {
+    confirm: 'confirm',
+};*/

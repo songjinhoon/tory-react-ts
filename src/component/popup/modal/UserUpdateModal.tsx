@@ -5,14 +5,14 @@ import { Button, Form, Input, Label } from '@page/auth/styles';
 import { useForm } from 'react-hook-form';
 import { ISignUpUser } from '@typing/user';
 import ModalContext, { ModalContextValue } from '../../../context/modal';
-import ModeContext, { modeKey, modeType } from '../../../context/mode';
+import { useModeDispatch, useModeState } from '../../../context/mode';
 
 const UserUpdateModal = () => {
   const { actions }: Partial<ModalContextValue> = useContext(ModalContext);
-  const { state }: Partial<any> = useContext(ModeContext);
-  const [{ title }] = useState({
-    title: '사용자 관리 팝업',
-  });
+  const modeState = useModeState();
+  const modeDispatch = useModeDispatch();
+  const [title] = useState<string>('사용자 관리 팝업');
+
   const {
     register,
     handleSubmit,
@@ -24,12 +24,21 @@ const UserUpdateModal = () => {
     mode: 'onChange',
   });
 
+  const userUpdateModalCancel = () => {
+    actions?.closeModals();
+    modeDispatch({
+      type: 'updateMode',
+      key: 'userUpdateModal',
+      value: 'confirm',
+    });
+  };
+
   return (
     <ModalLayout title={title} style={{ height: 300 }} isClose={false}>
-      {state?.mode[modeKey.userUpdateModal] === modeType.confirm && (
+      {modeState.userUpdateModal === 'confirm' && (
         <PasswordConfirmForm></PasswordConfirmForm>
       )}
-      {state?.mode[modeKey.userUpdateModal] === modeType.update && (
+      {modeState.userUpdateModal === 'update' && (
         <>
           <Form>
             <Label id="nickname">
@@ -62,7 +71,7 @@ const UserUpdateModal = () => {
               </div>
             </Label>
             <Button type={'submit'}>UPDATE</Button>
-            <Button type={'button'} onClick={actions?.closeModals}>
+            <Button type={'button'} onClick={userUpdateModalCancel}>
               CANCEL
             </Button>
           </Form>

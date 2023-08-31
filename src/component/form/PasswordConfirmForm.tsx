@@ -5,12 +5,13 @@ import { ISignInUser, ISignUpUser } from '@typing/user';
 import { useCallback, useContext, useEffect } from 'react';
 import useUser from '@hook/useUser';
 import ModalContext, { ModalContextValue } from '../../context/modal';
-import ModeContext, { modeKey, modeType } from '../../context/mode';
+import { useModeDispatch } from '../../context/mode';
 
 const PasswordConfirmForm = () => {
   const { isEqualPassword } = useUser();
   const { actions }: Partial<ModalContextValue> = useContext(ModalContext);
-  const { actions: modeActions }: Partial<any> = useContext(ModeContext);
+  const modeDispatch = useModeDispatch();
+
   const {
     register,
     handleSubmit,
@@ -31,12 +32,13 @@ const PasswordConfirmForm = () => {
         });
         return false;
       }
-      modeActions?.updateMode({
-        key: modeKey.userUpdateModal,
-        type: modeType.update,
+      modeDispatch({
+        type: 'updateMode',
+        key: 'userUpdateModal',
+        value: 'update',
       });
     },
-    [isEqualPassword, setError, modeActions],
+    [isEqualPassword, setError, modeDispatch],
   );
 
   console.log('ㅎ');
