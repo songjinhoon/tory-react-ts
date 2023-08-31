@@ -14,6 +14,14 @@ type ModalNames = 'default' | 'sample' | 'first' | 'second' | 'userUpdate';
 
 type Modals = Record<ModalNames, ReactNode>;
 
+export const modalType: Modals = {
+  default: <div></div>,
+  sample: <ModalSample />,
+  first: <ModalFirst />,
+  second: <ModalSecond />,
+  userUpdate: <UserUpdateModal></UserUpdateModal>,
+};
+
 export type ModalContextValue = {
   state: {
     modals: [ReactNode];
@@ -24,14 +32,6 @@ export type ModalContextValue = {
     removeModal: (component: ReactNode) => void;
     closeModals: () => void;
   };
-};
-
-export const modalType: Modals = {
-  default: <div></div>,
-  sample: <ModalSample />,
-  first: <ModalFirst />,
-  second: <ModalSecond />,
-  userUpdate: <UserUpdateModal></UserUpdateModal>,
 };
 
 const ModalContext = createContext({});
