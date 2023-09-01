@@ -8,25 +8,24 @@ type Props = {
   onCancel?: () => void;
 };
 
-const ActionForm: FC<Props> = ({
-  isSubmitButton = true,
-  isCancelButton = true,
-  onCancel,
-}) => {
-  const modalDispatch = useModalDispatch();
-  const _onCancel: Function =
-    onCancel || (() => modalDispatch({ type: 'closeModal' }));
+const ActionForm: FC<Props> = React.memo(
+  ({ isSubmitButton = true, isCancelButton = true, onCancel }) => {
+    const modalDispatch = useModalDispatch();
+    const _onCancel = onCancel || (() => modalDispatch({ type: 'closeModal' }));
 
-  return (
-    <div style={{ width: '100%', height: '100px' }}>
-      {isSubmitButton && <Button type={'submit'}>OK</Button>}
-      {isCancelButton && (
-        <Button type={'button'} onClick={() => _onCancel()}>
-          CANCEL
-        </Button>
-      )}
-    </div>
-  );
-};
+    console.log('ActionForm');
+
+    return (
+      <div style={{ width: '100%', height: '100px' }}>
+        {isSubmitButton && <Button type={'submit'}>OK</Button>}
+        {isCancelButton && (
+          <Button type={'button'} onClick={() => _onCancel()}>
+            CANCEL
+          </Button>
+        )}
+      </div>
+    );
+  },
+);
 
 export default ActionForm;

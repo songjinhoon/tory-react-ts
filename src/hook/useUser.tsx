@@ -79,6 +79,13 @@ const useUser = () => {
     return param === '123';
   }, []);
 
+  const updateUser = useCallback((params: ISignUpUser) => {
+    console.log(params);
+    return {
+      status: 204,
+    };
+  }, []);
+
   return {
     user,
     isLoading,
@@ -86,6 +93,7 @@ const useUser = () => {
     signIn,
     logout,
     isEqualPassword,
+    updateUser,
   };
 };
 

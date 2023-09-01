@@ -45,8 +45,6 @@ const PasswordConfirmForm = () => {
     watch((value, { name, type }) => console.log(value, name, type));
   }, [watch]);
 
-  console.log('PasswordConfirmForm Component Render');
-
   return (
     <Form onSubmit={handleSubmit(_onSubmit)}>
       <InputForm>
