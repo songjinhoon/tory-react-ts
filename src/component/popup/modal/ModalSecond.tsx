@@ -1,15 +1,13 @@
 import ModalLayout from '@component/popup/modal/ModalLayout';
-import { useContext } from 'react';
-import ModalContext, {
-  ModalContextValue,
-  modalType,
-} from '../../../context/modal';
+import { useModalDispatch } from '../../../context/modal';
 
 const ModalSecond = () => {
-  const { actions }: Partial<ModalContextValue> = useContext(ModalContext);
+  const modalDispatch = useModalDispatch();
 
   return (
-    <ModalLayout onClose={() => actions?.removeModal(modalType.second)}>
+    <ModalLayout
+      onClose={() => modalDispatch({ type: 'removeModal', value: 'second' })}
+    >
       <div>이거는 세컨드모달이요!!</div>
       <div>이거는 세컨드모달이요!!</div>
     </ModalLayout>

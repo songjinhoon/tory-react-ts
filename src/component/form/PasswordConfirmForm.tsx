@@ -2,14 +2,14 @@ import { Button, Error, Form, Input, Label } from '@page/auth/styles';
 import { ErrorMessage } from '@hookform/error-message';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ISignInUser, ISignUpUser } from '@typing/user';
-import { useCallback, useContext, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import useUser from '@hook/useUser';
-import ModalContext, { ModalContextValue } from '../../context/modal';
 import { useModeDispatch } from '../../context/mode';
+import { useModalDispatch } from '../../context/modal';
 
 const PasswordConfirmForm = () => {
   const { isEqualPassword } = useUser();
-  const { actions }: Partial<ModalContextValue> = useContext(ModalContext);
+  const modalDispatch = useModalDispatch();
   const modeDispatch = useModeDispatch();
 
   const {
@@ -68,7 +68,10 @@ const PasswordConfirmForm = () => {
       />
       {/*{errors.password && <Error>{errors.password.message}</Error>}*/}
       <Button type={'submit'}>OK</Button>
-      <Button type={'button'} onClick={actions?.closeModals}>
+      <Button
+        type={'button'}
+        onClick={() => modalDispatch({ type: 'closeModal' })}
+      >
         CANCEL
       </Button>
     </Form>

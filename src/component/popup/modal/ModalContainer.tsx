@@ -1,33 +1,32 @@
-import { useContext } from 'react';
-import ModalContext, { ModalContextValue } from '../../../context/modal';
 import {
   ModalContainerBlock,
   ModalsContainerBlock,
 } from '@component/popup/modal/styles';
+import { useModalDispatch, useModalState } from '../../../context/modal';
 
 const Z_INDEX = 1010;
 
 const ModalContainer = () => {
-  const { state, actions }: Partial<ModalContextValue> =
-    useContext(ModalContext);
+  const modalState = useModalState();
+  const modalDispatch = useModalDispatch();
 
-  if (!state || !actions) return null;
-
-  if (state.modals.length === 1) {
+  if (modalState.modals.length === 1) {
     return null;
   }
 
-  if (state.modals.length === 2) {
+  if (modalState.modals.length === 2) {
     return (
-      <ModalContainerBlock onClick={actions.closeModals}>
-        {state?.modals.map((data, index) => <div key={index}>{data}</div>)}
+      <ModalContainerBlock>
+        {modalState?.modals.map((data: any, index: any) => (
+          <div key={index}>{data}</div>
+        ))}
       </ModalContainerBlock>
     );
   }
 
   return (
-    <ModalsContainerBlock onClick={actions.closeModals}>
-      {state?.modals.map((data, index) => (
+    <ModalsContainerBlock onClick={() => modalDispatch({ type: 'closeModal' })}>
+      {modalState?.modals.map((data: any, index: any) => (
         <div
           key={index}
           style={{

@@ -4,14 +4,13 @@ import React, {
   MouseEvent,
   ReactNode,
   useCallback,
-  useContext,
 } from 'react';
 import {
   ModalBlock,
   ModalContent,
   ModalHeader,
 } from '@component/popup/modal/styles';
-import ModalContext, { ModalContextValue } from '../../../context/modal';
+import { useModalDispatch } from '../../../context/modal';
 
 type Props = {
   children: ReactNode;
@@ -32,8 +31,12 @@ const ModalLayout: FC<Props> = ({
     (e: MouseEvent) => e.stopPropagation(),
     [],
   );
-  const { actions }: Partial<ModalContextValue> = useContext(ModalContext);
-  const _onClose: Function = onClose || actions?.closeModals!;
+  const modalDispatch = useModalDispatch();
+  const _onClose: Function =
+    onClose ||
+    (() => {
+      modalDispatch({ type: 'closeModal' });
+    });
 
   return (
     <ModalBlock onClick={stopPropagation} style={style}>

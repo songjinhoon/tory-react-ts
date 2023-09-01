@@ -2,7 +2,7 @@ import gravatar from 'gravatar';
 import LogoutButton from '@component/button/LogoutButton';
 import Dropdown from '@component/popup/dropdown/Dorpdown';
 import useUser from '@hook/useUser';
-import { useCallback, useContext, useState } from 'react';
+import { useCallback, useState } from 'react';
 import {
   Block,
   Item,
@@ -10,18 +10,18 @@ import {
   ProfileModal,
   RightMenu,
 } from '@component/layout/styles';
-import ModalContext, {
-  ModalContextValue,
-  modalType,
-} from '../../context/modal';
+import { useModalDispatch } from '../../context/modal';
 
 const Header = () => {
   const { user, isLoading }: { user: any; isLoading: boolean } = useUser(); // 이거 어쩌지;
-  const { actions }: Partial<ModalContextValue> = useContext(ModalContext);
+  const modalDispatch = useModalDispatch();
 
   const userUpdateModalOpen = useCallback(() => {
-    actions?.addModal(modalType.userUpdate);
-  }, [actions]);
+    modalDispatch({
+      type: 'addModal',
+      value: 'userUpdate',
+    });
+  }, [modalDispatch]);
 
   const [isRenderPopup, setIsRenderPopup] = useState(false);
   const popupOpen = useCallback(() => {

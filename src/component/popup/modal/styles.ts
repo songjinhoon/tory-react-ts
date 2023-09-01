@@ -4,8 +4,10 @@ export const ModalContainerBlock = styled.div`
   position: fixed;
   top: 0;
   z-index: 1010;
-  width: 100%;
-  height: 100vh;
+  /*width: 100%;
+  height: 100vh;*/
+  width: 50%;
+  height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;

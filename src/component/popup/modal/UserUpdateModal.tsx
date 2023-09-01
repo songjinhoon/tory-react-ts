@@ -1,14 +1,14 @@
 import ModalLayout from '@component/popup/modal/ModalLayout';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import PasswordConfirmForm from '@component/form/PasswordConfirmForm';
 import { Button, Form, Input, Label } from '@page/auth/styles';
 import { useForm } from 'react-hook-form';
 import { ISignUpUser } from '@typing/user';
-import ModalContext, { ModalContextValue } from '../../../context/modal';
 import { useModeDispatch, useModeState } from '../../../context/mode';
+import { useModalDispatch } from '../../../context/modal';
 
 const UserUpdateModal = () => {
-  const { actions }: Partial<ModalContextValue> = useContext(ModalContext);
+  const modalDispatch = useModalDispatch();
   const modeState = useModeState();
   const modeDispatch = useModeDispatch();
   const [title] = useState<string>('사용자 관리 팝업');
@@ -25,7 +25,7 @@ const UserUpdateModal = () => {
   });
 
   const userUpdateModalCancel = () => {
-    actions?.closeModals();
+    modalDispatch({ type: 'closeModal' });
     modeDispatch({
       type: 'updateMode',
       key: 'userUpdateModal',

@@ -1,16 +1,13 @@
 import ModalLayout from '@component/popup/modal/ModalLayout';
-import { useCallback, useContext } from 'react';
-import ModalContext, {
-  ModalContextValue,
-  modalType,
-} from '../../../context/modal';
+import { useCallback } from 'react';
+import { useModalDispatch } from '../../../context/modal';
 
 const ModalFirst = () => {
-  const { actions }: Partial<ModalContextValue> = useContext(ModalContext);
+  const modalDispatch = useModalDispatch();
 
   const _onClick = useCallback(() => {
-    actions?.addModal(modalType.second);
-  }, [actions]);
+    modalDispatch({ type: 'addModal', value: 'second' });
+  }, [modalDispatch]);
 
   return (
     <ModalLayout>

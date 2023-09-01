@@ -9,9 +9,9 @@ import {
 
 type ModeActionType = 'updateMode';
 
-type ModeType = 'confirm' | 'create' | 'update';
-
 type ModeKey = 'userUpdateModal';
+
+type ModeType = 'confirm' | 'create' | 'update';
 
 type ModeState = { [name in ModeKey]: ModeType };
 
