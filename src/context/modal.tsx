@@ -11,11 +11,11 @@ import ModalFirst from '@component/popup/modal/ModalFirst';
 import ModalSecond from '@component/popup/modal/ModalSecond';
 import UserUpdateModal from '@component/popup/modal/UserUpdateModal';
 
-type ModalActionType = 'addModal' | 'removeModal' | 'closeModal';
+type ModalActionType = 'openModal' | 'addModal' | 'removeModal' | 'closeModal';
 
 type ModalKey = 'modals';
 
-type ModalType = 'default' | 'sample' | 'first' | 'second' | 'userUpdate';
+type ModalType = 'sample' | 'first' | 'second' | 'userUpdate';
 
 type ModalState = { [name in ModalKey]: any };
 
@@ -31,12 +31,12 @@ const modals = {
   userUpdate: <UserUpdateModal></UserUpdateModal>,
 };
 
-const ModalStateContext = createContext<ModalState | null>(null);
-const ModalDispatchContext = createContext<ModalDispatch | null>(null);
+const ModalStateContext = createContext<ModalState>({ modals: [] });
+const ModalDispatchContext = createContext<ModalDispatch>(() => {});
 
 export const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
-    modals: [modals.default],
+    modals: [],
   });
 
   return (
@@ -50,12 +50,19 @@ export const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
 function reducer(state: ModalState, action: ModalAction): ModalState {
   switch (action.type) {
+    // 모달 오픈
+    case 'openModal':
+      return {
+        ...state,
+        modals: [modals[action.value!]],
+      };
+    // 모달 추가하기 (중첩용)
     case 'addModal':
       return {
         ...state,
         modals: state.modals.concat(modals[action.value!]),
       };
-    // 중첩 모달에서 특정 모달 제거용
+    // 모달 제거하기 (중첩용)
     case 'removeModal':
       return {
         ...state,
@@ -67,7 +74,7 @@ function reducer(state: ModalState, action: ModalAction): ModalState {
     case 'closeModal':
       return {
         ...state,
-        modals: [modals.sample],
+        modals: [],
       };
     default:
       throw new Error('Unhandled action');
@@ -80,7 +87,7 @@ export const useModalState = () => {
   return state;
 };
 
-export const useModalDispatch = () => {
+export const useModalDispatch: Function = () => {
   const dispatch = useContext(ModalDispatchContext);
   if (!dispatch) throw new Error('Cannot find ModalProvider');
   return dispatch;

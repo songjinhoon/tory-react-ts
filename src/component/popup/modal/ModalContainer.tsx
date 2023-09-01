@@ -10,13 +10,15 @@ const ModalContainer = () => {
   const modalState = useModalState();
   const modalDispatch = useModalDispatch();
 
-  if (modalState.modals.length === 1) {
+  if (modalState.modals.length === 0) {
     return null;
   }
 
-  if (modalState.modals.length === 2) {
+  if (modalState.modals.length === 1) {
     return (
-      <ModalContainerBlock>
+      <ModalContainerBlock
+        onClick={() => modalDispatch({ type: 'closeModal' })}
+      >
         {modalState?.modals.map((data: any, index: any) => (
           <div key={index}>{data}</div>
         ))}

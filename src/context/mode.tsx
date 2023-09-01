@@ -19,8 +19,10 @@ type ModeAction = { type: ModeActionType; key: ModeKey; value: ModeType };
 
 type ModeDispatch = Dispatch<ModeAction>;
 
-const ModeStateContext = createContext<ModeState | null>(null);
-const ModeDispatchContext = createContext<ModeDispatch | null>(null);
+const ModeStateContext = createContext<ModeState>({
+  userUpdateModal: 'confirm',
+});
+const ModeDispatchContext = createContext<ModeDispatch>(() => {});
 
 export const ModeProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {

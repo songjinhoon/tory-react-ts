@@ -11,10 +11,10 @@ const Dashboard = () => {
   const modalDispatch = useModalDispatch();
 
   const sampleModalOpen = () =>
-    modalDispatch({ type: 'addModal', value: 'sample' });
+    modalDispatch({ type: 'openModal', value: 'sample' });
 
   const firstModalOpen = () =>
-    modalDispatch({ type: 'addModal', value: 'first' });
+    modalDispatch({ type: 'openModal', value: 'first' });
 
   useEffect(() => {
     if (!isLoading && !user) {
