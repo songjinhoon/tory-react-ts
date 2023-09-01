@@ -18,8 +18,8 @@ const UserUpdateForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-    /*setError,
-                                                watch,*/
+    // setError,
+    // watch,
   } = useForm<ISignUpUser>({
     // mode: 'onBlur',
     mode: 'onChange',

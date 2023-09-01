@@ -10,6 +10,7 @@ import { ModeProvider } from './context/mode';
 const SignIn = loadable(() => import('@page/auth/SignIn'));
 const SignUp = loadable(() => import('@page/auth/SignUp'));
 const Dashboard = loadable(() => import('@page/dashboard/Dashboard'));
+const Post = loadable(() => import('@page/post/Post'));
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route path={'/sign-in'} element={<SignIn />}></Route>
               <Route path={'/sign-up'} element={<SignUp />}></Route>
               <Route path={'/dashboard'} element={<Dashboard />}></Route>
+              <Route path={'/post'} element={<Post />}></Route>
             </Routes>
           </BrowserRouter>
           <ToastContainer></ToastContainer>

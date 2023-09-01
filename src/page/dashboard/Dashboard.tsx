@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import Header from '@component/layout/Header';
 import useUser from '@hook/useUser';
 import ModalContainer from '@component/popup/modal/ModalContainer';
@@ -9,6 +9,10 @@ const Dashboard = () => {
   const { user, isLoading } = useUser();
   const navigate = useNavigate();
   const modalDispatch = useModalDispatch();
+
+  const _onClick = useCallback(() => {
+    navigate('/post');
+  }, [navigate]);
 
   const sampleModalOpen = () =>
     modalDispatch({ type: 'openModal', value: 'sample' });
@@ -31,6 +35,7 @@ const Dashboard = () => {
   return (
     <div>
       <Header></Header>
+      <button onClick={_onClick}>포스트로 이동하기</button>
       <button onClick={sampleModalOpen}>샘플 모달창 열기</button>
       <button onClick={firstModalOpen}>첫번째 모달창 열기</button>
       <ModalContainer></ModalContainer>
