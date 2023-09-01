@@ -13,19 +13,23 @@ import {
 import { useModalDispatch } from '../../../context/modal';
 
 type Props = {
+  title?: string;
+  style?: CSSProperties;
   children: ReactNode;
   isClose?: boolean;
   onClose?: () => void;
-  title?: string;
-  style?: CSSProperties;
+  isSubmitButton?: boolean;
+  onSubmit?: () => void;
+  isCancelButton?: boolean;
+  onCancel?: () => void;
 };
 
 const ModalLayout: FC<Props> = ({
   children,
-  isClose = false,
-  onClose,
   title = 'DEMO PROJECT',
   style,
+  isClose = false,
+  onClose,
 }) => {
   const stopPropagation = useCallback(
     (e: MouseEvent) => e.stopPropagation(),

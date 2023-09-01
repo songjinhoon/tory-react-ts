@@ -19,9 +19,12 @@ export const Header = styled.header`
 `;
 
 export const Form = styled.form`
-  margin: 0 auto;
-  width: 400px;
-  max-width: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 0;
+  height: 100%;
 `;
 
 export const Label = styled.label`
@@ -89,8 +92,9 @@ export const Button = styled.button`
 
   &:focus {
     --saf-0: rgba(var(--sk_highlight, 18, 100, 163), 1);
-    box-shadow: 0 0 0 1px var(--saf-0),
-    0 0 0 5px rgba(29, 155, 209, 0.3);
+    box-shadow:
+      0 0 0 1px var(--saf-0),
+      0 0 0 5px rgba(29, 155, 209, 0.3);
   }
 
   &:disabled {

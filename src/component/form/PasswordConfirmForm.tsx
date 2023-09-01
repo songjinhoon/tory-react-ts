@@ -1,15 +1,15 @@
-import { Button, Error, Form, Input, Label } from '@page/auth/styles';
+import { Form, Input } from '@page/auth/styles';
 import { ErrorMessage } from '@hookform/error-message';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ISignInUser, ISignUpUser } from '@typing/user';
 import { useCallback, useEffect } from 'react';
 import useUser from '@hook/useUser';
 import { useModeDispatch } from '../../context/mode';
-import { useModalDispatch } from '../../context/modal';
+import ActionForm from '@component/form/ActionForm';
+import { Error, InputForm, Label } from '@component/form/styles';
 
 const PasswordConfirmForm = () => {
   const { isEqualPassword } = useUser();
-  const modalDispatch = useModalDispatch();
   const modeDispatch = useModeDispatch();
 
   const {
@@ -41,39 +41,34 @@ const PasswordConfirmForm = () => {
     [isEqualPassword, setError, modeDispatch],
   );
 
-  console.log('ㅎ');
-
   useEffect(() => {
     watch((value, { name, type }) => console.log(value, name, type));
   }, [watch]);
 
+  console.log('PasswordConfirmForm Component Render');
+
   return (
     <Form onSubmit={handleSubmit(_onSubmit)}>
-      <Label>
-        <span>Password</span>
-        <div>
-          <Input
-            placeholder={'input password'}
-            type={'password'}
-            {...register('password', {
-              required: '비밀번호는 필수입니다.',
-            })}
-          />
-        </div>
-      </Label>
-      <ErrorMessage
-        errors={errors}
-        name={'password'}
-        render={({ message }) => <Error>{message}</Error>}
-      />
-      {/*{errors.password && <Error>{errors.password.message}</Error>}*/}
-      <Button type={'submit'}>OK</Button>
-      <Button
-        type={'button'}
-        onClick={() => modalDispatch({ type: 'closeModal' })}
-      >
-        CANCEL
-      </Button>
+      <InputForm>
+        <Label>
+          <span>Password</span>
+          <div>
+            <Input
+              placeholder={'input password'}
+              type={'password'}
+              {...register('password', {
+                required: '비밀번호는 필수입니다.',
+              })}
+            />
+          </div>
+        </Label>
+        <ErrorMessage
+          errors={errors}
+          name={'password'}
+          render={({ message }) => <Error>{message}</Error>}
+        />
+      </InputForm>
+      <ActionForm></ActionForm>
     </Form>
   );
 };

@@ -3,12 +3,23 @@ import {
   ModalsContainerBlock,
 } from '@component/popup/modal/styles';
 import { useModalDispatch, useModalState } from '../../../context/modal';
+import { useModeDispatch } from '../../../context/mode';
 
 const Z_INDEX = 1010;
 
 const ModalContainer = () => {
   const modalState = useModalState();
   const modalDispatch = useModalDispatch();
+  const modeDispatch = useModeDispatch();
+
+  const _onClick = () => {
+    modalDispatch({ type: 'closeModal' });
+    modeDispatch({
+      type: 'updateMode',
+      key: 'userUpdateModal',
+      value: 'confirm',
+    });
+  };
 
   if (modalState.modals.length === 0) {
     return null;
@@ -16,9 +27,7 @@ const ModalContainer = () => {
 
   if (modalState.modals.length === 1) {
     return (
-      <ModalContainerBlock
-        onClick={() => modalDispatch({ type: 'closeModal' })}
-      >
+      <ModalContainerBlock onClick={_onClick}>
         {modalState?.modals.map((data: any, index: any) => (
           <div key={index}>{data}</div>
         ))}
@@ -27,7 +36,7 @@ const ModalContainer = () => {
   }
 
   return (
-    <ModalsContainerBlock onClick={() => modalDispatch({ type: 'closeModal' })}>
+    <ModalsContainerBlock onClick={_onClick}>
       {modalState?.modals.map((data: any, index: any) => (
         <div
           key={index}

@@ -87,7 +87,7 @@ export const useModalState = () => {
   return state;
 };
 
-export const useModalDispatch: Function = () => {
+export const useModalDispatch = () => {
   const dispatch = useContext(ModalDispatchContext);
   if (!dispatch) throw new Error('Cannot find ModalProvider');
   return dispatch;

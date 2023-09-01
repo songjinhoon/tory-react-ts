@@ -26,25 +26,23 @@ export const ModalBlock = styled.div`
   z-index: 1011;
   display: inline-block;
   --saf-0: rgba(var(--sk_foreground_low, 29, 28, 29), 0.13);
-  box-shadow:
-    0 0 0 1px var(--saf-0),
-    0 4px 12px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0 0 1px var(--saf-0),
+  0 4px 12px 0 rgba(0, 0, 0, 0.12);
   background-color: rgba(var(--sk_foreground_min_solid, 248, 248, 248), 1);
   border-radius: 6px;
   user-select: none;
   width: 500px;
-  height: 700px;
   padding: 5px;
 `;
 
 export const ModalHeader = styled.header`
+  height: 10%;
   font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: antiquewhite;
   border-radius: 6px;
-  width: 100%;
 
   button {
     background-color: transparent;
@@ -54,4 +52,11 @@ export const ModalHeader = styled.header`
   }
 `;
 
-export const ModalContent = styled.section``;
+export const ModalContent = styled.section`
+  height: 85%;
+`;
+
+export const ModalAction = styled.section`
+  height: 15%;
+`
+
