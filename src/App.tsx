@@ -11,6 +11,7 @@ const SignIn = loadable(() => import('@page/auth/SignIn'));
 const SignUp = loadable(() => import('@page/auth/SignUp'));
 const Dashboard = loadable(() => import('@page/dashboard/Dashboard'));
 const Post = loadable(() => import('@page/post/Post'));
+const PostCreate = loadable(() => import('@page/post/PostCreate'));
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path={'/sign-up'} element={<SignUp />}></Route>
               <Route path={'/dashboard'} element={<Dashboard />}></Route>
               <Route path={'/post'} element={<Post />}></Route>
+              <Route path={'/post-create'} element={<PostCreate />}></Route>
             </Routes>
           </BrowserRouter>
           <ToastContainer></ToastContainer>

@@ -2,6 +2,8 @@ import useUser from '@hook/useUser';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '@component/layout/Header';
+import { TitleInput } from '@page/post/styles';
+import { PageContent } from '@page/styles';
 
 const Post = () => {
   const { user, isLoading } = useUser();
@@ -22,7 +24,8 @@ const Post = () => {
   return (
     <div>
       <Header></Header>
-      <div>포스트페이지</div>
+      <PageContent>
+      </PageContent>
     </div>
   );
 };

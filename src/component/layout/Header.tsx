@@ -15,6 +15,7 @@ import { useModalDispatch } from '../../context/modal';
 const Header = () => {
   const { user, isLoading }: { user: any; isLoading: boolean } = useUser(); // 이거 어쩌지;
   const modalDispatch = useModalDispatch();
+  const [isRenderPopup, setIsRenderPopup] = useState(false);
 
   const userUpdateModalOpen = useCallback(() => {
     modalDispatch({
@@ -23,7 +24,6 @@ const Header = () => {
     });
   }, [modalDispatch]);
 
-  const [isRenderPopup, setIsRenderPopup] = useState(false);
   const popupOpen = useCallback(() => {
     setIsRenderPopup(true);
   }, []);
