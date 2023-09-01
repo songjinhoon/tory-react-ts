@@ -24,35 +24,35 @@ type Props = {
   onCancel?: () => void;
 };
 
-const ModalLayout: FC<Props> = ({
-  children,
-  title = 'DEMO PROJECT',
-  style,
-  isClose = false,
-  onClose,
-}) => {
-  const stopPropagation = useCallback(
-    (e: MouseEvent) => e.stopPropagation(),
-    [],
-  );
-  const modalDispatch = useModalDispatch();
-  const _onClose: Function =
-    onClose ||
-    (() => {
-      modalDispatch({ type: 'closeModal' });
-    });
+const ModalLayout: FC<Props> = React.memo(
+  ({ children, title = 'DEMO PROJECT', style, isClose = false, onClose }) => {
+    const modalDispatch = useModalDispatch();
 
-  return (
-    <ModalBlock onClick={stopPropagation} style={style}>
-      <ModalHeader>
-        <div>
-          <span>{title}</span>
-          {isClose && <button onClick={() => _onClose()}>&times;</button>}
-        </div>
-      </ModalHeader>
-      <ModalContent>{children}</ModalContent>
-    </ModalBlock>
-  );
-};
+    const stopPropagation = useCallback(
+      (e: MouseEvent) => e.stopPropagation(),
+      [],
+    );
+
+    const _onClose: Function =
+      onClose ||
+      (() => {
+        modalDispatch({ type: 'closeModal' });
+      });
+
+    console.log('ModalLayout');
+
+    return (
+      <ModalBlock onClick={stopPropagation} style={style}>
+        <ModalHeader>
+          <div>
+            <span>{title}</span>
+            {isClose && <button onClick={() => _onClose()}>&times;</button>}
+          </div>
+        </ModalHeader>
+        <ModalContent>{children}</ModalContent>
+      </ModalBlock>
+    );
+  },
+);
 
 export default ModalLayout;
