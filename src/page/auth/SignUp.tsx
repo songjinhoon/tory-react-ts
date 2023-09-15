@@ -1,4 +1,12 @@
-import { Button, Error, Form, Header, Input, Label, LinkContainer } from '@page/auth/styles';
+import {
+  Button,
+  Error,
+  Form,
+  Header,
+  Input,
+  Label,
+  LinkContainer,
+} from '@page/auth/styles';
 import { Link } from 'react-router-dom';
 import useUser from '@hook/useUser';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -26,11 +34,11 @@ const SignUp = () => {
     <div id="container">
       <Header>DEMO</Header>
       <Form onSubmit={handleSubmit(_onSubmit)}>
-        <Label id="email-label">
+        <Label id="username-label">
           <span>Email</span>
           <div>
             <Input
-              {...register('email', {
+              {...register('username', {
                 required: '이메일 주소는 필수입니다.',
                 minLength: {
                   value: 10,
@@ -41,12 +49,13 @@ const SignUp = () => {
                   message: '10~20 사이의 길이만 가질 수 있습니다.',
                 },
                 pattern: {
-                  value: /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
+                  value:
+                    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
                   message: '이메일 형식을 확인해주세요.',
                 },
               })}
             />
-            {errors.email && <Error>{errors.email.message}</Error>}
+            {errors.username && <Error>{errors.username.message}</Error>}
           </div>
         </Label>
         <Label id="nickname">
@@ -78,6 +87,30 @@ const SignUp = () => {
               })}
             />
             {errors.password && <Error>{errors.password.message}</Error>}
+          </div>
+        </Label>
+        <Label id="tellNum-label">
+          <span>tellNum</span>
+          <div>
+            <Input
+              type={'text'}
+              {...register('tellNum', {
+                required: '전화번호를 입력해주세요.',
+              })}
+            />
+            {errors.tellNum && <Error>{errors.tellNum.message}</Error>}
+          </div>
+        </Label>
+        <Label id="address-label">
+          <span>address</span>
+          <div>
+            <Input
+              type={'text'}
+              {...register('address', {
+                required: '주소를 입력해주세요.',
+              })}
+            />
+            {errors.address && <Error>{errors.address.message}</Error>}
           </div>
         </Label>
         <Button type="submit">회원가입</Button>

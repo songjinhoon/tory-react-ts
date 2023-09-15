@@ -34,11 +34,11 @@ const SignIn = () => {
     <div id="container">
       <Header>DEMO</Header>
       <Form onSubmit={handleSubmit(_onSubmit)}>
-        <Label id="email-label">
+        <Label id="username-label">
           <span>Email</span>
           <div>
             <Input
-              {...register('email', {
+              {...register('username', {
                 required: '이메일 주소는 필수입니다.',
                 minLength: {
                   value: 10,
@@ -55,7 +55,7 @@ const SignIn = () => {
                 },
               })}
             />
-            {errors.email && <Error>{errors.email.message}</Error>}
+            {errors.username && <Error>{errors.username.message}</Error>}
           </div>
         </Label>
         <Label id="password-label">

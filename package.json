@@ -60,5 +60,5 @@
     "swr": "^2.2.0",
     "webpack-bundle-analyzer": "^4.9.0"
   },
-  "proxy": "http://localhost:3095"
+  "proxy": "http://localhost:4000"
 }

@@ -1,5 +1,5 @@
 export interface ISignUpUser {
-  email: string;
+  username: string;
   nickname: string;
   tellNum: string;
   address: string;
@@ -7,6 +7,6 @@ export interface ISignUpUser {
 }
 
 export interface ISignInUser {
-  email: string;
+  username: string;
   password: string;
 }

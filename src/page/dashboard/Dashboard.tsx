@@ -30,8 +30,6 @@ const Dashboard = () => {
     return <div>로딩중</div>;
   }
 
-  console.log('Dashboard render');
-
   return (
     <div>
       <Header></Header>
