@@ -13,7 +13,7 @@ const useUser = () => {
     data: user,
     mutate: userMutate,
     isLoading,
-  } = useSWR<IUser | boolean>(`/api/sign-in`, fetcher, {
+  } = useSWR<IUser | boolean>(`/api/users/sign-in`, fetcher, {
     dedupingInterval: 60000, // 60초동안은 캐쉬에서 호출하겠다.
   });
 
