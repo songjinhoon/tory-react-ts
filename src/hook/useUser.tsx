@@ -6,14 +6,19 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { ISignInUser, ISignUpUser } from '@typing/user';
+import { deleteCookie, getCookie, setCookie } from '@util/utils';
+
+let accessToken = '';
+let id: any = null;
 
 const useUser = () => {
   const navigate = useNavigate();
+
   const {
     data: user,
     mutate: userMutate,
     isLoading,
-  } = useSWR<IUser | boolean>(`/api/users/sign-in`, fetcher, {
+  } = useSWR<IUser | boolean>(id ? `/api/users/${id}` : null, fetcher, {
     dedupingInterval: 60000, // 60초동안은 캐쉬에서 호출하겠다.
   });
 
@@ -54,7 +59,14 @@ const useUser = () => {
           },
         );
         if (response.status === 200) {
-          await userMutate(response.data);
+          // accessToken = getCookie('access_token');
+          id = response.data.id;
+          axios.defaults.headers.common['Authorization'] = `Bearer ${getCookie(
+            'access_token',
+          )}`;
+          deleteCookie('access_token');
+
+          await userMutate();
           navigate('/dashboard');
         }
       } catch (error) {
@@ -65,8 +77,10 @@ const useUser = () => {
         }
       }
     },
-    [userMutate, navigate],
+    [userMutate, navigate, getCookie],
   );
+
+  const refresh = useCallback(() => {}, []);
 
   const logout = useCallback(() => {
     axios
@@ -94,7 +108,8 @@ const useUser = () => {
 
   useEffect(() => {
     console.log(user);
-  }, [user]);
+    console.log(accessToken);
+  }, [user, accessToken]);
 
   return {
     user,

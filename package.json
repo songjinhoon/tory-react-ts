@@ -53,6 +53,7 @@
     "gravatar": "^1.8.2",
     "prettier": "^3.0.1",
     "react-app-rewired": "^2.2.1",
+    "react-cookie": "^6.1.1",
     "react-hook-form": "^7.45.4",
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.15.0",
