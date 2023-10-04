@@ -1,19 +1,17 @@
 import useSWR from 'swr';
 import { IUser } from '@typing/db';
 import fetcher from '@util/fetcher';
-import { useCallback, useEffect } from 'react';
-import axios from 'axios';
+import { useCallback } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { ISignInUser, ISignUpUser } from '@typing/user';
-import { deleteCookie, getCookie, setCookie } from '@util/utils';
-
-let accessToken = '';
-let id: any = null;
+import axios from 'axios';
+import Api from "@util/axiosConfig";
+import { tokenProcess } from "@util/axiosInterceptor";
 
 const useUser = () => {
   const navigate = useNavigate();
-
+  const id = localStorage.getItem('id');
   const {
     data: user,
     mutate: userMutate,
@@ -25,7 +23,7 @@ const useUser = () => {
   const signUp = useCallback(
     async (params: ISignUpUser) => {
       try {
-        const response = await axios.post(`/api/users/sign-up`, params, {
+        const response = await Api.post(`/api/users/sign-up`, params, {
           withCredentials: true,
         });
         if (response.status === 201) {
@@ -35,12 +33,10 @@ const useUser = () => {
           await userMutate();
           navigate('/sign-in');
         }
-      } catch (error) {
-        if (axios.isAxiosError(error)) {
-          toast.error(error.message, {
-            position: toast.POSITION.BOTTOM_CENTER,
-          });
-        }
+      } catch (error: any) {
+        toast.error(error.message, {
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
       }
     },
     [userMutate, navigate],
@@ -59,40 +55,24 @@ const useUser = () => {
           },
         );
         if (response.status === 200) {
-          // accessToken = getCookie('access_token');
-          id = response.data.id;
-          axios.defaults.headers.common['Authorization'] = `Bearer ${getCookie(
-            'access_token',
-          )}`;
-          deleteCookie('access_token');
-
+          localStorage.setItem('id', response.data.id);
+          await tokenProcess('default');
           await userMutate();
           navigate('/dashboard');
         }
-      } catch (error) {
-        if (axios.isAxiosError(error)) {
-          toast.error(error.message, {
-            position: toast.POSITION.BOTTOM_CENTER,
-          });
-        }
+      } catch (error: any) {
+        toast.error(error.message, {
+          position: toast.POSITION.BOTTOM_CENTER,
+        });
       }
     },
-    [userMutate, navigate, getCookie],
+    [userMutate, navigate],
   );
 
-  const refresh = useCallback(() => {}, []);
-
-  const logout = useCallback(() => {
-    axios
-      .post(`/api/users/logout`, null, {
-        withCredentials: true,
-      })
-      .then(async () => {
-        await userMutate(false, {
-          revalidate: false,
-        });
-        navigate('/sign-in');
-      });
+  const logout = useCallback(async () => {
+    await tokenProcess('logout');
+    await userMutate();
+    navigate('/sign-in');
   }, [userMutate, navigate]);
 
   const isEqualPassword = useCallback((param: string) => {
@@ -106,10 +86,15 @@ const useUser = () => {
     };
   }, []);
 
-  useEffect(() => {
-    console.log(user);
-    console.log(accessToken);
-  }, [user, accessToken]);
+  const userQuery = useCallback(async () => {
+    const response = await Api.get('/api/users');
+    console.log(response.data);
+  }, []);
+
+  /*  useEffect(() => {
+                              console.log(user);
+                              console.log(accessToken);
+                            }, [user, accessToken]);*/
 
   return {
     user,
@@ -117,8 +102,9 @@ const useUser = () => {
     signUp,
     signIn,
     logout,
-    isEqualPassword,
+    userQuery,
     updateUser,
+    isEqualPassword,
   };
 };
 

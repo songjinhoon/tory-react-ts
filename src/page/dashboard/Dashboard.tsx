@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useModalDispatch } from '../../context/modal';
 
 const Dashboard = () => {
-  const { user, isLoading } = useUser();
+  const { user, isLoading, userQuery } = useUser();
   const navigate = useNavigate();
   const modalDispatch = useModalDispatch();
 
@@ -19,6 +19,10 @@ const Dashboard = () => {
 
   const firstModalOpen = () =>
     modalDispatch({ type: 'openModal', value: 'first' });
+
+  const sample = () => {
+    userQuery().then((r) => {});
+  };
 
   useEffect(() => {
     if (!isLoading && !user) {
@@ -36,6 +40,7 @@ const Dashboard = () => {
       <button onClick={_onClick}>포스트로 이동하기</button>
       <button onClick={sampleModalOpen}>샘플 모달창 열기</button>
       <button onClick={firstModalOpen}>첫번째 모달창 열기</button>
+      <button onClick={sample}>샘플 API 호출하기</button>
       <ModalContainer></ModalContainer>
     </div>
   );

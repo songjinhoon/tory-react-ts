@@ -11,8 +11,10 @@ import {
   RightMenu,
 } from '@component/layout/styles';
 import { useModalDispatch } from '../../context/modal';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const navigate = useNavigate();
   const { user, isLoading }: { user: any; isLoading: boolean } = useUser(); // 이거 어쩌지;
   const modalDispatch = useModalDispatch();
   const [isRenderPopup, setIsRenderPopup] = useState(false);
@@ -31,10 +33,14 @@ const Header = () => {
     setIsRenderPopup(false);
   }, []);
 
+  if (!isLoading && !user) {
+    navigate('/sign-in');
+  }
+
   return (
     <Block>
       <RightMenu>
-        {!isLoading && (
+        {!isLoading && user && (
           <span onClick={popupOpen}>
             <ProfileImg
               src={gravatar.url(user.email, { s: '28px', d: 'retro' })}
