@@ -8,11 +8,13 @@ const AxiosInterceptor = (navigate: any) => {
     async (config) => {
       const id = localStorage.getItem('id');
       const expire = localStorage.getItem('expire');
+
       if (dayjs(expire).isBefore(dayjs())) {
         console.log('token refresh request');
         await axios.get(`/api/users/${id}/refresh`);
         await tokenProcess('default');
       }
+
       return config;
     },
     (error) => {
@@ -27,6 +29,7 @@ const AxiosInterceptor = (navigate: any) => {
     async function (error) {
       if (error.response) {
         if (error.response.status === 401 || error.response.status === 403) {
+          console.log('token refresh response error');
           await tokenProcess('logout');
           navigate('/sign-in');
           return false;
@@ -53,7 +56,7 @@ export const tokenProcess = async (type: TokenProcessType) => {
       dayjs().add(1, 'second').format('YYYY-MM-DD HH:mm:ss'),
     );
   } else if (type === 'logout') {
-    console.log('[EVENT] ::: logout');
+    console.log('[EVENT] ==> logout');
     await axios.get(`/api/users/${localStorage.getItem('id')}/logout`);
     localStorage.removeItem('id');
     localStorage.removeItem('expire');
