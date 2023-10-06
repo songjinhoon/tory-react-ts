@@ -1,18 +1,21 @@
 import Api from '@util/axiosConfig';
 import dayjs from 'dayjs';
 import axios from 'axios';
-import { deleteCookie, getCookie } from '@util/utils';
+import { createAuth, deleteAuth } from '@util/authConfig';
 
 const AxiosInterceptor = (navigate: any) => {
   Api.interceptors.request.use(
     async (config) => {
+      console.log('request interceptor');
       const id = localStorage.getItem('id');
       const expire = localStorage.getItem('expire');
 
       if (dayjs(expire).isBefore(dayjs())) {
         console.log('token refresh request');
+
         await axios.get(`/api/users/${id}/refresh`);
-        await tokenProcess('default');
+
+        createAuth();
       }
 
       return config;
@@ -24,14 +27,20 @@ const AxiosInterceptor = (navigate: any) => {
 
   Api.interceptors.response.use(
     function (response) {
+      console.log('response interceptor');
       return response;
     },
     async function (error) {
       if (error.response) {
         if (error.response.status === 401 || error.response.status === 403) {
           console.log('token refresh response error');
-          await tokenProcess('logout');
+
+          await axios.get(`/api/users/${localStorage.getItem('id')}/logout`);
+
+          deleteAuth();
+
           navigate('/sign-in');
+
           return false;
         }
       }
@@ -41,24 +50,3 @@ const AxiosInterceptor = (navigate: any) => {
 };
 
 export default AxiosInterceptor;
-
-type TokenProcessType = 'default' | 'logout';
-
-export const tokenProcess = async (type: TokenProcessType) => {
-  if (type === 'default') {
-    Api.defaults.headers.common['Authorization'] = `Bearer ${getCookie(
-      'access_token',
-    )}`;
-    deleteCookie('access_token');
-    localStorage.setItem(
-      'expire',
-      // dayjs().add(1, 'minute').format('YYYY-MM-DD HH:mm:ss'),
-      dayjs().add(1, 'second').format('YYYY-MM-DD HH:mm:ss'),
-    );
-  } else if (type === 'logout') {
-    console.log('[EVENT] ==> logout');
-    await axios.get(`/api/users/${localStorage.getItem('id')}/logout`);
-    localStorage.removeItem('id');
-    localStorage.removeItem('expire');
-  }
-};

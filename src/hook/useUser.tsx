@@ -1,13 +1,13 @@
 import useSWR from 'swr';
 import { IUser } from '@typing/db';
 import fetcher from '@util/fetcher';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { ISignInUser, ISignUpUser } from '@typing/user';
+import Api from '@util/axiosConfig';
+import { createAuth, deleteAuth } from '@util/authConfig';
 import axios from 'axios';
-import Api from "@util/axiosConfig";
-import { tokenProcess } from "@util/axiosInterceptor";
 
 const useUser = () => {
   const navigate = useNavigate();
@@ -56,8 +56,8 @@ const useUser = () => {
         );
         if (response.status === 200) {
           localStorage.setItem('id', response.data.id);
-          await tokenProcess('default');
-          await userMutate();
+          createAuth();
+          // await userMutate(); 여기서 동작을 안한다 이유가 뭐지
           navigate('/dashboard');
         }
       } catch (error: any) {
@@ -66,14 +66,14 @@ const useUser = () => {
         });
       }
     },
-    [userMutate, navigate],
+    [navigate],
   );
 
   const logout = useCallback(async () => {
-    await tokenProcess('logout');
-    await userMutate();
+    await Api.get(`/api/users/${localStorage.getItem('id')}/logout`);
+    deleteAuth();
     navigate('/sign-in');
-  }, [userMutate, navigate]);
+  }, [navigate]);
 
   const isEqualPassword = useCallback((param: string) => {
     return param === '123';
@@ -91,10 +91,9 @@ const useUser = () => {
     console.log(response.data);
   }, []);
 
-  /*  useEffect(() => {
-                              console.log(user);
-                              console.log(accessToken);
-                            }, [user, accessToken]);*/
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   return {
     user,

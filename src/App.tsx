@@ -44,11 +44,11 @@ export default App;
 
 const NavigateFunctionComponent = (props: any) => {
   const navigate = useNavigate();
-  const [ran, setRan] = useState(false);
+  const [render, setRender] = useState(false);
 
-  if (!ran) {
+  if (!render) {
     AxiosInterceptor(navigate);
-    setRan(true);
+    setRender(true);
   }
   return <></>;
 };
