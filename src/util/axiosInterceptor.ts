@@ -1,6 +1,11 @@
 import Api from '@util/axiosConfig';
 import axios from 'axios';
-import { createAuth, deleteAuth, isInValidToken } from '@util/authConfig';
+import {
+  deleteAuth,
+  getId,
+  isInValidToken,
+  updateAuth,
+} from '@util/authConfig';
 
 const AxiosInterceptor = (navigate: any) => {
   Api.interceptors.request.use(
@@ -10,9 +15,9 @@ const AxiosInterceptor = (navigate: any) => {
       if (isInValidToken()) {
         console.log('token refresh request');
 
-        await axios.get(`/api/users/${localStorage.getItem('id')}/refresh`);
+        await axios.get(`/api/users/${getId()}/refresh`);
 
-        createAuth();
+        updateAuth();
       }
 
       return config;
@@ -32,7 +37,7 @@ const AxiosInterceptor = (navigate: any) => {
         if (error.response.status === 401 || error.response.status === 403) {
           console.log('token refresh response error');
 
-          await axios.get(`/api/users/${localStorage.getItem('id')}/logout`);
+          await axios.get(`/api/users/${getId()}/logout`);
 
           deleteAuth();
 

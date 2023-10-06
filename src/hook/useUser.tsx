@@ -6,19 +6,22 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { ISignInUser, ISignUpUser } from '@typing/user';
 import Api from '@util/axiosConfig';
-import { createAuth, deleteAuth } from '@util/authConfig';
+import { createAuth, deleteAuth, getId } from '@util/authConfig';
 import axios from 'axios';
 
 const useUser = () => {
   const navigate = useNavigate();
-  const id = localStorage.getItem('id');
   const {
     data: user,
     mutate: userMutate,
     isLoading,
-  } = useSWR<IUser | boolean>(id ? `/api/users/${id}` : null, fetcher, {
-    dedupingInterval: 60000, // 60초동안은 캐쉬에서 호출하겠다.
-  });
+  } = useSWR<IUser | boolean>(
+    getId() ? `/api/users/${getId()}` : null,
+    fetcher,
+    {
+      dedupingInterval: 60000, // 60초동안은 캐쉬에서 호출하겠다.
+    },
+  );
 
   const signUp = useCallback(
     async (params: ISignUpUser) => {
@@ -45,18 +48,11 @@ const useUser = () => {
   const signIn = useCallback(
     async (params: ISignInUser) => {
       try {
-        const response = await axios.post(
-          `/api/users/sign-in`,
-          {
-            ...params,
-          },
-          {
-            withCredentials: true,
-          },
-        );
+        const response = await axios.post(`/api/users/sign-in`, {
+          ...params,
+        });
         if (response.status === 200) {
-          localStorage.setItem('id', response.data.id);
-          createAuth();
+          createAuth(response.data.id);
           // await userMutate(); 여기서 동작을 안한다 이유가 뭐지
           navigate('/dashboard');
         }
@@ -70,7 +66,7 @@ const useUser = () => {
   );
 
   const logout = useCallback(async () => {
-    await Api.get(`/api/users/${localStorage.getItem('id')}/logout`);
+    await Api.get(`/api/users/${getId()}/logout`);
     deleteAuth();
     navigate('/sign-in');
   }, [navigate]);
