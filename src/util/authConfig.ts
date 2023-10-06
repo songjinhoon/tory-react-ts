@@ -20,3 +20,7 @@ export const deleteAuth = () => {
   localStorage.removeItem('id');
   localStorage.removeItem('expire');
 };
+
+// 토큰 유효기간 체크
+export const isInValidToken = () =>
+  dayjs(localStorage.getItem('expire')).isBefore(dayjs());

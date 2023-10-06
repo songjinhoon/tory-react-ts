@@ -1,19 +1,16 @@
 import Api from '@util/axiosConfig';
-import dayjs from 'dayjs';
 import axios from 'axios';
-import { createAuth, deleteAuth } from '@util/authConfig';
+import { createAuth, deleteAuth, isInValidToken } from '@util/authConfig';
 
 const AxiosInterceptor = (navigate: any) => {
   Api.interceptors.request.use(
     async (config) => {
       console.log('request interceptor');
-      const id = localStorage.getItem('id');
-      const expire = localStorage.getItem('expire');
 
-      if (dayjs(expire).isBefore(dayjs())) {
+      if (isInValidToken()) {
         console.log('token refresh request');
 
-        await axios.get(`/api/users/${id}/refresh`);
+        await axios.get(`/api/users/${localStorage.getItem('id')}/refresh`);
 
         createAuth();
       }
