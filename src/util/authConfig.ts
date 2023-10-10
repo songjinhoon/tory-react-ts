@@ -1,24 +1,23 @@
 import Api from '@util/axiosConfig';
-import { deleteCookie, getCookie, setCookie } from '@util/utils';
+import { deleteCookie, getCookie } from '@util/utils';
 import dayjs from 'dayjs';
+import mainStore from '@util/store';
 
+/*
+ * 내부 정책에 맞게 인증 체계를 구현한다.
+ * 예) cookie, localStorage, store 등등
+ * */
 // 인증 등록
 export const createAuth = (id: string) => {
-  setCookie('id', id, {});
+  mainStore.setItem('id', id);
   Api.defaults.headers.common['Authorization'] = `Bearer ${getCookie(
     'access_token',
   )}`;
   deleteCookie('access_token');
-  setCookie(
+  mainStore.setItem(
     'expire',
     dayjs().add(10, 'second').format('YYYY-MM-DD HH:mm:ss'),
-    {},
   );
-  /*localStorage.setItem(
-    'expire',
-    // dayjs().add(1, 'minute').format('YYYY-MM-DD HH:mm:ss'),
-    dayjs().add(10, 'second').format('YYYY-MM-DD HH:mm:ss'),
-  );*/
 };
 
 export const updateAuth = () => {
@@ -26,23 +25,20 @@ export const updateAuth = () => {
     'access_token',
   )}`;
   deleteCookie('access_token');
-  setCookie(
+  mainStore.setItem(
     'expire',
     dayjs().add(10, 'second').format('YYYY-MM-DD HH:mm:ss'),
-    {},
   );
 };
 
 // 인증 해제
 export const deleteAuth = () => {
-  deleteCookie('id');
-  deleteCookie('expire');
-  /*localStorage.removeItem('id');
-  localStorage.removeItem('expire');*/
+  mainStore.setItem('id', '');
+  mainStore.setItem('expire', '');
 };
 
 // 토큰 유효기간 체크
 export const isInValidToken = () =>
-  dayjs(getCookie('expire')).isBefore(dayjs());
+  dayjs(mainStore.getItem('expire')).isBefore(dayjs());
 
-export const getId = () => getCookie('id');
+export const getId = () => mainStore.getItem('id');
