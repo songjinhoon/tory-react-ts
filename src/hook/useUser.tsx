@@ -54,7 +54,7 @@ const useUser = () => {
         if (response.status === 200) {
           createAuth(response.data.id);
           // await userMutate(); 여기서 동작을 안한다 이유가 뭐지
-          navigate('/dashboard');
+          navigate('/admin');
         }
       } catch (error: any) {
         toast.error(error.message, {
@@ -93,6 +93,7 @@ const useUser = () => {
 
   return {
     user,
+    userMutate,
     isLoading,
     signUp,
     signIn,

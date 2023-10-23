@@ -24,8 +24,8 @@ const SignIn = () => {
   });
 
   const _onSubmit: SubmitHandler<ISignInUser> = useCallback(
-    (data) => {
-      signIn(data);
+    async (data) => {
+      await signIn(data);
     },
     [signIn],
   );

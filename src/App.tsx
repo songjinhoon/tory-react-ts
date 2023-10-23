@@ -1,6 +1,6 @@
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import loadable from '@loadable/component';
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -8,14 +8,21 @@ import { ModalProvider } from './context/modal';
 import { ModeProvider } from './context/mode';
 import { CookiesProvider } from 'react-cookie';
 import AxiosInterceptor from '@util/axiosInterceptor';
+import { refreshCheck } from '@util/authConfig';
 
 const SignIn = loadable(() => import('@page/auth/SignIn'));
 const SignUp = loadable(() => import('@page/auth/SignUp'));
 const Dashboard = loadable(() => import('@page/dashboard/Dashboard'));
+const Admin = loadable(() => import('@page/admin/admin'));
 const Post = loadable(() => import('@page/post/Post'));
 const PostCreate = loadable(() => import('@page/post/PostCreate'));
 
 function App() {
+  useEffect(() => {
+    console.log('DEMO PROJECT START');
+    refreshCheck();
+  }, []);
+
   return (
     <CookiesProvider>
       <ModalProvider>
@@ -28,6 +35,7 @@ function App() {
                 <Route path={'/sign-in'} element={<SignIn />}></Route>
                 <Route path={'/sign-up'} element={<SignUp />}></Route>
                 <Route path={'/dashboard'} element={<Dashboard />}></Route>
+                <Route path={'/admin'} element={<Admin />}></Route>
                 <Route path={'/post'} element={<Post />}></Route>
                 <Route path={'/post-create'} element={<PostCreate />}></Route>
               </Routes>
@@ -50,5 +58,6 @@ const NavigateFunctionComponent = (props: any) => {
     AxiosInterceptor(navigate);
     setRender(true);
   }
+
   return <></>;
 };

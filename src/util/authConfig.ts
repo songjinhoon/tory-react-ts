@@ -1,31 +1,39 @@
 import Api from '@util/axiosConfig';
 import { deleteCookie, getCookie } from '@util/utils';
 import dayjs from 'dayjs';
-import mainStore from '@util/store';
 
 /*
  * 내부 정책에 맞게 인증 체계를 구현한다.
  * 예) cookie, localStorage, store 등등
+ * 해당 프로젝트에서는 localStorage 활용
  * */
 // 인증 등록
 export const createAuth = (id: string) => {
-  mainStore.setItem('id', id);
+  localStorage.setItem('id', id);
+  localStorage.setItem('accessToken', getCookie('access_token'));
+
   Api.defaults.headers.common['Authorization'] = `Bearer ${getCookie(
     'access_token',
   )}`;
   deleteCookie('access_token');
-  mainStore.setItem(
+
+  localStorage.setItem(
     'expire',
     dayjs().add(10, 'second').format('YYYY-MM-DD HH:mm:ss'),
   );
 };
 
 export const updateAuth = () => {
+  localStorage.setItem('accessToken', getCookie('access_token'));
+
   Api.defaults.headers.common['Authorization'] = `Bearer ${getCookie(
     'access_token',
   )}`;
   deleteCookie('access_token');
-  mainStore.setItem(
+
+  const expire = dayjs().add(10, 'second').format('YYYY-MM-DD HH:mm:ss');
+
+  localStorage.setItem(
     'expire',
     dayjs().add(10, 'second').format('YYYY-MM-DD HH:mm:ss'),
   );
@@ -33,12 +41,26 @@ export const updateAuth = () => {
 
 // 인증 해제
 export const deleteAuth = () => {
-  mainStore.setItem('id', '');
-  mainStore.setItem('expire', '');
+  localStorage.removeItem('id');
+  localStorage.removeItem('expire');
+  localStorage.removeItem('accessToken');
 };
 
 // 토큰 유효기간 체크
 export const isInValidToken = () =>
-  dayjs(mainStore.getItem('expire')).isBefore(dayjs());
+  dayjs(localStorage.getItem('expire')).isBefore(dayjs());
 
-export const getId = () => mainStore.getItem('id');
+export const getId = () => localStorage.getItem('id');
+
+export const refreshCheck = () => {
+  if (
+    localStorage.getItem('id') &&
+    localStorage.getItem('expire') &&
+    localStorage.getItem('accessToken')
+  ) {
+    Api.defaults.headers.common[
+      'Authorization'
+    ] = `Bearer ${localStorage.getItem('accessToken')}`;
+    deleteCookie('access_token');
+  }
+};
