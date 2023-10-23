@@ -8,13 +8,14 @@ import {
   LinkContainer,
 } from '@page/auth/styles';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ISignInUser } from '@typing/user';
 import useUser from '@hook/useUser';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 
 const SignIn = () => {
-  const { signIn } = useUser();
+  const navigate = useNavigate();
+  const { user, signIn, isLoading } = useUser();
   const {
     register,
     handleSubmit,
@@ -29,6 +30,13 @@ const SignIn = () => {
     },
     [signIn],
   );
+
+  useEffect(() => {
+    if (user) {
+      // 이거 url 직접입력해서 로그인페이지로 오는거 막기위해 필요함
+      navigate('/dashboard');
+    }
+  }, [user]);
 
   return (
     <div id="container">

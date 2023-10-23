@@ -23,7 +23,7 @@ export const Form = styled.form`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  padding: 20px 0;
+  padding: 10px 0;
   height: 100%;
 `;
 
@@ -53,7 +53,7 @@ export const Input = styled.input`
   width: 100%;
   color: rgba(var(--sk_primary_foreground, 29, 28, 29), 1);
   background-color: rgba(var(--sk_primary_background, 255, 255, 255), 1);
-  padding: 11px 12px 13px 12px;
+  padding: 10px;
   height: 44px;
   font-size: 18px;
   line-height: 1.33333333;

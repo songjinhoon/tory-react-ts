@@ -54,7 +54,7 @@ const useUser = () => {
         if (response.status === 200) {
           createAuth(response.data.id);
           // await userMutate(); 여기서 동작을 안한다 이유가 뭐지
-          navigate('/admin');
+          navigate('/dashboard');
         }
       } catch (error: any) {
         toast.error(error.message, {
@@ -75,11 +75,15 @@ const useUser = () => {
     return param === '123';
   }, []);
 
-  const updateUser = useCallback((params: ISignUpUser) => {
-    console.log(params);
-    return {
-      status: 204,
-    };
+  const updateUser = useCallback(async (params: ISignUpUser) => {
+    const response = await Api.put(`/api/users/${getId()}`, {
+      ...params,
+    });
+    if (response.status === 204) {
+      alert('성공');
+    } else {
+      alert('실패야');
+    }
   }, []);
 
   const userQuery = useCallback(async () => {

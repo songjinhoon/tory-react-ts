@@ -33,12 +33,24 @@ const Header = () => {
     setIsRenderPopup(false);
   }, []);
 
+  const _onClick = useCallback(
+    (menuId: string) => {
+      navigate(menuId);
+    },
+    [navigate],
+  );
+
   if (!isLoading && !user) {
     navigate('/sign-in');
   }
 
   return (
     <Block>
+      <div>
+        <button onClick={() => _onClick('/dashboard')}>DASHBOARD</button>
+        <button onClick={() => _onClick('/post')}>POST</button>
+        <button onClick={() => _onClick('/admin')}>ADMIN</button>
+      </div>
       <RightMenu>
         {!isLoading && user && (
           <span onClick={popupOpen}>

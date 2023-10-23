@@ -13,9 +13,10 @@ import { refreshCheck } from '@util/authConfig';
 const SignIn = loadable(() => import('@page/auth/SignIn'));
 const SignUp = loadable(() => import('@page/auth/SignUp'));
 const Dashboard = loadable(() => import('@page/dashboard/Dashboard'));
-const Admin = loadable(() => import('@page/admin/admin'));
 const Post = loadable(() => import('@page/post/Post'));
 const PostCreate = loadable(() => import('@page/post/PostCreate'));
+const Admin = loadable(() => import('@page/admin/Admin'));
+const UserUpdate = loadable(() => import('@page/admin/UserUpdate'));
 
 function App() {
   useEffect(() => {
@@ -35,9 +36,10 @@ function App() {
                 <Route path={'/sign-in'} element={<SignIn />}></Route>
                 <Route path={'/sign-up'} element={<SignUp />}></Route>
                 <Route path={'/dashboard'} element={<Dashboard />}></Route>
-                <Route path={'/admin'} element={<Admin />}></Route>
                 <Route path={'/post'} element={<Post />}></Route>
                 <Route path={'/post-create'} element={<PostCreate />}></Route>
+                <Route path={'/admin'} element={<Admin />}></Route>
+                <Route path={'/user/update'} element={<UserUpdate />}></Route>
               </Routes>
             </BrowserRouter>
             <ToastContainer></ToastContainer>

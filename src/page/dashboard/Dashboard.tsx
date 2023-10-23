@@ -10,10 +10,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const modalDispatch = useModalDispatch();
 
-  const _onClick = useCallback(() => {
-    navigate('/post');
-  }, [navigate]);
-
   const sampleModalOpen = () =>
     modalDispatch({ type: 'openModal', value: 'sample' });
 
@@ -37,7 +33,7 @@ const Dashboard = () => {
   return (
     <div>
       <Header></Header>
-      <button onClick={_onClick}>포스트로 이동하기</button>
+      <button onClick={sample}>샘플 API 호출하기</button>
       <button onClick={sampleModalOpen}>샘플 모달창 열기</button>
       <button onClick={firstModalOpen}>첫번째 모달창 열기</button>
       <button onClick={sample}>샘플 API 호출하기</button>

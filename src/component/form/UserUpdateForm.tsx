@@ -28,9 +28,9 @@ const UserUpdateForm = () => {
   const _onSubmit: SubmitHandler<ISignUpUser> = useCallback(
     (data) => {
       const response = updateUser(data);
-      if (response.status === 204) {
+      /*if (response.status === 204) {
         toast.success('사용자 정보 수정 성공 -> 기능개발해야합니다.');
-      }
+      }*/
     },
     [updateUser],
   );
