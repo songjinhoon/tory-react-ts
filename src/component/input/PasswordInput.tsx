@@ -8,6 +8,7 @@ const PasswordInput: FC<UserInput> = ({ register, errors, options }) => {
       <span>Password</span>
       <div>
         <Input
+          autoComplete={'off'}
           style={options.readOnly ? { background: 'whitesmoke' } : {}}
           disabled={options.readOnly}
           readOnly={options.readOnly}
@@ -23,4 +24,3 @@ const PasswordInput: FC<UserInput> = ({ register, errors, options }) => {
 };
 
 export default PasswordInput;
-

@@ -20,7 +20,6 @@ const UserUpdate = () => {
     isLoading,
     updateUser,
   }: { user: any; isLoading: any; updateUser: any } = useUser();
-
   const {
     register,
     handleSubmit,
@@ -39,7 +38,7 @@ const UserUpdate = () => {
 
   const _onSubmit: SubmitHandler<ISignUpUser> = useCallback(async (data) => {
     await updateUser(data);
-  }, []);
+  }, [updateUser]);
 
   useEffect(() => {
     if (!isLoading && !user) {
@@ -52,7 +51,7 @@ const UserUpdate = () => {
       setValue('address', user.address);
       setValue('password', user.password);
     }
-  }, [navigate, user, isLoading]);
+  }, [navigate, user, isLoading, setValue]);
 
   if (isLoading) {
     return <div>로딩중</div>;

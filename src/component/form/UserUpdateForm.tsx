@@ -1,7 +1,6 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ISignUpUser } from '@typing/user';
 import { useCallback } from 'react';
-import { toast } from 'react-toastify';
 import useUser from '@hook/useUser';
 import { useModeDispatch } from '../../context/mode';
 import { useModalDispatch } from '../../context/modal';
@@ -13,7 +12,6 @@ const UserUpdateForm = () => {
   const { updateUser } = useUser();
   const modeDispatch = useModeDispatch();
   const modalDispatch = useModalDispatch();
-
   const {
     register,
     handleSubmit,
@@ -25,15 +23,9 @@ const UserUpdateForm = () => {
     mode: 'onChange',
   });
 
-  const _onSubmit: SubmitHandler<ISignUpUser> = useCallback(
-    (data) => {
-      const response = updateUser(data);
-      /*if (response.status === 204) {
-        toast.success('사용자 정보 수정 성공 -> 기능개발해야합니다.');
-      }*/
-    },
-    [updateUser],
-  );
+  const _onSubmit: SubmitHandler<ISignUpUser> = useCallback(async (data) => {
+    await updateUser(data);
+  }, [updateUser]);
 
   const _onCancel = useCallback(() => {
     modalDispatch({
