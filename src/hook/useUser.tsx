@@ -9,6 +9,18 @@ import Api from '@util/axiosConfig';
 import { createAuth, deleteAuth, getId } from '@util/authConfig';
 import axios from 'axios';
 
+export type UseUserHookType = {
+  user: any;
+  userMutate: any;
+  isLoading: any;
+  signUp: any;
+  signIn: any;
+  logout: any;
+  userQuery: any;
+  updateUser: any;
+  isEqualPassword: any;
+};
+
 const useUser = () => {
   const navigate = useNavigate();
   const {

@@ -1,91 +1,107 @@
+import React, { useCallback, useEffect } from 'react';
+import { InputForm } from '@component/form/styles';
+import { Button, Form } from '@page/auth/styles';
+import ActionForm from '@component/form/ActionForm';
+import NicknameInput from '@component/input/NicknameInput';
+import TellNumInput from '@component/input/TellNumInput';
+import AddressInput from '@component/input/AddressInput';
+import UsernameInput from '@component/input/UsernameInput';
+import PasswordInput from '@component/input/PasswordInput';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ISignUpUser } from '@typing/user';
-import { useCallback } from 'react';
-import useUser from '@hook/useUser';
-import { useModeDispatch } from '../../context/mode';
-import { useModalDispatch } from '../../context/modal';
-import { InputForm, Label } from '@component/form/styles';
-import { Error, Form, Input } from '@page/auth/styles';
-import ActionForm from '@component/form/ActionForm';
+import useUser, { UseUserHookType } from '@hook/useUser';
 
-const UserUpdateForm = () => {
-  const { updateUser } = useUser();
-  const modeDispatch = useModeDispatch();
-  const modalDispatch = useModalDispatch();
+/*
+ * 사용자 정보 변경 템플릿은 여러 화면에서 사용될 수 있다.
+ * 하지만, 화면에 따라서 보여지는 형태는 다를 수 있다.
+ * DEMO 에서는 Modal, Page 두곳에서 해당 폼을 사용하게된다.
+ * 이곳에서 그 내용을 분기처리하여 관리하도록 한다.
+ * */
+
+type Props = {
+  type: 'page' | 'modal';
+  _onCancel: () => void;
+};
+
+const UserUpdateForm = ({ type, _onCancel }: Props) => {
+  const { user, isLoading, updateUser }: UseUserHookType = useUser();
   const {
     register,
     handleSubmit,
     formState: { errors },
-    // setError,
-    // watch,
+    setValue,
+    watch,
   } = useForm<ISignUpUser>({
-    // mode: 'onBlur',
-    mode: 'onChange',
+    mode: 'onBlur',
+    // mode: 'onChange',
+    defaultValues: {
+      username: user?.username,
+      nickname: user?.nickname,
+      tellNum: user?.tellNum,
+      address: user?.address,
+      password: user?.password,
+    },
   });
 
-  const _onSubmit: SubmitHandler<ISignUpUser> = useCallback(async (data) => {
-    await updateUser(data);
-  }, [updateUser]);
+  useEffect(() => {
+    if (!isLoading && user) {
+      setValue('username', user.username);
+      setValue('nickname', user.nickname);
+      setValue('tellNum', user.tellNum);
+      setValue('address', user.address);
+      setValue('password', user.password);
+    }
+  }, [user, isLoading, setValue]);
 
-  const _onCancel = useCallback(() => {
-    modalDispatch({
-      type: 'closeModal',
-    });
-    modeDispatch({
-      type: 'updateMode',
-      key: 'userUpdateModal',
-      value: 'confirm',
-    });
-  }, [modalDispatch, modeDispatch]);
+  useEffect(() => {
+    const subscription = watch((value, { name, type }) =>
+      console.log(value, name, type),
+    );
+    return () => subscription.unsubscribe();
+  }, [watch]);
 
-  console.log('UserUpdateForm');
+  const _onSubmit: SubmitHandler<ISignUpUser> = useCallback(
+    async (data) => {
+      await updateUser(data);
+    },
+    [updateUser],
+  );
 
   return (
     <Form onSubmit={handleSubmit(_onSubmit)}>
       <InputForm>
-        <Label id="nickname">
-          <span>nickname</span>
-          <div>
-            <Input
-              {...register('nickname', {
-                required: '닉네임을 입력해주세요.',
-                minLength: {
-                  value: 5,
-                  message: '5~20 사이의 길이만 가질 수 있습니다.',
-                },
-                maxLength: {
-                  value: 20,
-                  message: '5~20 사이의 길이만 가질 수 있습니다.',
-                },
-              })}
+        {type === 'page' && (
+          <>
+            <UsernameInput
+              register={register}
+              errors={errors.username}
+              options={{ readOnly: true }}
             />
-          </div>
-        </Label>
-        {errors.nickname && <Error>{errors.nickname.message}</Error>}
-        <Label id="tellNum">
-          <span>tellNum</span>
-          <div>
-            <Input
-              {...register('tellNum', {
-                required: '핸드폰번호를 입력해주세요.',
-              })}
+            <PasswordInput
+              register={register}
+              errors={errors.password}
+              options={{ readOnly: true }}
             />
-          </div>
-        </Label>
-        {errors.tellNum && <Error>{errors.tellNum.message}</Error>}
-        <Label id="address">
-          <span>address</span>
-          <div>
-            <Input
-              {...register('address', {
-                required: '주소를 입력해주세요.',
-              })}
-            />
-          </div>
-        </Label>
-        {errors.address && <Error>{errors.address.message}</Error>}
+          </>
+        )}
+        <NicknameInput
+          register={register}
+          errors={errors.nickname}
+          options={{}}
+        />
+        <TellNumInput
+          register={register}
+          errors={errors.tellNum}
+          options={{}}
+        />
+        <AddressInput
+          register={register}
+          errors={errors.address}
+          options={{}}
+        />
       </InputForm>
-      <ActionForm onCancel={_onCancel}></ActionForm>
+      {type === 'page' && <Button type="submit">업데이트</Button>}
+      {type === 'modal' && <ActionForm onCancel={_onCancel}></ActionForm>}
     </Form>
   );
 };

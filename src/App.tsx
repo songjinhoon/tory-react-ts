@@ -16,7 +16,7 @@ const Dashboard = loadable(() => import('@page/dashboard/Dashboard'));
 const Post = loadable(() => import('@page/post/Post'));
 const PostCreate = loadable(() => import('@page/post/PostCreate'));
 const Admin = loadable(() => import('@page/admin/Admin'));
-const UserUpdate = loadable(() => import('@page/admin/UserUpdate'));
+const UserUpdate = loadable(() => import('@page/admin/UserUpdatePage'));
 
 function App() {
   useEffect(() => {
