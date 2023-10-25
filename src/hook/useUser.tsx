@@ -9,6 +9,10 @@ import Api from '@util/axiosConfig';
 import { createAuth, deleteAuth, getId } from '@util/authConfig';
 import axios from 'axios';
 
+/*
+ * dedupingInterval을 사용하지 않으면 다른 텝을 갔다가 오는 경우 재요청을 보내게 되고 dedupingInterval 옵션을 추가하게 되면 그 시간안에는 탭을 갔다와도 재요청을 보내지 않고 캐시해서 그대로 데이터를 사용하다가 그 시간이 끝나면 다시 재요청
+ * */
+
 export type UseUserHookType = {
   user: any;
   userMutate: any;
@@ -87,16 +91,20 @@ const useUser = () => {
     return param === '123';
   }, []);
 
-  const updateUser = useCallback(async (params: ISignUpUser) => {
-    const response = await Api.put(`/api/users/${getId()}`, {
-      ...params,
-    });
-    if (response.status === 204) {
-      alert('성공');
-    } else {
-      alert('실패야');
-    }
-  }, []);
+  const updateUser = useCallback(
+    async (params: ISignUpUser) => {
+      const response = await Api.put(`/api/users/${getId()}`, {
+        ...params,
+      });
+      if (response.status === 204) {
+        alert('성공');
+        await userMutate();
+      } else {
+        alert('실패야');
+      }
+    },
+    [userMutate],
+  );
 
   const userQuery = useCallback(async () => {
     const response = await Api.get('/api/users');

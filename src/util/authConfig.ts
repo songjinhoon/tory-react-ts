@@ -31,8 +31,6 @@ export const updateAuth = () => {
   )}`;
   deleteCookie('access_token');
 
-  const expire = dayjs().add(10, 'second').format('YYYY-MM-DD HH:mm:ss');
-
   localStorage.setItem(
     'expire',
     dayjs().add(10, 'second').format('YYYY-MM-DD HH:mm:ss'),

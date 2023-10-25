@@ -6,7 +6,7 @@ const Admin = () => {
 
   useEffect(() => {
     navigate('/user/update');
-  }, []);
+  }, [navigate]);
 
   return <></>;
 };

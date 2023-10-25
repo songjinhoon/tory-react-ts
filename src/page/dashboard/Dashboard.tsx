@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Header from '@component/layout/Header';
 import useUser from '@hook/useUser';
 import ModalContainer from '@component/popup/modal/ModalContainer';

@@ -10,8 +10,8 @@ import { CookiesProvider } from 'react-cookie';
 import AxiosInterceptor from '@util/axiosInterceptor';
 import { refreshCheck } from '@util/authConfig';
 
-const SignIn = loadable(() => import('@page/auth/SignIn'));
-const SignUp = loadable(() => import('@page/auth/SignUp'));
+const SignIn = loadable(() => import('@page/auth/SignInPage'));
+const SignUp = loadable(() => import('@page/auth/SignUpPage'));
 const Dashboard = loadable(() => import('@page/dashboard/Dashboard'));
 const Post = loadable(() => import('@page/post/Post'));
 const PostCreate = loadable(() => import('@page/post/PostCreate'));
