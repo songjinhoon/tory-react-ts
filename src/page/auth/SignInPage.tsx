@@ -15,7 +15,7 @@ const SignInPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<ISignInUser>({
-    mode: 'onChange',
+    mode: 'onBlur',
   });
 
   const _onSubmit: SubmitHandler<ISignInUser> = useCallback(

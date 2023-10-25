@@ -18,7 +18,7 @@ const SignUpPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<ISignUpUser>({
-    mode: 'onChange',
+    mode: 'onBlur',
   });
 
   const _onSubmit: SubmitHandler<ISignUpUser> = useCallback(
@@ -42,12 +42,12 @@ const SignUpPage = () => {
         <UsernameInput
           register={register}
           errors={errors.username}
-          options={{ readOnly: true }}
+          options={{ readOnly: false }}
         />
         <PasswordInput
           register={register}
           errors={errors.password}
-          options={{ readOnly: true }}
+          options={{ readOnly: false }}
         />
         <NicknameInput
           register={register}
