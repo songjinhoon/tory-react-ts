@@ -6,10 +6,10 @@ import React, {
   useContext,
   useReducer,
 } from 'react';
-import ModalSample from '@component/popup/modal/ModalSample';
-import ModalFirst from '@component/popup/modal/ModalFirst';
-import ModalSecond from '@component/popup/modal/ModalSecond';
-import UserUpdateModal from '@component/popup/modal/UserUpdateModal';
+import ModalSample from '../components/organism/popup/modal/ModalSample';
+import ModalFirst from '../components/organism/popup/modal/ModalFirst';
+import ModalSecond from '../components/organism/popup/modal/ModalSecond';
+import UserUpdateModal from '../components/organism/popup/modal/UserUpdateModal';
 
 type ModalActionType = 'openModal' | 'addModal' | 'removeModal' | 'closeModal';
 

@@ -1,15 +1,19 @@
-const { override, addWebpackAlias, addWebpackPlugin } = require('customize-cra');
+const {
+  override,
+  addWebpackAlias,
+  addWebpackPlugin,
+} = require('customize-cra');
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = override(
   addWebpackAlias({
-    '@hook': path.resolve(__dirname, 'src/hook'),
-    '@component': path.resolve(__dirname, 'src/component'),
-    '@layout': path.resolve(__dirname, 'src/layout'),
-    '@page': path.resolve(__dirname, 'src/page'),
-    '@util': path.resolve(__dirname, 'src/util'),
-    '@typing': path.resolve(__dirname, 'src/typing'),
+    '@hooks': path.resolve(__dirname, 'src/hooks'),
+    '@components': path.resolve(__dirname, 'src/components'),
+    '@utils': path.resolve(__dirname, 'src/utils'),
+    '@type': path.resolve(__dirname, 'src/type'),
   }),
-  addWebpackPlugin(new BundleAnalyzerPlugin({ analyzerMode: 'server', openAnalyzer: true })),
+  addWebpackPlugin(
+    new BundleAnalyzerPlugin({ analyzerMode: 'server', openAnalyzer: true }),
+  ),
 );

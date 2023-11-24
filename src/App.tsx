@@ -1,5 +1,6 @@
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
 import loadable from '@loadable/component';
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
@@ -7,16 +8,20 @@ import { ToastContainer } from 'react-toastify';
 import { ModalProvider } from './context/modal';
 import { ModeProvider } from './context/mode';
 import { CookiesProvider } from 'react-cookie';
-import AxiosInterceptor from '@util/axiosInterceptor';
-import { refreshCheck } from '@util/authConfig';
+import AxiosInterceptor from '@utils/axiosInterceptor';
+import { refreshCheck } from './utils/authConfig';
 
-const SignIn = loadable(() => import('@page/auth/SignInPage'));
-const SignUp = loadable(() => import('@page/auth/SignUpPage'));
-const Dashboard = loadable(() => import('@page/dashboard/Dashboard'));
-const Post = loadable(() => import('@page/post/Post'));
-const PostCreate = loadable(() => import('@page/post/PostCreate'));
-const Admin = loadable(() => import('@page/admin/Admin'));
-const UserUpdate = loadable(() => import('@page/admin/UserUpdatePage'));
+const SignIn = loadable(() => import('@components/page/auth/SignInPage'));
+const SignUp = loadable(() => import('./components/page/auth/SignUpPage'));
+const Dashboard = loadable(
+  () => import('./components/page/dashboard/Dashboard'),
+);
+const Post = loadable(() => import('./components/page/post/Post'));
+const PostCreate = loadable(() => import('./components/page/post/PostCreate'));
+const Admin = loadable(() => import('./components/page/admin/Admin'));
+const UserUpdate = loadable(
+  () => import('./components/page/admin/UserUpdatePage'),
+);
 
 function App() {
   useEffect(() => {

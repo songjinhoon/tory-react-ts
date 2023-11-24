@@ -7,23 +7,17 @@
       "esnext"
     ],
     "paths": {
-      "@hook/*": [
-        "src/hook/*"
+      "@hooks/*": [
+        "src/hooks/*"
       ],
-      "@component/*": [
-        "src/component/*"
+      "@components/*": [
+        "src/components/*"
       ],
-      "@layout/*": [
-        "src/layout/*"
+      "@utils/*": [
+        "src/utils/*"
       ],
-      "@page/*": [
-        "src/page/*"
-      ],
-      "@util/*": [
-        "src/util/*"
-      ],
-      "@typing/*": [
-        "src/typing/*"
+      "@type/*": [
+        "src/type/*"
       ]
     },
     "allowJs": true,
