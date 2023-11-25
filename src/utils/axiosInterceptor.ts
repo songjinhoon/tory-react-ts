@@ -1,11 +1,6 @@
 import Api from './axiosConfig';
 import axios from 'axios';
-import {
-  deleteAuth,
-  getId,
-  isInValidToken,
-  updateAuth,
-} from './authConfig';
+import { deleteAuth, getId } from './authConfig';
 
 const AxiosInterceptor = (navigate: any) => {
   Api.interceptors.request.use(

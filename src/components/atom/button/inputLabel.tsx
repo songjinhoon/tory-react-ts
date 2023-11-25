@@ -16,7 +16,7 @@ const InputLabel: FC<Pros> = ({ register, field }) => {
       <Col sm="10">
         <Form.Control
           type={field.name === 'password' ? 'password' : 'text'}
-          placeholder="email@example.com"
+          placeholder={field.name === 'password' ? 'enter password' : 'enter username'}
           {...register(field.name, field.option)}
         />
       </Col>

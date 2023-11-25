@@ -1,6 +1,7 @@
 import CommonForm from '@components/organism/form/commonForm';
 import CommonTitle from '@components/atom/title/commonTitle';
-import { FC } from 'react';
+import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 interface Props {
   action: any;
@@ -23,6 +24,10 @@ const SignInTemplate: FC<Props> = (props) => {
       >
         <CommonTitle>DEMO PROJECT</CommonTitle>
         <CommonForm {...props}></CommonForm>
+        <div style={{ flex: 1, display: 'flex' }}>
+          <p style={{ marginRight: '2rem' }}>아직 회원이 아니신가요?</p>
+          <Link to="/sign-up">회원가입 하러가기</Link>
+        </div>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react';
 import styled from '@emotion/styled';
 
 const Header = styled.header`
-  flex: 3;
+  flex: 2;
   text-align: center;
   font-family: Slack-Larsseit, Helvetica Neue, Helvetica, Segoe UI, Tahoma,
     Arial, sans-serif;

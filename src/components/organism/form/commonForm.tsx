@@ -12,7 +12,7 @@ interface Props {
 
 const CommonForm: FC<Props> = ({ action, register, fields }) => {
   return (
-    <Form style={{ width: '70%', flex: '5' }} onSubmit={action}>
+    <Form style={{ width: '70%', flex: '2' }} onSubmit={action}>
       {fields.map((field: any, index: number) => (
         <InputLabel
           key={++index}

@@ -1,3 +1,15 @@
+export interface IUser {
+  id: number;
+  username: string;
+  password: string;
+  nickname: string;
+  email: string;
+  telNum: string;
+  address: string;
+}
+
+export type IUserColum = keyof IUser;
+
 export interface ISignUpUser {
   username: string;
   nickname: string;
