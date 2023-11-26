@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import Header from '../../organism/layout/Header';
-import useUser from '../../../hooks/useUser';
-import ModalContainer from '../../organism/popup/modal/ModalContainer';
+import useUser from '@hooks/useUser';
 import { useNavigate } from 'react-router-dom';
-import { useModalDispatch } from '../../../context/modal';
+import { useModalDispatch } from '../../context/modal';
+import DashboardTemplate from '@components/template/dashboardTemplate';
 
 const Dashboard = () => {
   const { user, isLoading, userQuery } = useUser();
@@ -30,16 +29,7 @@ const Dashboard = () => {
     return <div>로딩중</div>;
   }
 
-  return (
-    <div>
-      <Header></Header>
-      <button onClick={sample}>샘플 API 호출하기</button>
-      <button onClick={sampleModalOpen}>샘플 모달창 열기</button>
-      <button onClick={firstModalOpen}>첫번째 모달창 열기</button>
-      <button onClick={sample}>샘플 API 호출하기</button>
-      <ModalContainer></ModalContainer>
-    </div>
-  );
+  return <DashboardTemplate></DashboardTemplate>;
 };
 
 export default Dashboard;

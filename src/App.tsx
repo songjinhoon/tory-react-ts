@@ -13,9 +13,10 @@ import { refreshCheck } from './utils/authConfig';
 
 const SignIn = loadable(() => import('@components/page/auth/SignInPage'));
 const SignUp = loadable(() => import('./components/page/auth/SignUpPage'));
-const Dashboard = loadable(
-  () => import('./components/page/dashboard/Dashboard'),
-);
+const Dashboard = loadable(() => import('@components/page/dashboard'));
+const Pokemon = loadable(() => import('@components/page/pokemon/pokemon'));
+const PokemonDex = loadable(() => import('@components/page/pokemon/pokemonDex'));
+
 const Post = loadable(() => import('./components/page/post/Post'));
 const PostCreate = loadable(() => import('./components/page/post/PostCreate'));
 const Admin = loadable(() => import('./components/page/admin/Admin'));
@@ -41,6 +42,8 @@ function App() {
                 <Route path={'/sign-in'} element={<SignIn />}></Route>
                 <Route path={'/sign-up'} element={<SignUp />}></Route>
                 <Route path={'/dashboard'} element={<Dashboard />}></Route>
+                <Route path={'/pokemon'} element={<Pokemon />}></Route>
+                <Route path={'/pokemon-dex'} element={<PokemonDex />}></Route>
                 <Route path={'/post'} element={<Post />}></Route>
                 <Route path={'/post-create'} element={<PostCreate />}></Route>
                 <Route path={'/admin'} element={<Admin />}></Route>
