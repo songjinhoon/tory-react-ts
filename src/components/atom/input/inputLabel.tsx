@@ -9,14 +9,16 @@ interface Pros {
 
 const InputLabel: FC<Pros> = ({ register, field }) => {
   return (
-    <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+    <Form.Group as={Row} className="mb-3">
       <Form.Label column sm="2">
         {field.name}
       </Form.Label>
       <Col sm="10">
         <Form.Control
           type={field.name === 'password' ? 'password' : 'text'}
-          placeholder={field.name === 'password' ? 'enter password' : 'enter username'}
+          placeholder={
+            field.name === 'password' ? 'enter password' : 'enter username'
+          }
           {...register(field.name, field.option)}
         />
       </Col>

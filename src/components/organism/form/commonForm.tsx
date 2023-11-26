@@ -1,5 +1,5 @@
 import { Form } from 'react-bootstrap';
-import InputLabel from '@components/atom/button/inputLabel';
+import InputLabel from '@components/atom/input/inputLabel';
 import { FC } from 'react';
 import ActionButton from '@components/atom/button/actionButton';
 import CommonBlock from '@components/atom/block/commonBlock';
