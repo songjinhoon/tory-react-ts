@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import fetcher from '../utils/fetcher';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useDebugValue } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { ISignInUser, ISignUpUser, IUser, IUserColum } from '../type/user';
@@ -33,6 +33,9 @@ const useUser = () => {
   } = useSWR<IUser | boolean>(getId() ? `/users/${getId()}` : null, fetcher, {
     dedupingInterval: 60000, // 60초동안은 캐쉬에서 호출하겠다.
   });
+
+  useDebugValue(user, (user) => user);
+  useDebugValue('test');
 
   const signUp = useCallback(
     async (params: ISignUpUser) => {
@@ -131,10 +134,6 @@ const useUser = () => {
       }
     }
   }, []);
-
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
 
   return {
     user,
