@@ -1,15 +1,15 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import PokemonCardGroupItem from '@components/organism/card/pokemonCardGroupItem';
 import { CardGroup } from 'react-bootstrap';
 
-const PokemonCardGroup: FC<any> = ({ datas, index: test, setIsComplete }) => {
+const PokemonCardGroup: FC<any> = ({ datas, setIsComplete }) => {
   return (
     <CardGroup>
       {datas.map((data: any, index: number) => (
         <PokemonCardGroupItem
-          key={data.name}
+          key={index + 1}
           name={data.name}
-          index={test === 5 && index === 2 ? index : null}
+          resource={data.url}
           setIsComplete={setIsComplete}
         />
       ))}

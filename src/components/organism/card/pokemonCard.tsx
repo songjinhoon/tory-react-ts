@@ -1,12 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import fetcher from '@utils/fetcher';
-import PokemonCardGroup from './pokemonCardGroup';
 import useIntersect from '@hooks/useIntersect';
+import PokemonCardGroup from '@components/organism/card/pokemonCardGroup';
 
 const PokemonCard: FC<any> = () => {
   const [limit, setLimit] = useState(18);
-  const [isComplete, setIsComplete] = useState(false);
   const { data, mutate, isLoading } = useSWR<any>(
     `/api/v2/pokemon?offset=0&limit=${limit}`,
     fetcher,
@@ -18,8 +17,7 @@ const PokemonCard: FC<any> = () => {
 
   const ref = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target);
-    console.log('음');
-    // setLimit(36);
+    setLimit(limit * 2);
   });
 
   useEffect(() => {
@@ -37,14 +35,19 @@ const PokemonCard: FC<any> = () => {
       {!isLoading &&
         groups.length !== 0 &&
         groups.map((group: any, index: number) => (
-          <PokemonCardGroup
-            key={index}
-            datas={group}
-            index={index}
-            setIsComplete={setIsComplete}
-          ></PokemonCardGroup>
+          <div key={index}>
+            {index === groups.length - 1 && (
+              <div ref={ref}>
+                <PokemonCardGroup datas={group}></PokemonCardGroup>
+              </div>
+            )}
+            {index !== groups.length - 1 && (
+              <div>
+                <PokemonCardGroup datas={group}></PokemonCardGroup>
+              </div>
+            )}
+          </div>
         ))}
-      {isComplete && <div ref={ref}>pokemon dex template</div>}
     </>
   );
 };

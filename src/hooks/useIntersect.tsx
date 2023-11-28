@@ -25,6 +25,7 @@ const useIntersect = (
 
   useEffect(() => {
     if (ref.current) {
+      console.log('ref 가 존재한다!')
       const observer = new IntersectionObserver(callback, options);
       observer.observe(ref.current);
       return () => observer.disconnect();
