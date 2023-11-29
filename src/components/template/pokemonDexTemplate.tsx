@@ -10,12 +10,12 @@ const PokemonDexTemplate = () => {
   );
 
   return (
-    <>
+    <div style={{ overflowAnchor: 'none' }}>
       <PokemonHeader></PokemonHeader>
       <Suspense fallback={<div>Loading...</div>}>
         <PokemonCard></PokemonCard>
       </Suspense>
-    </>
+    </div>
   );
 };
 

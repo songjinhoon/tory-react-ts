@@ -1,30 +1,39 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import useSWR from 'swr';
-import fetcher from '@utils/fetcher';
 import useIntersect from '@hooks/useIntersect';
+import styled from '@emotion/styled';
+import { pokemonFetcher } from '@utils/fetcher';
 import PokemonCardGroup from '@components/organism/card/pokemonCardGroup';
-import PokemonLoading from '../../../assets/pokemonLoading.gif';
+
+const CardBox = styled.div`
+  /*display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  margin: auto;*/
+`;
 
 const size = 18;
 
 const PokemonCard: FC<any> = () => {
   const check = useRef<any>();
   const [renderLoading, setRenderLoading] = useState(false);
-  const [limit, setLimit] = useState(18);
+  const [groups, setGroups] = useState<any>([]);
+  const [page, setPage] = useState(0);
   const [position, setPosition] = useState<any>();
   const { data, mutate, isLoading } = useSWR<any>(
-    `/api/v2/pokemon?offset=0&limit=${limit}`,
-    fetcher,
+    `https://pokeapi.co/api/v2/pokemon?offset=${size * page}&limit=${size}`,
+    pokemonFetcher,
     {
       dedupingInterval: 60000,
     },
   );
-  const [groups, setGroups] = useState<any>([]);
 
   const ref = useIntersect(
     async (entry, observer) => {
       observer.unobserve(entry.target);
-      setLimit(limit + size);
+      setPage((prevState) => ++prevState);
       setPosition(window.scrollY);
     },
     {
@@ -35,14 +44,16 @@ const PokemonCard: FC<any> = () => {
   );
 
   useEffect(() => {
-    if (!isLoading) {
-      const array = [];
+    if (!isLoading && data) {
+      const array: any[] = [];
       for (let i = 0; i < data.results.length; i += 3) {
         array.push(data.results.slice(i, i + 3));
       }
-      setGroups(array);
+      setGroups((prevState: any) => prevState.concat(array));
+      console.log(data);
+      // setGroups((prevState: any) => prevState.concat(data.results));
     }
-  }, [isLoading]);
+  }, [isLoading, data]);
 
   useEffect(() => {
     if (position) {
@@ -55,45 +66,32 @@ const PokemonCard: FC<any> = () => {
 
   setTimeout(() => {
     if (check.current) {
-      console.log('이')
-      check.current.scrollIntoView({});
+      check.current.scrollIntoView({
+        block: 'end',
+        inline: 'nearest',
+      });
+      setTimeout(() => {
+        setRenderLoading(false);
+      }, 100);
     }
   }, 1000);
 
   return (
     <>
-      {renderLoading && (
-        <div
-          style={{
-            height: '100vh',
-            background: 'white',
-            zIndex: 10,
-            overflowY: 'hidden',
-          }}
-        >
-          <img
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-            }}
-            src={PokemonLoading}
-            alt={'loading'}
-          />
-        </div>
-      )}
+      {/*{renderLoading && <Spinner />}*/}
       {!isLoading && groups.length !== 0 && (
-        <div style={renderLoading ? { display: 'none' } : {}}>
+        <CardBox>
           {groups.map((group: any, index: number) => (
             <div key={index}>
               {index !== groups.length - 1 && index !== groups.length - 6 && (
                 <div>
+                  {/*<p>{group.name}</p>
+                  <p>{group.url}</p>*/}
                   <PokemonCardGroup datas={group}></PokemonCardGroup>
                 </div>
               )}
-              {index === groups.length - 6 && limit != 18 && (
-                <div ref={check}>ㅇㅇㅇㅇㅇㅇㅇ</div>
+              {index === groups.length - 6 && groups.length !== 6 && (
+                <div ref={check}></div>
               )}
               {index === groups.length - 1 && (
                 <div ref={ref}>
@@ -102,7 +100,7 @@ const PokemonCard: FC<any> = () => {
               )}
             </div>
           ))}
-        </div>
+        </CardBox>
       )}
     </>
   );
