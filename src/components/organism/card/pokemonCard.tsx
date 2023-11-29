@@ -4,6 +4,7 @@ import useIntersect from '@hooks/useIntersect';
 import styled from '@emotion/styled';
 import { pokemonFetcher } from '@utils/fetcher';
 import PokemonCardGroup from '@components/organism/card/pokemonCardGroup';
+import Spinner from '@components/molecule/spinner';
 
 const CardBox = styled.div`
   /*display: flex;
@@ -51,7 +52,6 @@ const PokemonCard: FC<any> = () => {
       }
       setGroups((prevState: any) => prevState.concat(array));
       console.log(data);
-      // setGroups((prevState: any) => prevState.concat(data.results));
     }
   }, [isLoading, data]);
 
@@ -70,23 +70,25 @@ const PokemonCard: FC<any> = () => {
         block: 'end',
         inline: 'nearest',
       });
-      setTimeout(() => {
-        setRenderLoading(false);
-      }, 100);
     }
   }, 1000);
 
   return (
-    <>
-      {/*{renderLoading && <Spinner />}*/}
+    <div style={{ marginTop: 86 }}>
+      {renderLoading &&
+        groups.map((group: any, index: any) => {
+          console.log(group);
+          return <div key={index} style={{ height: '231' }}></div>;
+        })}
+      {renderLoading && <Spinner></Spinner>}
       {!isLoading && groups.length !== 0 && (
-        <CardBox>
+        <CardBox className="no-scroll">
           {groups.map((group: any, index: number) => (
             <div key={index}>
-              {index !== groups.length - 1 && index !== groups.length - 6 && (
+              {(index === 0 ||
+                (index !== groups.length - 1 &&
+                  index !== groups.length - 6)) && (
                 <div>
-                  {/*<p>{group.name}</p>
-                  <p>{group.url}</p>*/}
                   <PokemonCardGroup datas={group}></PokemonCardGroup>
                 </div>
               )}
@@ -102,7 +104,7 @@ const PokemonCard: FC<any> = () => {
           ))}
         </CardBox>
       )}
-    </>
+    </div>
   );
 };
 
