@@ -46,6 +46,7 @@
   "devDependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@faker-js/faker": "^8.3.1",
     "@hookform/error-message": "^2.0.1",
     "@loadable/component": "^5.15.3",
     "@types/customize-cra": "^1.0.4",
