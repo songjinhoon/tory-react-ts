@@ -1,5 +1,7 @@
-import PokemonHeader from '@components/organism/header/pokemonHeader';
 import { lazy, Suspense } from 'react';
+import PokemonHeader from '@components/organism/header/pokemonHeader';
+import PokemonLoading from '@components/molecule/pokemonLoading';
+import styled from '@emotion/styled';
 
 const PokemonDexTemplate = () => {
   const PokemonCard = lazy(() =>
@@ -10,13 +12,19 @@ const PokemonDexTemplate = () => {
   );
 
   return (
-    <div style={{ overflowAnchor: 'none' }}>
+    <>
       <PokemonHeader></PokemonHeader>
-      <Suspense fallback={<div>Loading...</div>}>
-        <PokemonCard></PokemonCard>
+      <Suspense fallback={<PokemonLoading />}>
+        <PokemonCardBLock>
+          <PokemonCard></PokemonCard>
+        </PokemonCardBLock>
       </Suspense>
-    </div>
+    </>
   );
 };
 
 export default PokemonDexTemplate;
+
+const PokemonCardBLock = styled.div`
+  margin-top: 86px;
+`;

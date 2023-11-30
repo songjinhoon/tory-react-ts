@@ -1,41 +1,37 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
-import useSWR from 'swr';
+import React, { useEffect, useState } from 'react';
 import useIntersect from '@hooks/useIntersect';
-import styled from '@emotion/styled';
+import PokemonCardGroup from '@components/molecule/pokemonCardGroup';
+import useSWRInfinite from 'swr/infinite';
 import { pokemonFetcher } from '@utils/fetcher';
-import PokemonCardGroup from '@components/organism/card/pokemonCardGroup';
-import Spinner from '@components/molecule/spinner';
+import { IPokemon } from '@type/pokemon';
 
-const CardBox = styled.div`
-  /*display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-  margin: auto;*/
-`;
+const PAGE_SIZE = 36;
 
-const size = 18;
-
-const PokemonCard: FC<any> = () => {
-  const check = useRef<any>();
-  const [renderLoading, setRenderLoading] = useState(false);
-  const [groups, setGroups] = useState<any>([]);
-  const [page, setPage] = useState(0);
-  const [position, setPosition] = useState<any>();
-  const { data, mutate, isLoading } = useSWR<any>(
-    `https://pokeapi.co/api/v2/pokemon?offset=${size * page}&limit=${size}`,
+const PokemonCard = () => {
+  // const { data, mutate, size, setSize, isValidating, isLoading }: any =
+  const { data, size, setSize } = useSWRInfinite(
+    (index) =>
+      `https://pokeapi.co/api/v2/pokemon?offset=${
+        PAGE_SIZE * index
+      }&limit=${PAGE_SIZE}`,
     pokemonFetcher,
     {
       dedupingInterval: 60000,
     },
   );
+  const [activeTrick, setActiveTrick] = useState(false);
+  const groups = data ? parsing(data) : [];
+  /*const isLoadingMore =
+    isLoading || (size > 0 && data && typeof data[size - 1] === 'undefined');
+  const isEmpty = data?.[0]?.length === 0;
+  const isReachingEnd =
+    isEmpty || (data && data[data.length - 1]?.length < PAGE_SIZE);
+  const isRefreshing = isValidating && data && data.length === size;*/
 
   const ref = useIntersect(
     async (entry, observer) => {
       observer.unobserve(entry.target);
-      setPage((prevState) => ++prevState);
-      setPosition(window.scrollY);
+      setActiveTrick(true);
     },
     {
       root: null,
@@ -45,67 +41,43 @@ const PokemonCard: FC<any> = () => {
   );
 
   useEffect(() => {
-    if (!isLoading && data) {
-      const array: any[] = [];
-      for (let i = 0; i < data.results.length; i += 3) {
-        array.push(data.results.slice(i, i + 3));
-      }
-      setGroups((prevState: any) => prevState.concat(array));
-      console.log(data);
+    if (activeTrick) {
+      setSize(size + 1).then(() => {});
+      setActiveTrick(false);
     }
-  }, [isLoading, data]);
-
-  useEffect(() => {
-    if (position) {
-      setRenderLoading(true);
-      setTimeout(() => {
-        setRenderLoading(false);
-      }, 1000);
-    }
-  }, [position]);
-
-  setTimeout(() => {
-    if (check.current) {
-      check.current.scrollIntoView({
-        block: 'end',
-        inline: 'nearest',
-      });
-    }
-  }, 1000);
+  }, [activeTrick]);
 
   return (
-    <div style={{ marginTop: 86 }}>
-      {renderLoading &&
-        groups.map((group: any, index: any) => {
-          console.log(group);
-          return <div key={index} style={{ height: '231' }}></div>;
-        })}
-      {renderLoading && <Spinner></Spinner>}
-      {!isLoading && groups.length !== 0 && (
-        <CardBox className="no-scroll">
-          {groups.map((group: any, index: number) => (
+    <>
+      {groups.length !== 0 && (
+        <>
+          {groups.map((group: IPokemon[], index: number) => (
             <div key={index}>
-              {(index === 0 ||
-                (index !== groups.length - 1 &&
-                  index !== groups.length - 6)) && (
+              {index !== groups.length - 6 && (
                 <div>
-                  <PokemonCardGroup datas={group}></PokemonCardGroup>
+                  <PokemonCardGroup pokemons={group}></PokemonCardGroup>
                 </div>
               )}
-              {index === groups.length - 6 && groups.length !== 6 && (
-                <div ref={check}></div>
-              )}
-              {index === groups.length - 1 && (
+              {index === groups.length - 6 && (
                 <div ref={ref}>
-                  <PokemonCardGroup datas={group}></PokemonCardGroup>
+                  <PokemonCardGroup pokemons={group}></PokemonCardGroup>
                 </div>
               )}
             </div>
           ))}
-        </CardBox>
+        </>
       )}
-    </div>
+    </>
   );
 };
-
 export default PokemonCard;
+
+function parsing(params: any): IPokemon[][] {
+  const array: IPokemon[][] = [];
+  params.forEach((param: any) => {
+    for (let i = 0; i < param.results.length; i += 3) {
+      array.push(param.results.slice(i, i + 3));
+    }
+  });
+  return array;
+}
