@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import useIntersect from '@hooks/useIntersect';
 import PokemonCardGroup from '@components/molecule/pokemonCardGroup';
 import useSWRInfinite from 'swr/infinite';
@@ -19,7 +19,6 @@ const PokemonCard = () => {
       dedupingInterval: 60000,
     },
   );
-  const [activeTrick, setActiveTrick] = useState(false);
   const groups = data ? parsing(data) : [];
   /*const isLoadingMore =
     isLoading || (size > 0 && data && typeof data[size - 1] === 'undefined');
@@ -31,7 +30,7 @@ const PokemonCard = () => {
   const ref = useIntersect(
     async (entry, observer) => {
       observer.unobserve(entry.target);
-      setActiveTrick(true);
+      setSize(size + 1).then(() => {});
     },
     {
       root: null,
@@ -39,13 +38,6 @@ const PokemonCard = () => {
       threshold: 1,
     },
   );
-
-  useEffect(() => {
-    if (activeTrick) {
-      setSize(size + 1).then(() => {});
-      setActiveTrick(false);
-    }
-  }, [activeTrick]);
 
   return (
     <>

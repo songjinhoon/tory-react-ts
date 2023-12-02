@@ -18,7 +18,7 @@ const useIntersect = (
         }
       });
     },
-    [onIntersect, ref],
+    [onIntersect],
   );
 
   useEffect(() => {
