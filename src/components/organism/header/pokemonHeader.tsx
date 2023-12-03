@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 
 const PokemonHeader = () => {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary" fixed={'top'}>
+    <Navbar expand="lg" className="bg-body-tertiary" fixed={'top'} bg={'#bbbbbb'}>
       <Container fluid>
         <Navbar.Brand>
           <img src={PokemonLogo} width={100} height={60} alt={'pokemonLogo'} />

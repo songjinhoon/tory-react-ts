@@ -13,8 +13,8 @@ import { refreshCheck } from './utils/authConfig';
 
 const SignIn = loadable(() => import('@components/page/auth/SignInPage'));
 const SignUp = loadable(() => import('./components/page/auth/SignUpPage'));
-const Dashboard = loadable(() => import('@components/page/dashboard'));
-const Pokemon = loadable(() => import('@components/page/pokemon/pokemon'));
+const Dashboard = loadable(() => import('@components/page/dashboard/dashboard'));
+const Pokemon = loadable(() => import('@components/page/pokemon/pokemonField'));
 const PokemonDex = loadable(() => import('@components/page/pokemon/pokemonDex'));
 
 const Post = loadable(() => import('./components/page/post/Post'));

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import useUser from '@hooks/useUser';
 import { useNavigate } from 'react-router-dom';
-import { useModalDispatch } from '../../context/modal';
+import { useModalDispatch } from '../../../context/modal';
 import DashboardTemplate from '@components/template/dashboardTemplate';
 
 const Dashboard = () => {

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import pikachu from '../../assets/pokemonLoading.gif';
+import pikachu from '../../../assets/pokemonLoading.gif';
 
 const SpinnerBox = styled.div`
   position: fixed;

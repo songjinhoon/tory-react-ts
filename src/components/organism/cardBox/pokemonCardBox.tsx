@@ -1,13 +1,13 @@
 import React from 'react';
 import useIntersect from '@hooks/useIntersect';
-import PokemonCardGroup from '@components/molecule/pokemonCardGroup';
+import PokemonCardGroup from '@components/molecule/card/pokemonCardGroup';
 import useSWRInfinite from 'swr/infinite';
 import { pokemonFetcher } from '@utils/fetcher';
 import { IPokemon } from '@type/pokemon';
 
 const PAGE_SIZE = 36;
 
-const PokemonCard = () => {
+const PokemonCardBox = () => {
   // const { data, mutate, size, setSize, isValidating, isLoading }: any =
   const { data, size, setSize } = useSWRInfinite(
     (index) =>
@@ -62,7 +62,7 @@ const PokemonCard = () => {
     </>
   );
 };
-export default PokemonCard;
+export default PokemonCardBox;
 
 function parsing(params: any): IPokemon[][] {
   const array: IPokemon[][] = [];
