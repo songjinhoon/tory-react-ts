@@ -7,6 +7,7 @@ import { ISignInUser } from '@type/user';
 import SignInTemplate from '@components/template/signInTemplate';
 
 const SignInPage = () => {
+  console.log('modify')
   const navigate = useNavigate();
   const { user, signIn, getValidOption } = useUser();
   const {

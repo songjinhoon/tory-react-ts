@@ -1,23 +1,22 @@
 import React, { useEffect } from 'react';
 import useUser from '@hooks/useUser';
 import { useNavigate } from 'react-router-dom';
-import { useModalDispatch } from '../../../context/modal';
 import DashboardTemplate from '@components/template/dashboardTemplate';
 
 const Dashboard = () => {
-  const { user, isLoading, userQuery } = useUser();
+  const { user, isLoading } = useUser();
   const navigate = useNavigate();
-  const modalDispatch = useModalDispatch();
+  // const modalDispatch = useModalDispatch();
 
-  const sampleModalOpen = () =>
-    modalDispatch({ type: 'openModal', value: 'sample' });
+  /*  const sampleModalOpen = () =>
+      modalDispatch({ type: 'openModal', value: 'sample' });
 
-  const firstModalOpen = () =>
-    modalDispatch({ type: 'openModal', value: 'first' });
+    const firstModalOpen = () =>
+      modalDispatch({ type: 'openModal', value: 'first' });
 
-  const sample = () => {
-    userQuery().then((r) => {});
-  };
+    const sample = () => {
+      userQuery().then((r) => {});
+    };*/
 
   useEffect(() => {
     if (!isLoading && !user) {

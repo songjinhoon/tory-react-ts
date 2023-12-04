@@ -4,7 +4,7 @@ import { pokemonFetcher } from '@utils/fetcher';
 import { useEffect, useState } from 'react';
 
 const PokemonDexGrid = () => {
-  const { data, error, isLoading } = useSWR(
+  const { data, isLoading } = useSWR(
     'https://pokeapi.co/api/v2/pokemon',
     pokemonFetcher,
     {},
@@ -21,7 +21,6 @@ const PokemonDexGrid = () => {
             .replace('/', '')}.png`,
         })),
       );
-      console.log(pokemons);
     }
   }, [isLoading, data]);
 

@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
 import PokemonWitheBg from '../../assets/pokemonWhiteBg.png';
 import PokemonHeader from '@components/organism/header/pokemonHeader';
 import PokemonLoading from '@components/molecule/loading/pokemonLoading';
@@ -6,12 +6,12 @@ import styled from '@emotion/styled';
 import PokemonDexGrid from '@components/organism/gridBox/pokemonDexGrid';
 
 const PokemonDexTemplate = () => {
-  const PokemonCard = lazy(() =>
+  /*  const PokemonCard = lazy(() =>
     Promise.all([
       import('@components/organism/cardBox/pokemonCardBox'),
       new Promise((resolve) => setTimeout(resolve, 1000)),
     ]).then(([moduleExports]) => moduleExports),
-  );
+  );*/
 
   return (
     <>
