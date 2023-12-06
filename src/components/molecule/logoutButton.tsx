@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
-import useUser from '../../../hooks/useUser';
+import useUser from '@hooks/useUser';
 
 const Button = styled.button`
   border: none;
   width: 100%;
-  border-top: 1px solid rgb(29, 28, 29);
   background: transparent;
   display: block;
   height: 33px;
@@ -16,7 +15,7 @@ const Button = styled.button`
 const LogoutButton = () => {
   const { logout } = useUser();
 
-  return <Button onClick={logout}>로그아웃</Button>;
+  return <Button onClick={logout}>logout</Button>;
 };
 
 export default LogoutButton;

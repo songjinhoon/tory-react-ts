@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import useUser from '@hooks/useUser';
 import { useNavigate } from 'react-router-dom';
-import DashboardTemplate from '@components/template/dashboardTemplate';
+import DashboardTemplate from '@components/template/dashboard/dashboardTemplate';
 
 const Dashboard = () => {
   const { user, isLoading } = useUser();

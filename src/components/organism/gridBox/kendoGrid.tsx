@@ -16,7 +16,7 @@ import React, {
 import { DataResult, process, State } from '@progress/kendo-data-query';
 import { PagerTargetEvent } from '@progress/kendo-react-data-tools';
 import { ColumnMenuCheckboxFilter } from '@components/organism/gridBox/columnMenu';
-import CommonButton from '@components/atom/button/commonButton';
+import Button from '@components/atom/button';
 
 interface OptionColumn {
   key: string;
@@ -114,14 +114,14 @@ const KendoGrid: FC<Props> = ({
   const getUpdateButton = useCallback(
     (e: any) => (
       <td style={{ display: 'flex', justifyContent: 'center' }}>
-        <CommonButton
+        <Button
           event={() => {
             console.log(e);
             alert('gg');
           }}
         >
           Edit
-        </CommonButton>
+        </Button>
       </td>
     ),
     [],

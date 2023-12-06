@@ -111,6 +111,37 @@ const useUser = () => {
     switch (option) {
       case 'username': {
         return {
+          required: '아이디는 필수입니다.',
+          minLength: {
+            value: 10,
+            message: '10~20 사이의 길이만 가질 수 있습니다.',
+          },
+          maxLength: {
+            value: 20,
+            message: '10~20 사이의 길이만 가질 수 있습니다.',
+          },
+        };
+      }
+      case 'password': {
+        return {
+          required: '비밀번호는 필수입니다.',
+        };
+      }
+      case 'nickname': {
+        return {
+          required: '닉네임은 필수입니다.',
+          minLength: {
+            value: 5,
+            message: '5~20 사이의 길이만 가질 수 있습니다.',
+          },
+          maxLength: {
+            value: 20,
+            message: '5~20 사이의 길이만 가질 수 있습니다.',
+          },
+        };
+      }
+      case 'email': {
+        return {
           required: '이메일 주소는 필수입니다.',
           minLength: {
             value: 10,
@@ -127,9 +158,14 @@ const useUser = () => {
           },
         };
       }
-      case 'password': {
+      case 'tellNum': {
         return {
-          required: '비밀번호는 필수입니다.',
+          required: '전화번호를 입력해주세요.',
+        };
+      }
+      case 'address': {
+        return {
+          required: '주소를 입력해주세요.',
         };
       }
     }

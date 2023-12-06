@@ -1,12 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { InputForm } from './styles';
-import { Button, Form } from '../../page/auth/styles';
-import ActionForm from './ActionForm';
-import NicknameInput from '../../atom/input/NicknameInput';
-import TellNumInput from '../../atom/input/TellNumInput';
-import AddressInput from '../../atom/input/AddressInput';
-import UsernameInput from '../../atom/input/UsernameInput';
-import PasswordInput from '../../atom/input/PasswordInput';
+import { Form } from '../../page/auth/styles';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ISignUpUser } from '@type/user';
 import useUser, { UseUserHookType } from '@hooks/useUser';
@@ -69,7 +62,7 @@ const UserUpdateForm = ({ type, _onCancel }: Props) => {
 
   return (
     <Form onSubmit={handleSubmit(_onSubmit)}>
-      <InputForm>
+      {/*<InputForm>
         {type === 'page' && (
           <>
             <UsernameInput
@@ -101,7 +94,7 @@ const UserUpdateForm = ({ type, _onCancel }: Props) => {
         />
       </InputForm>
       {type === 'page' && <Button type="submit">업데이트</Button>}
-      {type === 'modal' && <ActionForm onCancel={_onCancel}></ActionForm>}
+      {type === 'modal' && <ActionForm onCancel={_onCancel}></ActionForm>}*/}
     </Form>
   );
 };

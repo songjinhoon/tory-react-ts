@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import ToggleThemeButton from '@components/atom/button/toggleThemeButton';
-import RefreshButton from '@components/atom/button/refreshButton';
+import ToggleThemeButton from '@components/molecule/toggleThemeButton';
+import RefreshButton from '@components/molecule/refreshButton';
 
 const PokemonFieldHeader = () => {
   return (

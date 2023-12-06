@@ -1,5 +1,4 @@
-export interface IUser {
-  id: number;
+export interface ISignUpUser {
   username: string;
   password: string;
   nickname: string;
@@ -8,17 +7,13 @@ export interface IUser {
   address: string;
 }
 
-export type IUserColum = keyof IUser;
-
-export interface ISignUpUser {
-  username: string;
-  nickname: string;
-  tellNum: string;
-  address: string;
-  password: string;
-}
-
 export interface ISignInUser {
   username: string;
   password: string;
 }
+
+export interface IUser extends ISignUpUser {
+  id: number;
+}
+
+export type IUserColum = keyof IUser;

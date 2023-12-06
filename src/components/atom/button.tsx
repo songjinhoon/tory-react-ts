@@ -1,7 +1,26 @@
 import { CSSProperties, FC, ReactNode } from 'react';
 import styled from '@emotion/styled';
 
-const Button = styled.button`
+interface Props {
+  children: ReactNode;
+  event?: () => void;
+  style?: CSSProperties;
+}
+
+const Button: FC<Props> = ({ children, event, style = {} }) => {
+  if (event) {
+    return (
+      <Container onClick={event} style={style}>
+        {children}
+      </Container>
+    );
+  }
+
+  return <Container style={style}>{children}</Container>;
+};
+export default Button;
+
+const Container = styled.button`
   background-color: lightskyblue; /* Green background color */
   color: white; /* White text color */
   padding: 5px 20px; /* Padding inside the button */
@@ -15,18 +34,3 @@ const Button = styled.button`
     background-color: deepskyblue; /* Darker green on hover */
   }
 `;
-
-interface Props {
-  children: ReactNode;
-  event?: () => void;
-  style?: CSSProperties;
-}
-
-const CommonButton: FC<Props> = ({ children, event, style = {} }) => {
-  if (event) {
-    return <Button onClick={event} style={style}>{children}</Button>;
-  }
-
-  return <Button style={style}>{children}</Button>;
-};
-export default CommonButton;

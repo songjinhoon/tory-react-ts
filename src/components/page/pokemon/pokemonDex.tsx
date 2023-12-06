@@ -1,4 +1,4 @@
-import PokemonDexTemplate from '@components/template/pokemonDexTemplate';
+import PokemonDexTemplate from '@components/template/pokemon/pokemonDexTemplate';
 
 const PokemonDex = () => {
   return <PokemonDexTemplate></PokemonDexTemplate>;

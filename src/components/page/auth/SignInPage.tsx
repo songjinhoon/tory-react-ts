@@ -1,10 +1,9 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useUser from '../../../hooks/useUser';
 import { useCallback, useEffect } from 'react';
 import { ISignInUser } from '@type/user';
-import SignInTemplate from '@components/template/auth/signInTemplate';
+import AuthTemplate from '@components/template/auth/authTemplate';
 
 const SignInPage = () => {
   const navigate = useNavigate();
@@ -32,7 +31,8 @@ const SignInPage = () => {
 
   return (
     <>
-      <SignInTemplate
+      <AuthTemplate
+        type={'signIn'}
         action={handleSubmit(onSubmit)}
         register={register}
         fields={[
@@ -47,7 +47,7 @@ const SignInPage = () => {
             option: getValidOption('password'),
           },
         ]}
-      ></SignInTemplate>
+      ></AuthTemplate>
     </>
   );
 };

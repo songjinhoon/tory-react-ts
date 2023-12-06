@@ -1,4 +1,4 @@
-import PokemonFieldTemplate from '@components/template/pokemonFieldTemplate';
+import PokemonFieldTemplate from '@components/template/pokemon/pokemonFieldTemplate';
 
 const PokemonField = () => {
   return <PokemonFieldTemplate></PokemonFieldTemplate>;

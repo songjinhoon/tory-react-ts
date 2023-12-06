@@ -1,18 +1,13 @@
-import { Button, Form, Header, LinkContainer } from './styles';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useUser from '../../../hooks/useUser';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import React, { useCallback, useEffect } from 'react';
-import UsernameInput from '@components/atom/input/UsernameInput';
-import PasswordInput from '@components/atom/input/PasswordInput';
-import NicknameInput from '@components/atom/input/NicknameInput';
-import TellNumInput from '@components/atom/input/TellNumInput';
-import AddressInput from '@components/atom/input/AddressInput';
 import { ISignUpUser } from '@type/user';
+import AuthTemplate from '@components/template/auth/authTemplate';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const { user, signUp } = useUser();
+  const { user, signUp, getValidOption } = useUser();
   const {
     register,
     handleSubmit,
@@ -20,7 +15,7 @@ const SignUpPage = () => {
   } = useForm<ISignUpUser>({
     mode: 'onBlur',
   });
-  const _onSubmit: SubmitHandler<ISignUpUser> = useCallback(
+  const onSubmit: SubmitHandler<ISignUpUser> = useCallback(
     async (data) => {
       await signUp(data);
     },
@@ -28,14 +23,52 @@ const SignUpPage = () => {
   );
 
   useEffect(() => {
-    // 이거 url 직접입력해서 로그인페이지로 오는거 막기위해 필요함
     if (user) {
       navigate('/dashboard');
     }
   }, [user, navigate]);
 
   return (
-    <div id="container">
+    <>
+      <AuthTemplate
+        type={'signUp'}
+        action={handleSubmit(onSubmit)}
+        register={register}
+        fields={[
+          {
+            name: 'username',
+            errors: errors.username,
+            option: getValidOption('username'),
+          },
+          {
+            name: 'password',
+            errors: errors.password,
+            option: getValidOption('password'),
+          },
+          {
+            name: 'nickname',
+            errors: errors.nickname,
+            option: getValidOption('nickname'),
+          },
+          {
+            name: 'email',
+            errors: errors.email,
+            option: getValidOption('email'),
+          },
+          {
+            name: 'tellNum',
+            errors: errors.tellNum,
+            option: getValidOption('tellNum'),
+          },
+          {
+            name: 'address',
+            errors: errors.address,
+            option: getValidOption('address'),
+          },
+        ]}
+      ></AuthTemplate>
+    </>
+    /*<div id="container">/*
       <Header>DEMO</Header>
       <Form onSubmit={handleSubmit(_onSubmit)}>
         <UsernameInput
@@ -69,7 +102,7 @@ const SignUpPage = () => {
         회원이신가요?
         <Link to="/sign-in">로그인 하러가기</Link>
       </LinkContainer>
-    </div>
+    </div>*/
   );
 };
 

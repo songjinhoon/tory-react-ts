@@ -11,13 +11,17 @@ import AxiosInterceptor from '@utils/axiosInterceptor';
 import { refreshCheck } from '@utils/authConfig';
 import CommonLoading from '@components/molecule/loading/commonLoading';
 
-const SignIn = lazy(
-  () =>
+const SignIn = lazy(() =>
+  Promise.all([
     import(/*webpackChunkName: "SignIn" */ '@components/page/auth/SignInPage'),
+    new Promise((resolve) => setTimeout(resolve, 1000)),
+  ]).then(([moduleExports]) => moduleExports),
 );
-const SignUp = lazy(
-  () =>
+const SignUp = lazy(() =>
+  Promise.all([
     import(/*webpackChunkName: "SignUp" */ '@components/page/auth/SignUpPage'),
+    new Promise((resolve) => setTimeout(resolve, 1000)),
+  ]).then(([moduleExports]) => moduleExports),
 );
 const Dashboard = lazy(() => import('@components/page/dashboard/dashboard'));
 const PokemonField = lazy(

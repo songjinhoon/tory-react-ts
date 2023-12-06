@@ -1,4 +1,4 @@
-import RefreshIcon from '../../../assets/refresh.png';
+import RefreshIcon from '@assets/refresh.png';
 import styled from '@emotion/styled';
 import { FC } from 'react';
 

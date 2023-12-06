@@ -1,12 +1,12 @@
 import PokemonHeader from '@components/organism/header/pokemonHeader';
 import PokemonFieldHeader from '@components/organism/header/pokemonFieldHeader';
-import CommonBlock from '@components/atom/block/commonBlock';
+import Block from '@components/molecule/block';
 
 const PokemonFieldTemplate = () => {
   return (
     <>
       <PokemonHeader></PokemonHeader>
-      <CommonBlock style={{ height: '86px' }}></CommonBlock>
+      <Block style={{ height: '86px' }}></Block>
       <PokemonFieldHeader></PokemonFieldHeader>
       <div>Pokemon Templa111te</div>
     </>

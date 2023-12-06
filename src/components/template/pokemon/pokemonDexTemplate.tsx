@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import PokemonWitheBg from '../../assets/pokemonWhiteBg.png';
+import PokemonWitheBg from '@assets/pokemonWhiteBg.png';
 import PokemonHeader from '@components/organism/header/pokemonHeader';
 import PokemonLoading from '@components/molecule/loading/pokemonLoading';
 import styled from '@emotion/styled';

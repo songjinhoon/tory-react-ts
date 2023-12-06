@@ -1,8 +1,8 @@
 import CommonHeader from '@components/organism/header/commonHeader';
-import PokemonMain from '../../assets/pokemonMain.gif';
-import BlogMain from '../../assets/blogMain.gif';
+import PokemonMain from '@assets/pokemonMain.gif';
+import BlogMain from '@assets/blogMain.gif';
 import { useState } from 'react';
-import CommonBlock from '@components/atom/block/commonBlock';
+import Block from '@components/molecule/block';
 import { useNavigate } from 'react-router-dom';
 
 const DashboardTemplate = () => {
@@ -46,7 +46,7 @@ const DashboardTemplate = () => {
           }}
           onClick={() => alert('기능 준비중...')}
         />
-        <CommonBlock></CommonBlock>
+        <Block></Block>
         <img
           style={
             isRotate.pokemon

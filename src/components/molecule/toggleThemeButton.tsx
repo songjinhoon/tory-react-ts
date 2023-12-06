@@ -1,5 +1,5 @@
-import DarkModeIcon from '../../../assets/darkmodeIcon.png';
-import WhiteModeIcon from '../../../assets/sunIcon.png';
+import DarkModeIcon from '@assets/darkmodeIcon.png';
+import WhiteModeIcon from '@assets/sunIcon.png';
 import { useState } from 'react';
 import styled from '@emotion/styled';
 
