@@ -6,11 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { ISignInUser, ISignUpUser, IUser, IUserColum } from '../type/user';
 import Api from '../utils/axiosConfig';
 import { createAuth, deleteAuth, getId } from '../utils/authConfig';
-import axios from 'axios';
-
-/*
- * dedupingInterval을 사용하지 않으면 다른 텝을 갔다가 오는 경우 재요청을 보내게 되고 dedupingInterval 옵션을 추가하게 되면 그 시간안에는 탭을 갔다와도 재요청을 보내지 않고 캐시해서 그대로 데이터를 사용하다가 그 시간이 끝나면 다시 재요청
- * */
 
 export type UseUserHookType = {
   user: any;
@@ -40,9 +35,7 @@ const useUser = () => {
   const signUp = useCallback(
     async (params: ISignUpUser) => {
       try {
-        const response = await Api.post(`/users/sign-up`, params, {
-          withCredentials: true,
-        });
+        const response = await Api.post(`/users`, { ...params, pokemons: [] });
         if (response.status === 201) {
           toast.success('회원가입 성공~ 로그인 창으로 이동합니다~', {
             position: toast.POSITION.BOTTOM_CENTER,
@@ -62,7 +55,7 @@ const useUser = () => {
   const signIn = useCallback(
     async (params: ISignInUser) => {
       try {
-        const response = await axios.get(`/users`);
+        const response = await Api.get(`/users`);
         if (response.status === 200) {
           createAuth(response.data[0].id);
           // await userMutate(); 여기서 동작을 안한다 이유가 뭐지

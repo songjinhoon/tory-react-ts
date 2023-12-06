@@ -68,41 +68,6 @@ const SignUpPage = () => {
         ]}
       ></AuthTemplate>
     </>
-    /*<div id="container">/*
-      <Header>DEMO</Header>
-      <Form onSubmit={handleSubmit(_onSubmit)}>
-        <UsernameInput
-          register={register}
-          errors={errors.username}
-          options={{ readOnly: false }}
-        />
-        <PasswordInput
-          register={register}
-          errors={errors.password}
-          options={{ readOnly: false }}
-        />
-        <NicknameInput
-          register={register}
-          errors={errors.nickname}
-          options={{}}
-        />
-        <TellNumInput
-          register={register}
-          errors={errors.tellNum}
-          options={{}}
-        />
-        <AddressInput
-          register={register}
-          errors={errors.address}
-          options={{}}
-        />
-        <Button type="submit">회원가입</Button>
-      </Form>
-      <LinkContainer>
-        회원이신가요?
-        <Link to="/sign-in">로그인 하러가기</Link>
-      </LinkContainer>
-    </div>*/
   );
 };
 

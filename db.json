@@ -8,7 +8,7 @@
       "email": "hijinhoon@naver.com",
       "tellNum": "01000000000",
       "address": "ahnlab",
-      "pokemons" : []
+      "pokemons": []
     },
     {
       "id": 2,
@@ -18,7 +18,7 @@
       "email": "hijinhoon@naver.com",
       "tellNum": "01000000000",
       "address": "ahnlab",
-      "pokemons" : []
+      "pokemons": []
     },
     {
       "id": 3,
@@ -28,7 +28,16 @@
       "email": "hijinhoon@naver.com",
       "tellNum": "01000000000",
       "address": "ahnlab",
-      "pokemons" : []
+      "pokemons": []
+    },
+    {
+      "username": "hijinhoon@naver.com",
+      "password": "1",
+      "nickname": "hijinhoon",
+      "email": "hijinhoon@naver.com",
+      "tellNum": "01000000000",
+      "address": "ahnlab",
+      "id": 4
     }
   ],
   "products": [
