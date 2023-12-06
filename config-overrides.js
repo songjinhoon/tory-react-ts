@@ -2,8 +2,6 @@ const {
   override,
   addWebpackAlias,
   addWebpackPlugin,
-  addWebpackExternals,
-  setWebpackOptimizationSplitChunks,
 } = require('customize-cra');
 const path = require('path');
 const webpack = require('webpack');
@@ -12,19 +10,14 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-console.log(isDevelopment);
-console.log(path.resolve(__dirname, 'src/hooks'));
-
-/*module.exports = override(
-  setChunk
-  setWebpackOptimizationSplitChunks({
-    chunks: 'all',
-  }),
+module.exports = override(
   addWebpackAlias({
-    '@hooks': path.resolve(__dirname, 'src/hooks'),
+    '@assets': path.resolve(__dirname, 'src/assets'),
     '@components': path.resolve(__dirname, 'src/components'),
-    '@utils': path.resolve(__dirname, 'src/utils'),
+    '@context': path.resolve(__dirname, 'src/context'),
+    '@hooks': path.resolve(__dirname, 'src/hooks'),
     '@type': path.resolve(__dirname, 'src/type'),
+    '@utils': path.resolve(__dirname, 'src/utils'),
   }),
   addWebpackPlugin(isDevelopment && new webpack.HotModuleReplacementPlugin()),
   addWebpackPlugin(isDevelopment && new ReactRefreshWebpackPlugin()),
@@ -32,8 +25,9 @@ console.log(path.resolve(__dirname, 'src/hooks'));
     isDevelopment &&
       new BundleAnalyzerPlugin({ analyzerMode: 'server', openAnalyzer: true }),
   ),
-);*/
+);
 
+/*
 module.exports = {
   webpack: function (config, env) {
     console.log(config);
@@ -62,3 +56,4 @@ module.exports = {
     };
   },
 };
+*/

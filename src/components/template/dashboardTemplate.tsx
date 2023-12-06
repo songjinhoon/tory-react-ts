@@ -68,7 +68,7 @@ const DashboardTemplate = () => {
               pokemon: false,
             });
           }}
-          onClick={() => navigate('/pokemon')}
+          onClick={() => navigate('/pokemon-field')}
         />
       </div>
     </>

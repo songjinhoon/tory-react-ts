@@ -20,7 +20,6 @@ const SignUpPage = () => {
   } = useForm<ISignUpUser>({
     mode: 'onBlur',
   });
-
   const _onSubmit: SubmitHandler<ISignUpUser> = useCallback(
     async (data) => {
       await signUp(data);

@@ -4,10 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import useUser from '../../../hooks/useUser';
 import { useCallback, useEffect } from 'react';
 import { ISignInUser } from '@type/user';
-import SignInTemplate from '@components/template/signInTemplate';
+import SignInTemplate from '@components/template/auth/signInTemplate';
 
 const SignInPage = () => {
-  console.log('modify')
   const navigate = useNavigate();
   const { user, signIn, getValidOption } = useUser();
   const {
@@ -26,7 +25,6 @@ const SignInPage = () => {
   );
 
   useEffect(() => {
-    // 이거 url 직접입력해서 로그인페이지로 오는거 막기위해 필요함
     if (user) {
       navigate('/dashboard');
     }

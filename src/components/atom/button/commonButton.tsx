@@ -1,5 +1,5 @@
+import { CSSProperties, FC, ReactNode } from 'react';
 import styled from '@emotion/styled';
-import { FC, ReactNode } from 'react';
 
 const Button = styled.button`
   background-color: lightskyblue; /* Green background color */
@@ -18,11 +18,15 @@ const Button = styled.button`
 
 interface Props {
   children: ReactNode;
-  event: () => void;
+  event?: () => void;
+  style?: CSSProperties;
 }
 
-const EventButton: FC<Props> = ({ children, event }) => {
-  return <Button onClick={event}>{children}</Button>;
-};
+const CommonButton: FC<Props> = ({ children, event, style = {} }) => {
+  if (event) {
+    return <Button onClick={event} style={style}>{children}</Button>;
+  }
 
-export default EventButton;
+  return <Button style={style}>{children}</Button>;
+};
+export default CommonButton;

@@ -1,8 +1,8 @@
 import { Form } from 'react-bootstrap';
 import InputLabel from '@components/atom/input/inputLabel';
 import { FC } from 'react';
-import ActionButton from '@components/atom/button/actionButton';
 import CommonBlock from '@components/atom/block/commonBlock';
+import CommonButton from '@components/atom/button/commonButton';
 
 interface Props {
   action: any;
@@ -21,7 +21,11 @@ const CommonForm: FC<Props> = ({ action, register, fields }) => {
         ></InputLabel>
       ))}
       <CommonBlock></CommonBlock>
-      <ActionButton type={'submit'}>SignIn</ActionButton>
+      <CommonButton
+        style={{ width: '10rem', height: '3rem', marginTop: '3rem' }}
+      >
+        SignIn
+      </CommonButton>
     </Form>
   );
 };
