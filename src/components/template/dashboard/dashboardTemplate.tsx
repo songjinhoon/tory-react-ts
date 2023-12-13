@@ -4,8 +4,10 @@ import BlogMain from '@assets/blogMain.gif';
 import { useState } from 'react';
 import Block from '@components/molecule/block';
 import { useNavigate } from 'react-router-dom';
+import { useThemeState } from '@context/theme';
 
 const DashboardTemplate = () => {
+  const themeState = useThemeState();
   const navigate = useNavigate();
   const [isRotate, setIsRotate] = useState({
     blog: false,
@@ -13,7 +15,7 @@ const DashboardTemplate = () => {
   });
 
   return (
-    <>
+    <div className={themeState.theme}>
       <DashboardHeader></DashboardHeader>
       <div
         style={{
@@ -71,7 +73,7 @@ const DashboardTemplate = () => {
           onClick={() => navigate('/pokemon-field')}
         />
       </div>
-    </>
+    </div>
   );
 };
 

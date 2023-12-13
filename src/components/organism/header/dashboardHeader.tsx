@@ -2,6 +2,20 @@ import styled from '@emotion/styled';
 import LogoutButton from '@components/molecule/logoutButton';
 import ToggleThemeButton from '@components/molecule/toggleThemeButton';
 
+const DashboardHeader = () => {
+  return (
+    <Container>
+      <h2>DEMO PROJECT</h2>
+      <EventIconContainer>
+        <ToggleThemeButton></ToggleThemeButton>
+        <LogoutButton></LogoutButton>
+      </EventIconContainer>
+    </Container>
+  );
+};
+
+export default DashboardHeader;
+
 const Container = styled.div`
   height: 10vh;
   display: flex;
@@ -17,17 +31,3 @@ const EventIconContainer = styled.div`
   justify-content: space-around;
   align-items: center;
 `;
-
-const DashboardHeader = () => {
-  return (
-    <Container>
-      <h2>DEMO PROJECT</h2>
-      <EventIconContainer>
-        <ToggleThemeButton></ToggleThemeButton>
-        <LogoutButton></LogoutButton>
-      </EventIconContainer>
-    </Container>
-  );
-};
-
-export default DashboardHeader;

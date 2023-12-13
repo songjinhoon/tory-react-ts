@@ -1,9 +1,6 @@
-import {
-  ModalContainerBlock,
-  ModalsContainerBlock,
-} from './styles';
-import { useModalDispatch, useModalState } from '../../../../context/modal';
-import { useModeDispatch } from '../../../../context/mode';
+import { ModalContainerBlock, ModalsContainerBlock } from './styles';
+import { useModalDispatch, useModalState } from '@context/modal';
+import { useModeDispatch } from '@context/mode';
 
 const Z_INDEX = 1010;
 
