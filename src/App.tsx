@@ -1,6 +1,5 @@
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -23,7 +22,12 @@ const SignUp = lazy(() =>
     new Promise((resolve) => setTimeout(resolve, 1000)),
   ]).then(([moduleExports]) => moduleExports),
 );
-const Dashboard = lazy(() => import('@components/page/dashboard/dashboard'));
+const Dashboard = lazy(() =>
+  Promise.all([
+    import('@components/page/dashboard/dashboardPage'),
+    new Promise((resolve) => setTimeout(resolve, 1000)),
+  ]).then(([moduleExports]) => moduleExports),
+);
 const PokemonField = lazy(
   () => import('@components/page/pokemon/pokemonField'),
 );

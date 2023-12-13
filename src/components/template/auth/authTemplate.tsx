@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import AuthForm, { AuthFormProps } from '@components/organism/form/authForm';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';

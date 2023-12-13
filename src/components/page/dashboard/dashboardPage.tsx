@@ -3,7 +3,7 @@ import useUser from '@hooks/useUser';
 import { useNavigate } from 'react-router-dom';
 import DashboardTemplate from '@components/template/dashboard/dashboardTemplate';
 
-const Dashboard = () => {
+const DashboardPage = () => {
   const { user, isLoading } = useUser();
   const navigate = useNavigate();
   // const modalDispatch = useModalDispatch();
@@ -24,11 +24,7 @@ const Dashboard = () => {
     }
   }, [navigate, user, isLoading]);
 
-  if (isLoading) {
-    return <div>로딩중</div>;
-  }
-
   return <DashboardTemplate></DashboardTemplate>;
 };
 
-export default Dashboard;
+export default DashboardPage;

@@ -1,4 +1,4 @@
-import CommonHeader from '@components/organism/header/commonHeader';
+import DashboardHeader from '@components/organism/header/dashboardHeader';
 import PokemonMain from '@assets/pokemonMain.gif';
 import BlogMain from '@assets/blogMain.gif';
 import { useState } from 'react';
@@ -14,7 +14,7 @@ const DashboardTemplate = () => {
 
   return (
     <>
-      <CommonHeader></CommonHeader>
+      <DashboardHeader></DashboardHeader>
       <div
         style={{
           display: 'flex',
@@ -26,7 +26,7 @@ const DashboardTemplate = () => {
         <img
           style={
             isRotate.blog
-              ? { transform: 'rotate(20deg)', width: 600, cursor: 'pointer' }
+              ? { transform: 'rotate(20deg)', width: 400, cursor: 'pointer' }
               : {}
           }
           src={BlogMain}
@@ -50,7 +50,7 @@ const DashboardTemplate = () => {
         <img
           style={
             isRotate.pokemon
-              ? { transform: 'rotate(20deg)', width: 600, cursor: 'pointer' }
+              ? { transform: 'rotate(20deg)', width: 400, cursor: 'pointer' }
               : {}
           }
           src={PokemonMain}

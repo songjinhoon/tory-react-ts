@@ -38,6 +38,16 @@
       "tellNum": "01000000000",
       "address": "ahnlab",
       "id": 4
+    },
+    {
+      "username": "hijinhoon@naver.com",
+      "password": "1",
+      "nickname": "hijinhoon",
+      "email": "hijinhoon@naver.com",
+      "tellNum": "01050188147",
+      "address": "ahnlab",
+      "pokemons": [],
+      "id": 5
     }
   ],
   "products": [

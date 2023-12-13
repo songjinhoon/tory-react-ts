@@ -3,8 +3,7 @@ import useUser from '@hooks/useUser';
 
 const Button = styled.button`
   border: none;
-  width: 100%;
-  background: transparent;
+  //background: transparent;
   display: block;
   height: 33px;
   padding: 5px 20px 5px;
