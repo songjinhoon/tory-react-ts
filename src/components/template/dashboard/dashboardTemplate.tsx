@@ -1,6 +1,6 @@
 import DashboardHeader from '@components/organism/header/dashboardHeader';
-import PokemonMain from '@assets/pokemonMain.gif';
-import BlogMain from '@assets/blogMain.gif';
+import PokemonMain from '@assets/customPokemonMain.gif';
+import BlogMain from '@assets/customBlogMain.gif';
 import { useState } from 'react';
 import Block from '@components/molecule/block';
 import { useNavigate } from 'react-router-dom';
