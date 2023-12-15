@@ -6,17 +6,6 @@ import DashboardTemplate from '@components/template/dashboard/dashboardTemplate'
 const DashboardPage = () => {
   const { user, isLoading } = useUser();
   const navigate = useNavigate();
-  // const modalDispatch = useModalDispatch();
-
-  /*  const sampleModalOpen = () =>
-      modalDispatch({ type: 'openModal', value: 'sample' });
-
-    const firstModalOpen = () =>
-      modalDispatch({ type: 'openModal', value: 'first' });
-
-    const sample = () => {
-      userQuery().then((r) => {});
-    };*/
 
   useEffect(() => {
     if (!isLoading && !user) {
