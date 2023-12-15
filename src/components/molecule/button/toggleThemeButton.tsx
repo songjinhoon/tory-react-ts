@@ -1,5 +1,4 @@
-import DarkModeIcon from '@assets/darkmodeIcon.png';
-import WhiteModeIcon from '@assets/sunIcon.png';
+import { CiDark, CiLight } from 'react-icons/ci';
 import { useState } from 'react';
 import styled from '@emotion/styled';
 import { useThemeDispatch, useThemeState } from '@context/theme';
@@ -19,29 +18,24 @@ const ToggleThemeButton = () => {
   };
 
   return (
-    <ButtonContainer onClick={handleToggle}>
-      <img
-        src={isToggled ? WhiteModeIcon : DarkModeIcon}
-        alt="Toggle Button"
-        width={30}
-      />
-    </ButtonContainer>
+    <Container onClick={handleToggle}>
+      {themeState.theme === 'light' && <CiDark size={30}></CiDark>}
+      {themeState.theme !== 'light' && <CiLight size={30}></CiLight>}
+    </Container>
   );
 };
 
 export default ToggleThemeButton;
 
-const ButtonContainer = styled.div`
+const Container = styled.div`
   display: flex;
   align-items: center;
+  border-radius: 20px;
   cursor: pointer;
   padding: 5px;
-  background-color: ghostwhite;
-  color: #ffffff;
-  border-radius: 20px;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: gray;
+    background: rgba(94, 92, 92, 0.5);
   }
 `;

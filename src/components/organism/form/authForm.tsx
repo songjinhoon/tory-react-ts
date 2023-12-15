@@ -1,8 +1,8 @@
-import { Form } from 'react-bootstrap';
-import InputLabel from '@components/atom/inputLabel';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import Block from '@components/molecule/block';
 import AuthButton from '@components/molecule/authButton';
+import InputLabel from '@components/atom/inputLabel';
+import { css } from '@emotion/react';
 
 export interface AuthFormProps {
   type: 'signIn' | 'signUp';
@@ -13,24 +13,22 @@ export interface AuthFormProps {
 
 const AuthForm: FC<AuthFormProps> = ({ type, action, register, fields }) => {
   return (
-    <Form
-      style={
-        type === 'signIn'
-          ? { width: '70%', flex: '2' }
-          : { width: '70%', flex: '3' }
-      }
-      onSubmit={action}
-    >
+    <form onSubmit={action} css={formStyle}>
       {fields.map((field: any, index: number) => (
-        <InputLabel
-          key={++index}
-          register={register}
-          field={field}
-        ></InputLabel>
+        <InputLabel key={++index} register={register} field={field} />
       ))}
       <Block></Block>
       <AuthButton type={type}></AuthButton>
-    </Form>
+    </form>
   );
 };
 export default AuthForm;
+
+const formStyle = css`
+  width: 70%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;

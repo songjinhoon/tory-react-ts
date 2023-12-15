@@ -1,5 +1,5 @@
 import gravatar from 'gravatar';
-import LogoutButton from '../../molecule/logoutButton';
+import LogoutButton from '../../molecule/button/logoutButton';
 import Dropdown from '../popup/dropdown/Dorpdown';
 import useUser from '../../../hooks/useUser';
 import { useCallback, useState } from 'react';

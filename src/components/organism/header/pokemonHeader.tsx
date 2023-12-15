@@ -1,11 +1,6 @@
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import PokemonLogo from '../../../assets/pokemonLogo.gif';
-import Nav from 'react-bootstrap/Nav';
-
 const PokemonHeader = () => {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary" fixed={'top'} bg={'#bbbbbb'}>
+    /*<Navbar expand="lg" className="bg-body-tertiary" fixed={'top'} bg={'#bbbbbb'}>
       <Container fluid>
         <Navbar.Brand>
           <img src={PokemonLogo} width={100} height={60} alt={'pokemonLogo'} />
@@ -27,7 +22,8 @@ const PokemonHeader = () => {
           </Nav>
         </Navbar.Collapse>
       </Container>
-    </Navbar>
+    </Navbar>*/
+    <p>pokemonHeader</p>
   );
 };
 

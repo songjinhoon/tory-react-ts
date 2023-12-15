@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import ToggleThemeButton from '@components/molecule/toggleThemeButton';
+import ToggleThemeButton from '@components/molecule/button/toggleThemeButton';
 import RefreshButton from '@components/molecule/refreshButton';
 
 const PokemonFieldHeader = () => {
