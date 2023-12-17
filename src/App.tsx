@@ -29,8 +29,11 @@ const Dashboard = lazy(() =>
     new Promise((resolve) => setTimeout(resolve, 1000)),
   ]).then(([moduleExports]) => moduleExports),
 );
-const PokemonField = lazy(
-  () => import('@components/page/pokemon/pokemonField'),
+const PokemonField = lazy(() =>
+  Promise.all([
+    import('@components/page/pokemon/pokemonField'),
+    new Promise((resolve) => setTimeout(resolve, 1000)),
+  ]).then(([moduleExports]) => moduleExports),
 );
 const PokemonDex = lazy(() => import('@components/page/pokemon/pokemonDex'));
 const Post = lazy(() => import('@components/page/post/Post'));

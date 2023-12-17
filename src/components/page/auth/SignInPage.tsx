@@ -1,6 +1,6 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import useUser from '../../../hooks/useUser';
+import useUser from '@hooks/useUser';
 import { useCallback, useEffect } from 'react';
 import { ISignInUser } from '@type/user';
 import AuthTemplate from '@components/template/auth/authTemplate';

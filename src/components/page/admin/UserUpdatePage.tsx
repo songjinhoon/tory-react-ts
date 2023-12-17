@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import useUser, { UseUserHookType } from '../../../hooks/useUser';
+import useUser, { UseUserHookType } from '@hooks/useUser';
 import React, { useEffect } from 'react';
 import Header from '../../organism/layout/Header';
 import { AdminBlock, Content } from './styles';

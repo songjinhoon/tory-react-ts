@@ -4,7 +4,7 @@ import RefreshButton from '@components/molecule/refreshButton';
 
 const PokemonFieldHeader = () => {
   return (
-    <Box>
+    <Container>
       <div
         style={{
           width: '80%',
@@ -19,13 +19,13 @@ const PokemonFieldHeader = () => {
         <ToggleThemeButton></ToggleThemeButton>
         <RefreshButton></RefreshButton>
       </div>
-    </Box>
+    </Container>
   );
 };
 
 export default PokemonFieldHeader;
 
-const Box = styled.div`
+const Container = styled.div`
   width: 100%;
   height: 50px;
   display: flex;

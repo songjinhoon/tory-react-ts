@@ -2,6 +2,7 @@ import { CiDark, CiLight } from 'react-icons/ci';
 import { useState } from 'react';
 import styled from '@emotion/styled';
 import { useThemeDispatch, useThemeState } from '@context/theme';
+import { Container } from "@components/molecule/button/styles";
 
 const ToggleThemeButton = () => {
   const themeState = useThemeState();
@@ -26,16 +27,3 @@ const ToggleThemeButton = () => {
 };
 
 export default ToggleThemeButton;
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  border-radius: 20px;
-  cursor: pointer;
-  padding: 5px;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background: rgba(94, 92, 92, 0.5);
-  }
-`;

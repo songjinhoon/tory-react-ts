@@ -1,4 +1,4 @@
-import useUser from '../../../hooks/useUser';
+import useUser from '@hooks/useUser';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../organism/layout/Header';

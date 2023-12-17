@@ -1,29 +1,28 @@
+import ToggleThemeButton from '@components/molecule/button/toggleThemeButton';
+import LogoutButton from '@components/molecule/button/logoutButton';
+import {
+  Container,
+  EventIconContainer,
+  NavContainer,
+} from '@components/organism/header/styles';
+import DashboardButton from '@components/molecule/button/dashboardButtom';
+import useMove from '@hooks/useMove';
+
 const PokemonHeader = () => {
+  const { movePokemonField, movePokemonDex } = useMove();
   return (
-    /*<Navbar expand="lg" className="bg-body-tertiary" fixed={'top'} bg={'#bbbbbb'}>
-      <Container fluid>
-        <Navbar.Brand>
-          <img src={PokemonLogo} width={100} height={60} alt={'pokemonLogo'} />
-        </Navbar.Brand>
-        <Navbar.Brand>POKEMON GAME</Navbar.Brand>
-        <Navbar.Collapse id="navbarScroll">
-          <Nav
-            activeKey={'field'}
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
-            navbarScroll
-          >
-            <Nav.Link href="/pokemon" eventKey={'field'}>
-              필드
-            </Nav.Link>
-            <Nav.Link href="/pokemon-dex" eventKey={'dictionary'}>
-              도감
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>*/
-    <p>pokemonHeader</p>
+    <Container>
+      <h2>POKEMON PROJECT</h2>
+      <NavContainer>
+        <h4 onClick={movePokemonField}>Field</h4>
+        <h4 onClick={movePokemonDex}>Dex</h4>
+      </NavContainer>
+      <EventIconContainer>
+        <DashboardButton></DashboardButton>
+        <ToggleThemeButton></ToggleThemeButton>
+        <LogoutButton></LogoutButton>
+      </EventIconContainer>
+    </Container>
   );
 };
 

@@ -43,15 +43,3 @@ const Item = ({ pokemon }: { pokemon: IPokemon }) => {
           </Card>*/
   );
 };
-
-const ImgBox = styled.img`
-  animation: motion 0.3s linear 0s infinite alternate;
-  @keyframes motion {
-    0% {
-      padding-top: 30px;
-    }
-    100% {
-      padding-bottom: 30px;
-    }
-  }
-`;

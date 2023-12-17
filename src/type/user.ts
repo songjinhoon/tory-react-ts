@@ -17,3 +17,7 @@ export interface IUser extends ISignUpUser {
 }
 
 export type IUserColum = keyof IUser;
+
+export interface IUpdateUser extends ISignUpUser {
+  pokemons: [];
+}

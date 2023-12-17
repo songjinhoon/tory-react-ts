@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import useUser from '../../../hooks/useUser';
+import useUser from '@hooks/useUser';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import React, { useCallback, useEffect } from 'react';
 import { ISignUpUser } from '@type/user';

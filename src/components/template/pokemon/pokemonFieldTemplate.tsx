@@ -1,15 +1,24 @@
+import { useThemeState } from '@context/theme';
 import PokemonHeader from '@components/organism/header/pokemonHeader';
-import PokemonFieldHeader from '@components/organism/header/pokemonFieldHeader';
-import Block from '@components/molecule/block';
+import {
+  Container,
+  Header,
+  PokemonFieldContent,
+} from '@components/template/styles';
+import PokemonCatchCardBox from '@components/organism/cardBox/pokemonCatchCardBox';
 
 const PokemonFieldTemplate = () => {
+  const themeState = useThemeState();
+
   return (
-    <>
-      <PokemonHeader></PokemonHeader>
-      <Block style={{ height: '86px' }}></Block>
-      <PokemonFieldHeader></PokemonFieldHeader>
-      <div>Pokemon Templa111te</div>
-    </>
+    <Container className={themeState.theme}>
+      <Header className={themeState.theme}>
+        <PokemonHeader></PokemonHeader>
+      </Header>
+      <PokemonFieldContent className={themeState.theme}>
+        <PokemonCatchCardBox></PokemonCatchCardBox>
+      </PokemonFieldContent>
+    </Container>
   );
 };
 

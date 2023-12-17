@@ -1,11 +1,17 @@
 import useSWR from 'swr';
-import fetcher from '../utils/fetcher';
+import fetcher from '@utils/fetcher';
 import { useCallback, useDebugValue } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { ISignInUser, ISignUpUser, IUser, IUserColum } from '../type/user';
-import Api from '../utils/axiosConfig';
-import { createAuth, deleteAuth, getId } from '../utils/authConfig';
+import {
+  ISignInUser,
+  ISignUpUser,
+  IUpdateUser,
+  IUser,
+  IUserColum,
+} from '@type/user';
+import Api from '@utils/axiosConfig';
+import { createAuth, deleteAuth, getId } from '@utils/authConfig';
 
 export type UseUserHookType = {
   user: any;
@@ -81,11 +87,11 @@ const useUser = () => {
   }, []);
 
   const updateUser = useCallback(
-    async (params: ISignUpUser) => {
+    async (params: IUpdateUser) => {
       const response = await Api.put(`/users/${getId()}`, {
         ...params,
       });
-      if (response.status === 204) {
+      if (response.status === 204 || response.status === 200) {
         alert('성공');
         await userMutate();
       } else {

@@ -1,6 +1,6 @@
 import useUser from '@hooks/useUser';
 import { CiLogout } from 'react-icons/ci';
-import styled from '@emotion/styled';
+import { Container } from '@components/molecule/button/styles';
 
 const LogoutButton = () => {
   const { logout } = useUser();
@@ -13,16 +13,3 @@ const LogoutButton = () => {
 };
 
 export default LogoutButton;
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  border-radius: 20px;
-  cursor: pointer;
-  padding: 5px;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background: rgba(94, 92, 92, 0.5);
-  }
-`;
