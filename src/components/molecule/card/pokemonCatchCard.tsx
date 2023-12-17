@@ -4,17 +4,22 @@ import PokeBallButton from '@components/molecule/button/pokeBallButton';
 import usePokemon from '@hooks/usePokemon';
 import { IPokemon } from '@type/pokemon';
 import useUser from '@hooks/useUser';
+import { useEffect, useState } from 'react';
 
 const PokemonCatchCard = ({ id }: { id: number }) => {
   const { user }: any = useUser();
+  const [pokemon, setPokemon] = useState<IPokemon>(null);
   const { findById } = usePokemon();
-  const data: IPokemon = findById(id);
   const isDisableButton =
     user && user.pokemons.filter((data: number) => data === id).length !== 0;
 
+  useEffect(() => {
+    findById(id).then((data) => setPokemon(data));
+  }, []);
+
   return (
     <>
-      {data && (
+      {pokemon && (
         <div style={{ width: '300px' }}>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <ImgBox
@@ -23,7 +28,7 @@ const PokemonCatchCard = ({ id }: { id: number }) => {
             ></ImgBox>
             {!isDisableButton && <PokeBallButton id={id}></PokeBallButton>}
           </div>
-          <h4>{data.name}</h4>
+          <h4>{pokemon.name}</h4>
           <b>Attack</b>: {faker.number.int({ max: 1000 })}
           <br />
           <b>Defense</b>: {faker.number.int({ max: 1000 })}
