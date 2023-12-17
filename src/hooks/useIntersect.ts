@@ -23,6 +23,7 @@ const useIntersect = (
 
   useEffect(() => {
     if (ref.current) {
+      console.log('음');
       const observer = new IntersectionObserver(callback, options);
       observer.observe(ref.current);
       return () => observer.disconnect();

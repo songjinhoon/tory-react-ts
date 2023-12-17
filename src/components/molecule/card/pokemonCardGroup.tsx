@@ -1,45 +1,37 @@
-import { IPokemon } from '@type/pokemon';
 import styled from '@emotion/styled';
+import { faker } from '@faker-js/faker';
 
-const PokemonCardGroup = ({ pokemons }: { pokemons: IPokemon[] }) => {
+const PokemonCardGroup = ({ pokemon }: { pokemon: any }) => {
   return (
-    /*<CardGroup style={{ height: '400px' }}>
-      {pokemons.map((pokemon: IPokemon, index: number) => (
-        <Item key={index + 1} pokemon={pokemon} />
-      ))}
-    </CardGroup>*/
-    <p>응</p>
+    <div style={{ width: '300px' }}>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <ImgBox
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url
+            .substring(pokemon.url.lastIndexOf('/pokemon/') + 9)
+            .replace('/', '')}.png`}
+          alt={'pokemon'}
+        ></ImgBox>
+      </div>
+      <h4>{pokemon.name}</h4>
+      <b>Attack</b>: {faker.number.int({ max: 1000 })}
+      <br />
+      <b>Defense</b>: {faker.number.int({ max: 1000 })}
+      <br />
+      <b>Speed</b>: {faker.number.int({ max: 1000 })}
+    </div>
   );
 };
 
 export default PokemonCardGroup;
 
-const Item = ({ pokemon }: { pokemon: IPokemon }) => {
-  return (
-    <p>응</p>
-    /*    <>
-          <Card style={{ padding: '30px' }}>
-            <div style={{ height: 120 }}>
-              <ImgBox
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url
-                  .substring(pokemon.url.lastIndexOf('/pokemon/') + 9)
-                  .replace('/', '')}.png`}
-              ></ImgBox>
-            </div>
-            <Card.Body>
-              <Card.Title>{pokemon.name}</Card.Title>
-              <div style={{ height: '20px' }}></div>
-              <Card.Text>
-                <b>Attack</b>: {faker.number.float()}
-                <br />
-                <b>Defense</b>: {faker.number.float()}
-                <br />
-                <b>Speed</b>: {faker.number.float()}
-              </Card.Text>
-            </Card.Body>
-            <Card.Footer>
-              <small className="text-muted">Last updated 3 mins ago</small>
-            </Card.Footer>
-          </Card>*/
-  );
-};
+const ImgBox = styled.img`
+  animation: motion 0.3s linear 0s infinite alternate;
+  @keyframes motion {
+    0% {
+      padding-top: 15px;
+    }
+    100% {
+      padding-bottom: 15px;
+    }
+  }
+`;
