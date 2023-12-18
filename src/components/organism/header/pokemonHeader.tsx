@@ -7,6 +7,7 @@ import {
 } from '@components/organism/header/styles';
 import DashboardButton from '@components/molecule/button/dashboardButtom';
 import useMove from '@hooks/useMove';
+import ProfileButton from '@components/molecule/button/profileButton';
 
 const PokemonHeader = () => {
   const { movePokemonField, movePokemonDex } = useMove();
@@ -20,6 +21,7 @@ const PokemonHeader = () => {
       <EventIconContainer>
         <DashboardButton></DashboardButton>
         <ToggleThemeButton></ToggleThemeButton>
+        <ProfileButton></ProfileButton>
         <LogoutButton></LogoutButton>
       </EventIconContainer>
     </Container>

@@ -3,7 +3,8 @@ import PokemonHeader from '@components/organism/header/pokemonHeader';
 import {
   Container,
   Header,
-  PokemonFieldContent,
+  PokemonContent,
+  PokemonContentDiv,
 } from '@components/template/styles';
 import { useThemeState } from '@context/theme';
 import PokemonLoading from '@components/molecule/loading/pokemonLoading';
@@ -22,11 +23,13 @@ const PokemonDexTemplate = () => {
       <Header className={themeState.theme}>
         <PokemonHeader></PokemonHeader>
       </Header>
-      <PokemonFieldContent className={themeState.theme}>
+      <PokemonContent className={themeState.theme}>
         <Suspense fallback={<PokemonLoading />}>
-          <PokemonCardBox></PokemonCardBox>
+          <PokemonContentDiv>
+            <PokemonCardBox></PokemonCardBox>
+          </PokemonContentDiv>
         </Suspense>
-      </PokemonFieldContent>
+      </PokemonContent>
     </Container>
   );
 };

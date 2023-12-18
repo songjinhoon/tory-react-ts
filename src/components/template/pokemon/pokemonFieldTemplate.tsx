@@ -3,8 +3,10 @@ import PokemonHeader from '@components/organism/header/pokemonHeader';
 import {
   Container,
   Header,
-  PokemonFieldContent,
+  PokemonContent,
+  PokemonContentDiv,
 } from '@components/template/styles';
+import React from 'react';
 import PokemonCatchCardBox from '@components/organism/cardBox/pokemonCatchCardBox';
 
 const PokemonFieldTemplate = () => {
@@ -15,9 +17,11 @@ const PokemonFieldTemplate = () => {
       <Header className={themeState.theme}>
         <PokemonHeader></PokemonHeader>
       </Header>
-      <PokemonFieldContent className={themeState.theme}>
-        <PokemonCatchCardBox></PokemonCatchCardBox>
-      </PokemonFieldContent>
+      <PokemonContent className={themeState.theme}>
+        <PokemonContentDiv>
+          <PokemonCatchCardBox></PokemonCatchCardBox>
+        </PokemonContentDiv>
+      </PokemonContent>
     </Container>
   );
 };

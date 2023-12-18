@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { Form } from '../../page/auth/styles';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ISignUpUser } from '@type/user';
-import useUser, { UseUserHookType } from '@hooks/useUser';
+import useUser, { IUseUserHook } from '@hooks/useUser';
 
 /*
  * 사용자 정보 변경 템플릿은 여러 화면에서 사용될 수 있다.
@@ -17,7 +17,7 @@ type Props = {
 };
 
 const UserUpdateForm = ({ type, _onCancel }: Props) => {
-  const { user, isLoading, updateUser }: UseUserHookType = useUser();
+  const { user, isLoading, updateUser }: IUseUserHook = useUser();
   const {
     register,
     handleSubmit,

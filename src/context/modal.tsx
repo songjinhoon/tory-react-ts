@@ -10,12 +10,13 @@ import ModalSample from '../components/organism/popup/modal/ModalSample';
 import ModalFirst from '../components/organism/popup/modal/ModalFirst';
 import ModalSecond from '../components/organism/popup/modal/ModalSecond';
 import UserUpdateModal from '../components/organism/popup/modal/UserUpdateModal';
+import PokemonUserModal from '@components/organism/popup/modal/pokemonUserModal';
 
 type ModalActionType = 'openModal' | 'addModal' | 'removeModal' | 'closeModal';
 
 type ModalKey = 'modals';
 
-type ModalType = 'sample' | 'first' | 'second' | 'userUpdate';
+type ModalType = 'sample' | 'first' | 'second' | 'userUpdate' | 'pokemonUser';
 
 type ModalState = { [name in ModalKey]: any };
 
@@ -29,6 +30,7 @@ const modals = {
   first: <ModalFirst></ModalFirst>,
   second: <ModalSecond></ModalSecond>,
   userUpdate: <UserUpdateModal></UserUpdateModal>,
+  pokemonUser: <PokemonUserModal></PokemonUserModal>,
 };
 
 const ModalStateContext = createContext<ModalState>({ modals: [] });

@@ -19,12 +19,13 @@ export const Content = styled.section`
   align-items: center;
 `;
 
-export const PokemonFieldContent = styled.section`
+export const PokemonContent = styled.section`
   height: 90vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  overflow-y: auto;
 
   &.light {
     background: url(/pokemonLightBg.png) no-repeat center;
@@ -33,4 +34,14 @@ export const PokemonFieldContent = styled.section`
   &.dark {
     background: url(/pokemonDarkBg.png) no-repeat center;
   }
+`;
+
+export const PokemonContentDiv = styled.div`
+  min-width: 1100px;
+  max-width: 1100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 `;

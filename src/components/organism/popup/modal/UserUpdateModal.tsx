@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
 import PasswordConfirmForm from '@components/organism/form/PasswordConfirmForm';
-import { useModeDispatch, useModeState } from '../../../../context/mode';
+import { useModeDispatch, useModeState } from '@context/mode';
 import ModalLayout from './ModalLayout';
 import UserUpdateForm from '@components/organism/form/UserUpdateForm';
-import { useModalDispatch } from '../../../../context/modal';
+import { useModalDispatch } from '@context/modal';
 
 const UserUpdateModal = () => {
   const modeState = useModeState();

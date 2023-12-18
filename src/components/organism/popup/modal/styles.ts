@@ -41,7 +41,7 @@ export const ModalHeader = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: antiquewhite;
+  background-color: #bebebe;
   border-radius: 6px;
 
   button {

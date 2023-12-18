@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 
 const PokemonCardGroup = ({ pokemon }: { pokemon: any }) => {
   return (
-    <div style={{ width: '300px' }}>
+    <div style={{ width: '300px', height: '500px' }}>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <ImgBox
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url

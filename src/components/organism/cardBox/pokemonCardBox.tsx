@@ -1,28 +1,26 @@
-import React from 'react';
 import useIntersect from '@hooks/useIntersect';
 import useSWRInfinite from 'swr/infinite';
 import { pokemonFetcher } from '@utils/fetcher';
 import PokemonCardGroup from '@components/molecule/card/pokemonCardGroup';
 
 const PAGE_SIZE = 36;
+const REF_INDEX = 18;
 
 const PokemonCardBox = () => {
-  // const { data, mutate, size, setSize, isValidating, isLoading }: any =
   const { data, size, setSize, isLoading }: any = useSWRInfinite(
     (index) =>
       `https://pokeapi.co/api/v2/pokemon?offset=${
         PAGE_SIZE * index
       }&limit=${PAGE_SIZE}`,
     pokemonFetcher,
-    {
-      dedupingInterval: 60000,
-    },
   );
 
   const ref = useIntersect(
     async (entry, observer) => {
-      observer.unobserve(entry.target);
-      setSize(size + 1).then(() => {});
+      setTimeout(() => {
+        observer.unobserve(entry.target);
+        setSize(size + 1).then(() => {});
+      }, 1000);
     },
     {
       root: null,
@@ -37,15 +35,14 @@ const PokemonCardBox = () => {
         data.map((innerData: any) =>
           innerData.results.map((pokemon: any, index: any) => (
             <div key={index}>
-              {index !== 35 && (
-                <div>
-                  <PokemonCardGroup pokemon={pokemon}></PokemonCardGroup>
-                </div>
+              {index !== REF_INDEX && (
+                <PokemonCardGroup pokemon={pokemon}></PokemonCardGroup>
               )}
-              {index === 35 && (
-                <div ref={ref}>
+              {index === REF_INDEX && (
+                <>
                   <PokemonCardGroup pokemon={pokemon}></PokemonCardGroup>
-                </div>
+                  <div ref={ref}></div>
+                </>
               )}
             </div>
           )),

@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import pikachu from '../../../assets/pokemonLoading.gif';
 
 const SpinnerBox = styled.div`
-  position: fixed;
   width: 100%;
   height: 100%;
   background: white;

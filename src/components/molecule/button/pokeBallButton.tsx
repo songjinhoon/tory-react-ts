@@ -1,12 +1,12 @@
 import { PokeBallContainer } from '@components/molecule/button/styles';
 import PokeBall from '@assets/pokeball.png';
 import usePokemon from '@hooks/usePokemon';
-import useUser, { UseUserHookType } from '@hooks/useUser';
+import useUser, { IUseUserHook } from '@hooks/useUser';
 import { useCallback } from 'react';
 
 const PokeBallButton = ({ id }: { id: number }) => {
   const { isCatchPokemon } = usePokemon();
-  const { user, updateUser }: UseUserHookType = useUser();
+  const { user, updateUser }: IUseUserHook = useUser();
 
   const _onClick = useCallback(() => {
     if (isCatchPokemon()) {

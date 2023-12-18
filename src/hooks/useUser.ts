@@ -13,7 +13,7 @@ import {
 import Api from '@utils/axiosConfig';
 import { createAuth, deleteAuth, getId } from '@utils/authConfig';
 
-export type UseUserHookType = {
+export interface IUseUserHook {
   user: any;
   userMutate: any;
   isLoading: any;
@@ -23,7 +23,7 @@ export type UseUserHookType = {
   userQuery: any;
   updateUser: any;
   isEqualPassword: any;
-};
+}
 
 const useUser = () => {
   const navigate = useNavigate();

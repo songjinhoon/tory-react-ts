@@ -1,21 +1,16 @@
 import { faker } from '@faker-js/faker';
 import styled from '@emotion/styled';
 import PokeBallButton from '@components/molecule/button/pokeBallButton';
+import useUser, { IUseUserHook } from '@hooks/useUser';
 import usePokemon from '@hooks/usePokemon';
-import { IPokemon } from '@type/pokemon';
-import useUser from '@hooks/useUser';
-import { useEffect, useState } from 'react';
 
 const PokemonCatchCard = ({ id }: { id: number }) => {
-  const { user }: any = useUser();
-  const [pokemon, setPokemon] = useState<IPokemon>(null);
-  const { findById } = usePokemon();
+  const { user }: IUseUserHook = useUser();
+  const { useGetPokemonQuery } = usePokemon();
+  const pokemon = useGetPokemonQuery(id);
+
   const isDisableButton =
     user && user.pokemons.filter((data: number) => data === id).length !== 0;
-
-  useEffect(() => {
-    findById(id).then((data) => setPokemon(data));
-  }, []);
 
   return (
     <>

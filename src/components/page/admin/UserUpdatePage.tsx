@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import useUser, { UseUserHookType } from '@hooks/useUser';
+import useUser, { IUseUserHook } from '@hooks/useUser';
 import React, { useEffect } from 'react';
 import Header from '../../organism/layout/Header';
 import { AdminBlock, Content } from './styles';
@@ -8,7 +8,7 @@ import UserUpdateForm from '@components/organism/form/UserUpdateForm';
 
 const UserUpdatePage = () => {
   const navigate = useNavigate();
-  const { user, isLoading }: UseUserHookType = useUser();
+  const { user, isLoading }: IUseUserHook = useUser();
 
   useEffect(() => {
     if (!isLoading && !user) {

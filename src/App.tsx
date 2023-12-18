@@ -10,6 +10,7 @@ import AxiosInterceptor from '@utils/axiosInterceptor';
 import { refreshCheck } from '@utils/authConfig';
 import CommonLoading from '@components/molecule/loading/commonLoading';
 import { ThemeProvider } from '@context/theme';
+import ModalContainer from '@components/organism/popup/modal/ModalContainer';
 
 const SignIn = lazy(() =>
   Promise.all([
@@ -85,6 +86,7 @@ function App() {
                       element={<UserUpdate />}
                     ></Route>
                   </Routes>
+                  <ModalContainer></ModalContainer>
                 </Suspense>
               </BrowserRouter>
               <ToastContainer></ToastContainer>
