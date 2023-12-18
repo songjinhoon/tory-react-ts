@@ -32,20 +32,27 @@ const Dashboard = lazy(() =>
 );
 const PokemonField = lazy(() =>
   Promise.all([
-    import('@components/page/pokemon/pokemonField'),
+    import('@components/page/pokemon/pokemonFieldPage'),
     new Promise((resolve) => setTimeout(resolve, 1000)),
   ]).then(([moduleExports]) => moduleExports),
 );
 const PokemonDex = lazy(() =>
   Promise.all([
-    import('@components/page/pokemon/pokemonDex'),
+    import('@components/page/pokemon/pokemonDexPage'),
     new Promise((resolve) => setTimeout(resolve, 1000)),
   ]).then(([moduleExports]) => moduleExports),
 );
-const Post = lazy(() => import('@components/page/post/Post'));
+const PokemonBox = lazy(() =>
+  Promise.all([
+    import('@components/page/pokemon/pokemonBoxPage'),
+    new Promise((resolve) => setTimeout(resolve, 1000)),
+  ]).then(([moduleExports]) => moduleExports),
+);
+
+/*const Post = lazy(() => import('@components/page/post/Post'));
 const PostCreate = lazy(() => import('@components/page/post/PostCreate'));
 const Admin = lazy(() => import('@components/page/admin/Admin'));
-const UserUpdate = lazy(() => import('@components/page/admin/UserUpdatePage'));
+const UserUpdate = lazy(() => import('@components/page/admin/UserUpdatePage'));*/
 
 function App() {
   useEffect(() => {
@@ -75,15 +82,9 @@ function App() {
                       path={'/pokemon-dex'}
                       element={<PokemonDex />}
                     ></Route>
-                    <Route path={'/post'} element={<Post />}></Route>
                     <Route
-                      path={'/post-create'}
-                      element={<PostCreate />}
-                    ></Route>
-                    <Route path={'/admin'} element={<Admin />}></Route>
-                    <Route
-                      path={'/user/update'}
-                      element={<UserUpdate />}
+                      path={'/pokemon-box'}
+                      element={<PokemonBox />}
                     ></Route>
                   </Routes>
                   <ModalContainer></ModalContainer>

@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import fetcher from '@utils/fetcher';
-import { useCallback, useDebugValue } from 'react';
+import { useCallback } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -32,11 +32,8 @@ const useUser = () => {
     mutate: userMutate,
     isLoading,
   } = useSWR<IUser | boolean>(getId() ? `/users/${getId()}` : null, fetcher, {
-    dedupingInterval: 60000, // 60초동안은 캐쉬에서 호출하겠다.
+    // dedupingInterval: 60000, // 60초동안은 캐쉬에서 호출하겠다.
   });
-
-  useDebugValue(user, (user) => user);
-  useDebugValue('test');
 
   const signUp = useCallback(
     async (params: ISignUpUser) => {
@@ -92,7 +89,6 @@ const useUser = () => {
         ...params,
       });
       if (response.status === 204 || response.status === 200) {
-        alert('성공');
         await userMutate();
       } else {
         alert('실패야');

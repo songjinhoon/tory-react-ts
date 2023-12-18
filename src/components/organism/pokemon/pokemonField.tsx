@@ -2,7 +2,7 @@ import PokemonCatchCard from '@components/molecule/card/pokemonCatchCard';
 import usePokemon from '@hooks/usePokemon';
 import { useEffect, useState } from 'react';
 
-const PokemonCatchCardBox = () => {
+const PokemonField = () => {
   const { getRandomPokemonNumbers } = usePokemon();
   const [pokemonIds, setPokemonIds] = useState<number[]>([]);
 
@@ -19,4 +19,4 @@ const PokemonCatchCardBox = () => {
   );
 };
 
-export default PokemonCatchCardBox;
+export default PokemonField;

@@ -1,6 +1,6 @@
 import DashboardHeader from '@components/organism/header/dashboardHeader';
 import { useThemeState } from '@context/theme';
-import DashboardCardBox from '@components/organism/cardBox/dashboardCardBox';
+import DashboardCardView from '@components/organism/card/dashboardCardView';
 import { Container, Content, Header } from "@components/template/styles";
 
 const DashboardTemplate = () => {
@@ -12,7 +12,7 @@ const DashboardTemplate = () => {
         <DashboardHeader></DashboardHeader>
       </Header>
       <Content>
-        <DashboardCardBox></DashboardCardBox>
+        <DashboardCardView></DashboardCardView>
       </Content>
     </Container>
   );

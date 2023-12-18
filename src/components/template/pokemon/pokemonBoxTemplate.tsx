@@ -1,15 +1,14 @@
 import { useThemeState } from '@context/theme';
-import PokemonHeader from '@components/organism/header/pokemonHeader';
 import {
   Container,
   Header,
   PokemonContent,
   PokemonContentDiv,
 } from '@components/template/styles';
-import React from 'react';
-import PokemonField from '@components/organism/pokemon/pokemonField';
+import PokemonHeader from '@components/organism/header/pokemonHeader';
+import PokemonBox from '@components/organism/pokemon/pokemonBox';
 
-const PokemonFieldTemplate = () => {
+const PokemonBoxTemplate = () => {
   const themeState = useThemeState();
 
   return (
@@ -19,11 +18,11 @@ const PokemonFieldTemplate = () => {
       </Header>
       <PokemonContent className={themeState.theme}>
         <PokemonContentDiv>
-          <PokemonField></PokemonField>
+          <PokemonBox></PokemonBox>
         </PokemonContentDiv>
       </PokemonContent>
     </Container>
   );
 };
 
-export default PokemonFieldTemplate;
+export default PokemonBoxTemplate;

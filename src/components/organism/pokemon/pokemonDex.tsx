@@ -6,7 +6,7 @@ import PokemonCardGroup from '@components/molecule/card/pokemonCardGroup';
 const PAGE_SIZE = 36;
 const REF_INDEX = 18;
 
-const PokemonCardBox = () => {
+const PokemonDex = () => {
   const { data, size, setSize, isLoading }: any = useSWRInfinite(
     (index) =>
       `https://pokeapi.co/api/v2/pokemon?offset=${
@@ -50,4 +50,4 @@ const PokemonCardBox = () => {
     </>
   );
 };
-export default PokemonCardBox;
+export default PokemonDex;

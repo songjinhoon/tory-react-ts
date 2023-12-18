@@ -13,7 +13,7 @@ const PokemonDexTemplate = () => {
   const themeState = useThemeState();
   const PokemonCardBox = lazy(() =>
     Promise.all([
-      import('@components/organism/cardBox/pokemonCardBox'),
+      import('@components/organism/pokemon/pokemonDex'),
       new Promise((resolve) => setTimeout(resolve, 1000)),
     ]).then(([moduleExports]) => moduleExports),
   );

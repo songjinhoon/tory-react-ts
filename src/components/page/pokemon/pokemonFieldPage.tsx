@@ -1,7 +1,7 @@
 import PokemonFieldTemplate from '@components/template/pokemon/pokemonFieldTemplate';
 
-const PokemonField = () => {
+const PokemonFieldPage = () => {
   return <PokemonFieldTemplate></PokemonFieldTemplate>;
 };
 
-export default PokemonField;
+export default PokemonFieldPage;

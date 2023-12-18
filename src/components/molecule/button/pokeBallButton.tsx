@@ -10,9 +10,10 @@ const PokeBallButton = ({ id }: { id: number }) => {
 
   const _onClick = useCallback(() => {
     if (isCatchPokemon()) {
+      alert('포켓몬 포획 성공!');
       updateUser({ ...user, pokemons: user.pokemons.concat(id) });
     } else {
-      alert('못잡음');
+      alert('포켓몬 포획 실패!');
     }
   }, [user]);
   return (

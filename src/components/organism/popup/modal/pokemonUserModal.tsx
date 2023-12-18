@@ -40,4 +40,7 @@ const Field = styled.div`
   align-items: center;
 `;
 
-const PokemonBlock = styled.div``;
+const PokemonBlock = styled.div`
+  max-height: 400px;
+  overflow-y: auto;
+`;

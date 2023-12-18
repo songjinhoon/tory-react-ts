@@ -1,7 +1,7 @@
 import PokemonDexTemplate from '@components/template/pokemon/pokemonDexTemplate';
 
-const PokemonDex = () => {
+const PokemonDexPage = () => {
   return <PokemonDexTemplate></PokemonDexTemplate>;
 };
 
-export default PokemonDex;
+export default PokemonDexPage;

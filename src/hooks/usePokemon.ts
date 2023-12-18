@@ -1,11 +1,8 @@
 import { useCallback } from 'react';
 import useSWR from 'swr';
-import fetcher, { pokemonFetcher } from '@utils/fetcher';
-import { IUser } from '@type/user';
-import { getId } from '@utils/authConfig';
+import { pokemonFetcher } from '@utils/fetcher';
 
 const usePokemon = () => {
-
   const useGetPokemonQuery = (id: number) => {
     const { data } = useSWR(
       `https://pokeapi.co/api/v2/pokemon/${id}`,
