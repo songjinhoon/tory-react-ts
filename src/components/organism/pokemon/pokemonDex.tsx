@@ -1,7 +1,7 @@
 import useIntersect from '@hooks/useIntersect';
 import useSWRInfinite from 'swr/infinite';
 import { pokemonFetcher } from '@utils/fetcher';
-import PokemonCardGroup from '@components/molecule/card/pokemonCardGroup';
+import PokemonCard from '@components/molecule/card/pokemonCard';
 
 const PAGE_SIZE = 36;
 const REF_INDEX = 18;
@@ -36,11 +36,11 @@ const PokemonDex = () => {
           innerData.results.map((pokemon: any, index: any) => (
             <div key={index}>
               {index !== REF_INDEX && (
-                <PokemonCardGroup pokemon={pokemon}></PokemonCardGroup>
+                <PokemonCard pokemon={pokemon}></PokemonCard>
               )}
               {index === REF_INDEX && (
                 <>
-                  <PokemonCardGroup pokemon={pokemon}></PokemonCardGroup>
+                  <PokemonCard pokemon={pokemon}></PokemonCard>
                   <div ref={ref}></div>
                 </>
               )}

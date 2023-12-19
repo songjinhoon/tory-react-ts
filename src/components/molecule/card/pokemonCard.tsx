@@ -1,45 +1,17 @@
-import usePokemon from '@hooks/usePokemon';
-import { faker } from '@faker-js/faker';
-import styled from '@emotion/styled';
+import PokemonItem from '@components/molecule/card/pokemonItem';
 
-const PokemonCard = ({ id }: { id: number }) => {
-  const { useGetPokemonQuery } = usePokemon();
-  const pokemon = useGetPokemonQuery(id);
+const PokemonCard = ({ pokemon }: { pokemon: any }) => {
+  const id = pokemon.url
+    .substring(pokemon.url.lastIndexOf('/pokemon/') + 9)
+    .replace('/', '');
 
   return (
-    <>
-      {pokemon && (
-        <Container>
-          <Image>
-            <img
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
-              alt={'pokemon'}
-            />
-          </Image>
-          <Stat>
-            <h4>{pokemon.name}</h4>
-            <p>Level: {faker.number.int({ max: 100 })}</p>
-          </Stat>
-        </Container>
-      )}
-    </>
+    <PokemonItem
+      id={id}
+      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+      name={pokemon.name}
+    ></PokemonItem>
   );
 };
 
 export default PokemonCard;
-
-const Container = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0 5rem;
-  background-color: #dadada;
-  margin-bottom: 1rem;
-`;
-
-const Image = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const Stat = styled.div``;

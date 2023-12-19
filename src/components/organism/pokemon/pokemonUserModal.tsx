@@ -2,7 +2,7 @@ import ModalLayout from '@components/organism/skeleton/modal/modalLayout';
 import { useState } from 'react';
 import useUser, { IUseUserHook } from '@hooks/useUser';
 import styled from '@emotion/styled';
-import PokemonCard from '@components/molecule/card/pokemonCard';
+import PokemonSimpleCard from '@components/molecule/card/pokemonSimpleCard';
 
 const PokemonUserModal = () => {
   const { user }: IUseUserHook = useUser();
@@ -24,7 +24,7 @@ const PokemonUserModal = () => {
       </Field>
       <PokemonBlock>
         {user.pokemons.map((pokemonId: number) => (
-          <PokemonCard key={pokemonId} id={pokemonId} />
+          <PokemonSimpleCard key={pokemonId} id={pokemonId} />
         ))}
       </PokemonBlock>
     </ModalLayout>

@@ -1,18 +1,23 @@
-import styled from '@emotion/styled';
 import { faker } from '@faker-js/faker';
+import { FC } from 'react';
+import PokeBallButton from '@components/molecule/button/pokeBallButton';
+import styled from '@emotion/styled';
 
-const PokemonCardGroup = ({ pokemon }: { pokemon: any }) => {
+interface Props {
+  id: number;
+  src: string;
+  name: string;
+  isShowPokeBall?: boolean;
+}
+
+const PokemonItem: FC<Props> = ({ id, name, src, isShowPokeBall = false }) => {
   return (
     <div style={{ width: '300px', height: '500px' }}>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <ImgBox
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url
-            .substring(pokemon.url.lastIndexOf('/pokemon/') + 9)
-            .replace('/', '')}.png`}
-          alt={'pokemon'}
-        ></ImgBox>
+        <ImgBox src={src} alt={'pokemon'}></ImgBox>
+        {isShowPokeBall && <PokeBallButton id={id}></PokeBallButton>}
       </div>
-      <h4>{pokemon.name}</h4>
+      <h4>{name}</h4>
       <b>Attack</b>: {faker.number.int({ max: 1000 })}
       <br />
       <b>Defense</b>: {faker.number.int({ max: 1000 })}
@@ -22,7 +27,7 @@ const PokemonCardGroup = ({ pokemon }: { pokemon: any }) => {
   );
 };
 
-export default PokemonCardGroup;
+export default PokemonItem;
 
 const ImgBox = styled.img`
   animation: motion 0.3s linear 0s infinite alternate;
