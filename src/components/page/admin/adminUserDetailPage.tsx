@@ -1,12 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import useUser, { IUseUserHook } from '@hooks/useUser';
 import React, { useEffect } from 'react';
-import Header from '../../organism/layout/Header';
 import { AdminBlock, Content } from './styles';
-import LeftMenu from '../../organism/layout/LeftMenu';
-import UserUpdateForm from '@components/organism/form/userUpdateForm';
+import LeftMenu from '@components/organism/skeleton/layout/LeftMenu';
+import UserUpdateForm from '@components/organism/user/userUpdateForm';
 
-const UserUpdatePage = () => {
+const AdminUserDetailPage = () => {
   const navigate = useNavigate();
   const { user, isLoading }: IUseUserHook = useUser();
 
@@ -22,7 +21,7 @@ const UserUpdatePage = () => {
 
   return (
     <>
-      <Header></Header>
+      {/*<Header></Header>*/}
       <AdminBlock>
         <LeftMenu></LeftMenu>
         <Content>
@@ -33,4 +32,4 @@ const UserUpdatePage = () => {
   );
 };
 
-export default UserUpdatePage;
+export default AdminUserDetailPage;

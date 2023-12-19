@@ -1,4 +1,4 @@
-import ModalLayout from '@components/organism/popup/modal/ModalLayout';
+import ModalLayout from '@components/organism/skeleton/modal/modalLayout';
 import { useState } from 'react';
 import useUser, { IUseUserHook } from '@hooks/useUser';
 import styled from '@emotion/styled';

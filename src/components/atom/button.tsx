@@ -3,14 +3,20 @@ import styled from '@emotion/styled';
 
 interface Props {
   children: ReactNode;
+  type?: 'submit' | 'button';
   event?: () => void;
   style?: CSSProperties;
 }
 
-const Button: FC<Props> = ({ children, event, style = {} }) => {
+const Button: FC<Props> = ({
+  children,
+  type = 'button',
+  event,
+  style = {},
+}) => {
   if (event) {
     return (
-      <Container onClick={event} style={style}>
+      <Container onClick={event} style={style} type={type}>
         {children}
       </Container>
     );
@@ -29,7 +35,7 @@ const Container = styled.button`
   border-radius: 5px; /* Add border radius */
   cursor: pointer; /* Add a pointer cursor on hover */
   transition: background-color 0.3s; /* Add a smooth transition */
-  
+
   &:hover {
     background-color: deepskyblue; /* Darker green on hover */
   }

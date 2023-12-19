@@ -15,7 +15,7 @@ import React, {
 } from 'react';
 import { DataResult, process, State } from '@progress/kendo-data-query';
 import { PagerTargetEvent } from '@progress/kendo-react-data-tools';
-import { ColumnMenuCheckboxFilter } from '@components/organism/gridBox/columnMenu';
+import { ColumnMenuCheckboxFilter } from '@components/organism/skeleton/kendo/columnMenu';
 import Button from '@components/atom/button';
 
 interface OptionColumn {

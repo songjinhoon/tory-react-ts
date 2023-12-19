@@ -1,7 +1,7 @@
-import Block from '@components/molecule/block';
+import Block from '@components/molecule/block/block';
 import DashboardCard from '@components/molecule/card/dashboardCard';
 
-const DashboardCardView = () => {
+const Dashboard = () => {
   return (
     <>
       <DashboardCard type={'blog'}></DashboardCard>
@@ -11,4 +11,4 @@ const DashboardCardView = () => {
   );
 };
 
-export default DashboardCardView;
+export default Dashboard;

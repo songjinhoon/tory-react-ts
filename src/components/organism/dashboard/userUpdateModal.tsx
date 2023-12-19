@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
-import PasswordConfirmForm from '@components/organism/form/passwordConfirmForm';
+import PasswordConfirmForm from '@components/organism/skeleton/form/passwordConfirmForm';
 import { useModeDispatch, useModeState } from '@context/mode';
-import ModalLayout from './ModalLayout';
-import UserUpdateForm from '@components/organism/form/userUpdateForm';
+import ModalLayout from '../skeleton/modal/modalLayout';
+import UserUpdateForm from '@components/organism/user/userUpdateForm';
 import { useModalDispatch } from '@context/modal';
 
 const UserUpdateModal = () => {

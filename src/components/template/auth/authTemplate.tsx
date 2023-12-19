@@ -1,4 +1,4 @@
-import AuthForm, { AuthFormProps } from '@components/organism/form/authForm';
+import AuthForm, { AuthFormProps } from '@components/organism/auth/authForm';
 import React, { FC } from 'react';
 import styled from '@emotion/styled';
 import AuthLinker from '@components/organism/auth/authLinker';

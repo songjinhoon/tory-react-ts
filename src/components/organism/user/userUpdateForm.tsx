@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { ISignUpUser } from '@type/user';
 import useUser, { IUseUserHook } from '@hooks/useUser';
 import InputLabel from '@components/atom/inputLabel';
-import FormAction from '@components/organism/form/formAction';
+import FormControl from '@components/molecule/control/formControl';
 
 type Props = {
   type: 'page' | 'modal';
@@ -99,7 +99,7 @@ const UserUpdateForm = ({ type, _onCancel }: Props) => {
           option: getValidOption('address'),
         }}
       />
-      <FormAction onCancel={_onCancel}></FormAction>
+      <FormControl onCancel={_onCancel}></FormControl>
     </form>
   );
 };

@@ -3,7 +3,7 @@ import ToggleThemeButton from '@components/molecule/button/toggleThemeButton';
 import {
   Container,
   EventIconContainer,
-} from '@components/organism/header/styles';
+} from '@components/organism/styles';
 import ProfileButton from '@components/molecule/button/profileButton';
 
 const DashboardHeader = () => {

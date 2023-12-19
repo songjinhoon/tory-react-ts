@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import Block from '@components/molecule/block';
-import AuthButton from '@components/molecule/authButton';
+import Block from '@components/molecule/block/block';
+import AuthButton from '@components/molecule/button/authButton';
 import InputLabel from '@components/atom/inputLabel';
 import { css } from '@emotion/react';
 

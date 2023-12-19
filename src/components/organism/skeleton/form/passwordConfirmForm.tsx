@@ -5,7 +5,7 @@ import { ISignInUser, ISignUpUser } from '@type/user';
 import { useCallback, useEffect } from 'react';
 import useUser from '@hooks/useUser';
 import { useModeDispatch } from '@context/mode';
-import FormAction from './formAction';
+import FormControl from '../../../molecule/control/formControl';
 import { Error, InputForm, Label } from './styles';
 
 const PasswordConfirmForm = () => {
@@ -66,7 +66,7 @@ const PasswordConfirmForm = () => {
           render={({ message }) => <Error>{message}</Error>}
         />
       </InputForm>
-      <FormAction></FormAction>
+      <FormControl></FormControl>
     </Form>
   );
 };

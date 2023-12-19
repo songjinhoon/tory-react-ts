@@ -1,5 +1,5 @@
 import Button from '@components/atom/button';
-import { AuthFormProps } from '@components/organism/form/authForm';
+import { AuthFormProps } from '@components/organism/auth/authForm';
 
 const AuthButton = ({ type }: { type: AuthFormProps['type'] }) => {
   return (

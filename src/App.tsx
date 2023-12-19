@@ -10,7 +10,7 @@ import AxiosInterceptor from '@utils/axiosInterceptor';
 import { refreshCheck } from '@utils/authConfig';
 import CommonLoading from '@components/molecule/loading/commonLoading';
 import { ThemeProvider } from '@context/theme';
-import ModalContainer from '@components/organism/popup/modal/ModalContainer';
+import ModalContainer from '@components/organism/skeleton/modal/modalContainer';
 
 const SignIn = lazy(() =>
   Promise.all([
@@ -48,11 +48,6 @@ const PokemonBox = lazy(() =>
     new Promise((resolve) => setTimeout(resolve, 1000)),
   ]).then(([moduleExports]) => moduleExports),
 );
-
-/*const Post = lazy(() => import('@components/page/post/Post'));
-const PostCreate = lazy(() => import('@components/page/post/PostCreate'));
-const Admin = lazy(() => import('@components/page/admin/Admin'));
-const UserUpdate = lazy(() => import('@components/page/admin/UserUpdatePage'));*/
 
 function App() {
   useEffect(() => {

@@ -1,4 +1,4 @@
-import KendoGrid from '@components/organism/gridBox/kendoGrid';
+import KendoGrid from '@components/organism/skeleton/kendo/kendoGrid';
 import useSWR from 'swr';
 import { pokemonFetcher } from '@utils/fetcher';
 import { useEffect, useState } from 'react';

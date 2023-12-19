@@ -4,8 +4,8 @@ import {
   Container,
   EventIconContainer,
   NavContainer,
-} from '@components/organism/header/styles';
-import DashboardButton from '@components/molecule/button/dashboardButtom';
+} from '@components/organism/styles';
+import DashboardButton from '@components/molecule/button/homeButtom';
 import useMove from '@hooks/useMove';
 import ProfileButton from '@components/molecule/button/profileButton';
 

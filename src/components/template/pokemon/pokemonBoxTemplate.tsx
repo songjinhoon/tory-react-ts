@@ -5,7 +5,7 @@ import {
   PokemonContent,
   PokemonContentDiv,
 } from '@components/template/styles';
-import PokemonHeader from '@components/organism/header/pokemonHeader';
+import PokemonHeader from '@components/organism/pokemon/pokemonHeader';
 import PokemonBox from '@components/organism/pokemon/pokemonBox';
 
 const PokemonBoxTemplate = () => {

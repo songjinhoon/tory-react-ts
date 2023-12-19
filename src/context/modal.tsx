@@ -6,17 +6,14 @@ import React, {
   useContext,
   useReducer,
 } from 'react';
-import ModalSample from '../components/organism/popup/modal/ModalSample';
-import ModalFirst from '../components/organism/popup/modal/ModalFirst';
-import ModalSecond from '../components/organism/popup/modal/ModalSecond';
-import UserUpdateModal from '@components/organism/popup/modal/userUpdateModal';
-import PokemonUserModal from '@components/organism/popup/modal/pokemonUserModal';
+import UserUpdateModal from '@components/organism/dashboard/userUpdateModal';
+import PokemonUserModal from '@components/organism/pokemon/pokemonUserModal';
 
 type ModalActionType = 'openModal' | 'addModal' | 'removeModal' | 'closeModal';
 
 type ModalKey = 'modals';
 
-type ModalType = 'sample' | 'first' | 'second' | 'userUpdate' | 'pokemonUser';
+type ModalType = 'userUpdate' | 'pokemonUser';
 
 type ModalState = { [name in ModalKey]: any };
 
@@ -26,9 +23,6 @@ type ModalDispatch = Dispatch<ModalAction>;
 
 const modals = {
   default: <div></div>,
-  sample: <ModalSample></ModalSample>,
-  first: <ModalFirst></ModalFirst>,
-  second: <ModalSecond></ModalSecond>,
   userUpdate: <UserUpdateModal></UserUpdateModal>,
   pokemonUser: <PokemonUserModal></PokemonUserModal>,
 };

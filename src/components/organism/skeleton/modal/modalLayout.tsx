@@ -6,9 +6,9 @@ import React, {
   useCallback,
 } from 'react';
 import { ModalBlock, ModalContent, ModalHeader } from './styles';
-import { useModalDispatch } from '../../../../context/modal';
+import { useModalDispatch } from '@context/modal';
 
-type Props = {
+interface Props {
   title?: string;
   style?: CSSProperties;
   children: ReactNode;
@@ -18,7 +18,7 @@ type Props = {
   onSubmit?: () => void;
   isCancelButton?: boolean;
   onCancel?: () => void;
-};
+}
 
 const ModalLayout: FC<Props> = React.memo(
   ({ children, title = 'DEMO PROJECT', style, isClose = false, onClose }) => {
