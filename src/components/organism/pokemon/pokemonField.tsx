@@ -1,33 +1,20 @@
 import usePokemon from '@hooks/usePokemon';
-import { useEffect, useState } from 'react';
 import useUser, { IUseUserHook } from '@hooks/useUser';
-import PokemonItem from '@components/molecule/card/pokemonItem';
+import PokemonCard from '@components/molecule/card/pokemonCard';
 
 const PokemonField = () => {
-  const { useGetPokemonsQuery, getRandomPokemonNumbers, getPokemonIdByUrl } =
-    usePokemon();
-  const [pokemonIds, setPokemonIds] = useState<number[]>([]);
-  const { datas } = useGetPokemonsQuery();
-  const pokemons = datas.filter((data: any) => pokemonIds.includes(data.id));
   const { user }: IUseUserHook = useUser();
-
-  useEffect(() => {
-    setPokemonIds(getRandomPokemonNumbers());
-  }, []);
-
-  useEffect(() => {
-    if (pokemons) {
-      console.log(pokemons);
-    }
-  }, [pokemons]);
+  const { useGetPokemonsQuery, getRandomPokemonNumbers } = usePokemon();
+  const pokemonIds = getRandomPokemonNumbers();
+  const { datas } = useGetPokemonsQuery();
+  const pokemons =
+    user && datas.filter((data: any) => pokemonIds.includes(data.id));
 
   return (
     <>
-      {pokemons &&
-        user &&
-        pokemons.length !== 0 &&
+      {user &&
         pokemons.map((pokemon: any, index: number) => (
-          <PokemonItem
+          <PokemonCard
             key={index}
             id={pokemon.id}
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
@@ -36,7 +23,7 @@ const PokemonField = () => {
               user.pokemons.filter((data: number) => data === pokemon.id)
                 .length === 0
             }
-          ></PokemonItem>
+          ></PokemonCard>
         ))}
     </>
   );

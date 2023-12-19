@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 const PokemonSimpleCard = ({ id }: { id: number }) => {
   const { useGetPokemonQuery } = usePokemon();
-  const { data, isLoading } = useGetPokemonQuery(id);
+  const { data } = useGetPokemonQuery(id);
 
   return (
     <>

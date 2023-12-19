@@ -7,7 +7,7 @@ import React, {
   useReducer,
 } from 'react';
 import UserUpdateModal from '@components/organism/dashboard/userUpdateModal';
-import PokemonUserModal from '@components/organism/pokemon/pokemonUserModal';
+import PokemonUserModal from '@components/organism/pokemon/common/pokemonUserModal';
 
 type ModalActionType = 'openModal' | 'addModal' | 'removeModal' | 'closeModal';
 

@@ -5,7 +5,7 @@ import { pokemonFetcher } from '@utils/fetcher';
 const usePokemon = () => {
   const useGetPokemonsQuery = () => {
     const { data } = useSWR(
-      `https://pokeapi.co/api/v2/pokemon?limit=1292`,
+      `https://pokeapi.co/api/v2/pokemon?limit=1000`,
       pokemonFetcher,
       {
         suspense: true,
@@ -29,7 +29,7 @@ const usePokemon = () => {
         dedupingInterval: 60000,
       },
     );
-    return data;
+    return { data };
   };
 
   const getPokemonIdByUrl = useCallback((url: string) => {

@@ -10,13 +10,14 @@ import useMove from '@hooks/useMove';
 import ProfileButton from '@components/molecule/button/profileButton';
 
 const PokemonHeader = () => {
-  const { movePokemonField, movePokemonDex } = useMove();
+  const { movePokemonField, movePokemonDex, movePokemonBox } = useMove();
   return (
     <Container>
       <h2>POKEMON PROJECT</h2>
       <NavContainer>
         <h4 onClick={movePokemonField}>Field</h4>
         <h4 onClick={movePokemonDex}>Dex</h4>
+        <h4 onClick={movePokemonBox}>Box</h4>
       </NavContainer>
       <EventIconContainer>
         <DashboardButton></DashboardButton>

@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import PokemonHeader from '@components/organism/pokemon/pokemonHeader';
+import PokemonHeader from '@components/organism/pokemon/common/pokemonHeader';
 import {
   Container,
   Header,

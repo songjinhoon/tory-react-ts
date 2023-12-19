@@ -2,11 +2,14 @@ import useIntersect from '@hooks/useIntersect';
 import useSWRInfinite from 'swr/infinite';
 import { pokemonFetcher } from '@utils/fetcher';
 import PokemonCard from '@components/molecule/card/pokemonCard';
+import React from 'react';
+import usePokemon from '@hooks/usePokemon';
 
 const PAGE_SIZE = 36;
 const REF_INDEX = 18;
 
 const PokemonDex = () => {
+  const { getPokemonIdByUrl } = usePokemon();
   const { data, size, setSize, isLoading }: any = useSWRInfinite(
     (index) =>
       `https://pokeapi.co/api/v2/pokemon?offset=${
@@ -36,11 +39,23 @@ const PokemonDex = () => {
           innerData.results.map((pokemon: any, index: any) => (
             <div key={index}>
               {index !== REF_INDEX && (
-                <PokemonCard pokemon={pokemon}></PokemonCard>
+                <PokemonCard
+                  id={getPokemonIdByUrl(pokemon.url)}
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getPokemonIdByUrl(
+                    pokemon.url,
+                  )}.png`}
+                  name={pokemon.name}
+                ></PokemonCard>
               )}
               {index === REF_INDEX && (
                 <>
-                  <PokemonCard pokemon={pokemon}></PokemonCard>
+                  <PokemonCard
+                    id={getPokemonIdByUrl(pokemon.url)}
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getPokemonIdByUrl(
+                      pokemon.url,
+                    )}.png`}
+                    name={pokemon.name}
+                  ></PokemonCard>
                   <div ref={ref}></div>
                 </>
               )}

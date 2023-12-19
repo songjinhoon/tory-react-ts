@@ -15,10 +15,15 @@ const UseMove = () => {
     navigate('/pokemon-dex');
   };
 
+  const movePokemonBox = () => {
+    navigate('/pokemon-box');
+  };
+
   return {
     moveDashboard,
     movePokemonField,
     movePokemonDex,
+    movePokemonBox,
   };
 };
 
