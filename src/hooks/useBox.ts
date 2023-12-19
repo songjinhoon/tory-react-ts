@@ -1,9 +1,8 @@
 import Api from '@utils/axiosConfig';
 import { toast } from 'react-toastify';
-import { useCallback } from 'react';
 
 const UseBox = () => {
-  const createBox = useCallback(async (params) => {
+  const createBox = async (params: any) => {
     try {
       const response = await Api.post(`/boxes`, { ...params });
     } catch (error: any) {
@@ -11,7 +10,7 @@ const UseBox = () => {
         position: toast.POSITION.BOTTOM_CENTER,
       });
     }
-  }, []);
+  };
 
   return { createBox };
 };
