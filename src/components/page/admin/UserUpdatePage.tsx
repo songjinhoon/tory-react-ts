@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import Header from '../../organism/layout/Header';
 import { AdminBlock, Content } from './styles';
 import LeftMenu from '../../organism/layout/LeftMenu';
-import UserUpdateForm from '@components/organism/form/UserUpdateForm';
+import UserUpdateForm from '@components/organism/form/userUpdateForm';
 
 const UserUpdatePage = () => {
   const navigate = useNavigate();

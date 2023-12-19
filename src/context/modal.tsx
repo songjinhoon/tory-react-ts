@@ -9,7 +9,7 @@ import React, {
 import ModalSample from '../components/organism/popup/modal/ModalSample';
 import ModalFirst from '../components/organism/popup/modal/ModalFirst';
 import ModalSecond from '../components/organism/popup/modal/ModalSecond';
-import UserUpdateModal from '../components/organism/popup/modal/UserUpdateModal';
+import UserUpdateModal from '@components/organism/popup/modal/userUpdateModal';
 import PokemonUserModal from '@components/organism/popup/modal/pokemonUserModal';
 
 type ModalActionType = 'openModal' | 'addModal' | 'removeModal' | 'closeModal';

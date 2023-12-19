@@ -5,11 +5,7 @@ import React, {
   ReactNode,
   useCallback,
 } from 'react';
-import {
-  ModalBlock,
-  ModalContent,
-  ModalHeader,
-} from './styles';
+import { ModalBlock, ModalContent, ModalHeader } from './styles';
 import { useModalDispatch } from '../../../../context/modal';
 
 type Props = {
@@ -39,13 +35,11 @@ const ModalLayout: FC<Props> = React.memo(
         modalDispatch({ type: 'closeModal' });
       });
 
-    console.log('ModalLayout');
-
     return (
       <ModalBlock onClick={stopPropagation} style={style}>
         <ModalHeader>
           <div>
-            <span>{title}</span>
+            <h4>{title}</h4>
             {isClose && <button onClick={() => _onClose()}>&times;</button>}
           </div>
         </ModalHeader>

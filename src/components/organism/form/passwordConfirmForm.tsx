@@ -1,11 +1,11 @@
-import { Form, Input } from '../../page/auth/styles';
+import { Form, Input } from '@components/page/auth/styles';
 import { ErrorMessage } from '@hookform/error-message';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ISignInUser, ISignUpUser } from '@type/user';
 import { useCallback, useEffect } from 'react';
 import useUser from '@hooks/useUser';
-import { useModeDispatch } from '../../../context/mode';
-import ActionForm from './ActionForm';
+import { useModeDispatch } from '@context/mode';
+import FormAction from './formAction';
 import { Error, InputForm, Label } from './styles';
 
 const PasswordConfirmForm = () => {
@@ -66,7 +66,7 @@ const PasswordConfirmForm = () => {
           render={({ message }) => <Error>{message}</Error>}
         />
       </InputForm>
-      <ActionForm></ActionForm>
+      <FormAction></FormAction>
     </Form>
   );
 };

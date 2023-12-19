@@ -4,6 +4,7 @@ import {
   Container,
   EventIconContainer,
 } from '@components/organism/header/styles';
+import ProfileButton from '@components/molecule/button/profileButton';
 
 const DashboardHeader = () => {
   return (
@@ -11,6 +12,7 @@ const DashboardHeader = () => {
       <h2>DEMO PROJECT</h2>
       <EventIconContainer>
         <ToggleThemeButton></ToggleThemeButton>
+        <ProfileButton></ProfileButton>
         <LogoutButton></LogoutButton>
       </EventIconContainer>
     </Container>

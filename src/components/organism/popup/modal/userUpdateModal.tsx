@@ -1,13 +1,13 @@
 import { useCallback, useState } from 'react';
-import PasswordConfirmForm from '@components/organism/form/PasswordConfirmForm';
+import PasswordConfirmForm from '@components/organism/form/passwordConfirmForm';
 import { useModeDispatch, useModeState } from '@context/mode';
 import ModalLayout from './ModalLayout';
-import UserUpdateForm from '@components/organism/form/UserUpdateForm';
+import UserUpdateForm from '@components/organism/form/userUpdateForm';
 import { useModalDispatch } from '@context/modal';
 
 const UserUpdateModal = () => {
   const modeState = useModeState();
-  const [title] = useState('사용자 정보 수정');
+  const [title] = useState('User Profile');
   const modeDispatch = useModeDispatch();
   const modalDispatch = useModalDispatch();
 
@@ -25,12 +25,12 @@ const UserUpdateModal = () => {
   return (
     <>
       {modeState.userUpdateModal === 'confirm' && (
-        <ModalLayout title={title} style={{ height: 400 }}>
+        <ModalLayout title={title} style={{ height: 450 }}>
           <PasswordConfirmForm></PasswordConfirmForm>
         </ModalLayout>
       )}
       {modeState.userUpdateModal === 'update' && (
-        <ModalLayout title={title} style={{ height: 700 }}>
+        <ModalLayout title={title} style={{ height: 500 }}>
           <UserUpdateForm type={'modal'} _onCancel={_onCancel}></UserUpdateForm>
         </ModalLayout>
       )}

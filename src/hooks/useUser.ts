@@ -23,6 +23,7 @@ export interface IUseUserHook {
   userQuery: any;
   updateUser: any;
   isEqualPassword: any;
+  getValidOption: any;
 }
 
 const useUser = () => {

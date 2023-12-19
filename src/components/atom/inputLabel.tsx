@@ -17,6 +17,7 @@ const InputLabel: FC<Props> = ({ register, field }) => {
           css={inputStyles}
           type={field.name === 'password' ? 'password' : 'text'}
           placeholder={`enter ${field.name}`}
+          disabled={field.disabled || false}
           {...register(field.name, field.option)}
         />
       </div>
