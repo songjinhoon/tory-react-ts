@@ -1,18 +1,18 @@
 import useUser, { IUseUserHook } from '@hooks/useUser';
-import usePokemon from '@hooks/usePokemon';
 import PokemonCard from '@components/molecule/card/pokemonCard';
+import useBox from '@hooks/useBox';
 
 const PokemonBox = () => {
   const { user }: IUseUserHook = useUser();
-  const { useGetPokemonsQuery } = usePokemon();
-  const { datas } = useGetPokemonsQuery();
-  const pokemons =
-    user && datas.filter((data: any) => user.pokemons.includes(data.id));
+  const { findByUserId } = useBox();
+  const { datas } = findByUserId(user.id);
+  /*const pokemons =
+    user && datas.filter((data: any) => user.pokemons.includes(data.id));*/
 
   return (
     <>
       {user &&
-        pokemons.map((pokemon: any, index: number) => (
+        datas.map((pokemon: any, index: number) => (
           <PokemonCard
             key={index}
             id={pokemon.id}
