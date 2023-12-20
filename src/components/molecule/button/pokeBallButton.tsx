@@ -5,12 +5,13 @@ import useUser, { IUseUserHook } from '@hooks/useUser';
 import { useCallback } from 'react';
 import useBox from '@hooks/useBox';
 import { faker } from '@faker-js/faker';
+import { IPokemon } from '@type/pokemon';
 
 const PokeBallButton = ({ id }: { id: number }) => {
   const { user }: IUseUserHook = useUser();
   const { createBox } = useBox();
-  const { isCatchPokemon, useGetPokemonQuery } = usePokemon();
-  const { data } = useGetPokemonQuery(id);
+  const { pokemons, isCatchPokemon } = usePokemon();
+  const pokemon = pokemons.find((data: IPokemon) => data.id === id);
 
   const _onClick = useCallback(() => {
     if (isCatchPokemon()) {
@@ -18,9 +19,10 @@ const PokeBallButton = ({ id }: { id: number }) => {
       createBox({
         userId: user.id,
         nickname: user.nickname,
+        isPartner: false,
         pokemon: {
           id: id,
-          name: data.name,
+          name: pokemon.name,
           image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
           level: faker.number.int({ max: 100 }),
           attack: faker.number.int({ max: 1000 }),
@@ -31,7 +33,7 @@ const PokeBallButton = ({ id }: { id: number }) => {
     } else {
       alert('포켓몬 포획 실패!');
     }
-  }, [user, createBox, id, isCatchPokemon, data]);
+  }, [user, createBox, id, isCatchPokemon, pokemon]);
 
   return (
     <PokeBallContainer>

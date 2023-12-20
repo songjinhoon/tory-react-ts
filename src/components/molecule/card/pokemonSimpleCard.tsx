@@ -1,14 +1,15 @@
 import usePokemon from '@hooks/usePokemon';
 import { faker } from '@faker-js/faker';
 import styled from '@emotion/styled';
+import { IPokemon } from '@type/pokemon';
 
 const PokemonSimpleCard = ({ id }: { id: number }) => {
-  const { useGetPokemonQuery } = usePokemon();
-  const { data } = useGetPokemonQuery(id);
+  const { pokemons } = usePokemon();
+  const pokemon = pokemons.find((data: IPokemon) => data.id === id);
 
   return (
     <>
-      {data && (
+      {pokemon && (
         <Container>
           <Image>
             <img
@@ -17,7 +18,7 @@ const PokemonSimpleCard = ({ id }: { id: number }) => {
             />
           </Image>
           <Stat>
-            <h4>{data.name}</h4>
+            <h4>{pokemon.name}</h4>
             <p>Level: {faker.number.int({ max: 100 })}</p>
           </Stat>
         </Container>

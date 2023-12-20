@@ -3,6 +3,15 @@ import { useCallback } from 'react';
 import { pokemonFetcher } from '@utils/fetcher';
 
 const usePokemon = () => {
+  const { data } = useSWR(
+    `https://pokeapi.co/api/v2/pokemon?limit=1000`,
+    pokemonFetcher,
+    {
+      suspense: true,
+      dedupingInterval: 60000,
+    },
+  );
+
   const useGetPokemonsQuery = () => {
     const { data } = useSWR(
       `https://pokeapi.co/api/v2/pokemon?limit=1000`,
@@ -51,8 +60,11 @@ const usePokemon = () => {
   }, []);
 
   return {
+    pokemons: data.results.map((data: any) => ({
+      ...data,
+      id: getPokemonIdByUrl(data.url),
+    })),
     useGetPokemonsQuery,
-    useGetPokemonQuery,
     getPokemonIdByUrl,
     getRandomPokemonNumbers,
     isCatchPokemon,

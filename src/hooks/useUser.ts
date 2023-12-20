@@ -39,7 +39,7 @@ const useUser = () => {
   const signUp = useCallback(
     async (params: ISignUpUser) => {
       try {
-        const response = await Api.post(`/users`, { ...params, pokemons: [] });
+        const response = await Api.post(`/users`, params);
         if (response.status === 201) {
           toast.success('회원가입 성공~ 로그인 창으로 이동합니다~', {
             position: toast.POSITION.BOTTOM_CENTER,

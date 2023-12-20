@@ -3,10 +3,13 @@ import { useState } from 'react';
 import useUser, { IUseUserHook } from '@hooks/useUser';
 import styled from '@emotion/styled';
 import PokemonSimpleCard from '@components/molecule/card/pokemonSimpleCard';
+import useBox from '@hooks/useBox';
 
 const PokemonUserModal = () => {
-  const { user }: IUseUserHook = useUser();
   const [title] = useState('PokemonTrainer');
+  const { user }: IUseUserHook = useUser();
+  const { findByUserId } = useBox();
+  const pokemons = findByUserId(user.id);
 
   return (
     <ModalLayout title={title} style={{ height: 700 }}>
@@ -23,7 +26,7 @@ const PokemonUserModal = () => {
         <p>{user.tellNum}</p>
       </Field>
       <PokemonBlock>
-        {user.pokemons.map((pokemonId: number) => (
+        {pokemons.map((pokemonId: number) => (
           <PokemonSimpleCard key={pokemonId} id={pokemonId} />
         ))}
       </PokemonBlock>
