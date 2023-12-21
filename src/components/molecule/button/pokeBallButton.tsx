@@ -9,7 +9,7 @@ import { IPokemon } from '@type/pokemon';
 
 const PokeBallButton = ({ id }: { id: number }) => {
   const { user }: IUseUserHook = useUser();
-  const { createBox } = useBox();
+  const { boxMutate, createBox } = useBox();
   const { pokemons, isCatchPokemon } = usePokemon();
   const pokemon = pokemons.find((data: IPokemon) => data.id === id);
 
@@ -29,11 +29,11 @@ const PokeBallButton = ({ id }: { id: number }) => {
           defense: faker.number.int({ max: 1000 }),
           speed: faker.number.int({ max: 1000 }),
         },
-      }).then((r) => console.log(r));
+      }).then((r) => boxMutate());
     } else {
       alert('포켓몬 포획 실패!');
     }
-  }, [user, createBox, id, isCatchPokemon, pokemon]);
+  }, [user, createBox, id, isCatchPokemon, pokemon, boxMutate]);
 
   return (
     <PokeBallContainer>

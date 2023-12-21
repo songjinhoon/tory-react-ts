@@ -1,43 +1,65 @@
 import useUser, { IUseUserHook } from '@hooks/useUser';
 import PokemonCard from '@components/molecule/card/pokemonCard';
 import useBox from '@hooks/useBox';
+import { IBox } from '@type/box';
+import styled from '@emotion/styled';
+import PokemonImageCard from '@components/molecule/card/pokemonImageCard';
 
 const PokemonBox = () => {
   const { user }: IUseUserHook = useUser();
   const { getPartnerPokemon, getNotPartnerPokemon } = useBox();
-  /*const pokemons =
-    user && datas.filter((data: any) => user.pokemons.includes(data.id));*/
 
   return (
-    <>
+    <Container>
+      <PartnerContainer>
+        {user &&
+          getPartnerPokemon().map((box: IBox, index: number) => (
+            <PokemonImageCard
+              key={index}
+              id={box.pokemon.id}
+              src={box.pokemon.image}
+              name={box.pokemon.name}
+            ></PokemonImageCard>
+          ))}
+      </PartnerContainer>
+      <NoPartnerContainer>
       {user &&
-        getPartnerPokemon().map((pokemon: any, index: number) => (
+        getNotPartnerPokemon().map((box: IBox, index: number) => (
           <PokemonCard
             key={index}
-            id={pokemon.id}
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-            name={pokemon.name}
-            isShowPokeBall={
-              user.pokemons.filter((data: number) => data === pokemon.id)
-                .length === 0
-            }
+            id={box.pokemon.id}
+            src={box.pokemon.image}
+            name={box.pokemon.name}
+            isShowStar={true}
           ></PokemonCard>
         ))}
-      {user &&
-        getNotPartnerPokemon().map((pokemon: any, index: number) => (
-          <PokemonCard
-            key={index}
-            id={pokemon.id}
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-            name={pokemon.name}
-            isShowPokeBall={
-              user.pokemons.filter((data: number) => data === pokemon.id)
-                .length === 0
-            }
-          ></PokemonCard>
-        ))}
-    </>
+      </NoPartnerContainer>
+    </Container>
   );
 };
 
 export default PokemonBox;
+
+const Container = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`
+
+const PartnerContainer = styled.div`
+  width: 100%;
+  height: 20%;
+  background-color: #b9b9b9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const NoPartnerContainer = styled.div`
+  width: 100%;
+  height: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+`;

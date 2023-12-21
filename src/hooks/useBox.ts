@@ -3,7 +3,8 @@ import { toast } from 'react-toastify';
 import useSWR from 'swr';
 import { pokemonFetcher } from '@utils/fetcher';
 import { IBox, ICreateBox } from '@type/box';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
+import PokemonApi from '@utils/pokemonApiConfig';
 
 const UseBox = () => {
   const { data: boxes, mutate: boxMutate } = useSWR('/boxes', pokemonFetcher, {
@@ -21,15 +22,21 @@ const UseBox = () => {
     }
   };
 
+  const updateBox = useCallback(
+    async (id: number, params: any) => {
+      const response = await PokemonApi.put(`/boxes/${id}`, { ...params });
+      if (response.status === 204 || response.status === 200) {
+        await boxMutate();
+      }
+    },
+    [boxMutate],
+  );
+
   const findByUserId = (userId: number) => {
     if (boxes.length === 0) {
       return [];
     }
     return boxes.filter((box: IBox) => box.userId === userId);
-  };
-
-  const test = (params: any, userId: any) => {
-    return params.filter((box: IBox) => box.userId === userId);
   };
 
   const getPartnerPokemon = useCallback(() => {
@@ -46,17 +53,19 @@ const UseBox = () => {
     return boxes.filter((box: IBox) => !box.isPartner);
   }, [boxes]);
 
-  useEffect(() => {
-    console.log('debug');
-    console.log(boxes);
-  }, [boxes]);
+  const findBoxByUserIdAndPokemonId = (userId: number, pokemonId: number) => {
+    return boxes.find(
+      (box: IBox) => box.userId === userId && box.pokemon.id === pokemonId,
+    );
+  };
 
   return {
     boxes,
     boxMutate,
+    findBoxByUserIdAndPokemonId,
     findByUserId,
-    test,
     createBox,
+    updateBox,
     getPartnerPokemon,
     getNotPartnerPokemon,
   };

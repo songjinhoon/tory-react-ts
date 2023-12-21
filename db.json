@@ -55,7 +55,128 @@
       "id": 6
     }
   ],
-  "boxes": [],
+  "boxes": [
+    {
+      "userId": 1,
+      "nickname": "jinhoon",
+      "isPartner": true,
+      "pokemon": {
+        "id": 30,
+        "name": "nidorina",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/30.png",
+        "level": 26,
+        "attack": 873,
+        "defense": 768,
+        "speed": 723
+      },
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "nickname": "jinhoon",
+      "isPartner": true,
+      "pokemon": {
+        "id": 126,
+        "name": "magmar",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/126.png",
+        "level": 90,
+        "attack": 861,
+        "defense": 369,
+        "speed": 250
+      },
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "nickname": "jinhoon",
+      "isPartner": true,
+      "pokemon": {
+        "id": 24,
+        "name": "arbok",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png",
+        "level": 40,
+        "attack": 662,
+        "defense": 68,
+        "speed": 247
+      },
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "nickname": "jinhoon",
+      "isPartner": false,
+      "pokemon": {
+        "id": 148,
+        "name": "dragonair",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/148.png",
+        "level": 88,
+        "attack": 373,
+        "defense": 568,
+        "speed": 272
+      },
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "nickname": "jinhoon",
+      "isPartner": false,
+      "pokemon": {
+        "id": 77,
+        "name": "ponyta",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/77.png",
+        "level": 88,
+        "attack": 721,
+        "defense": 598,
+        "speed": 465
+      },
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "nickname": "jinhoon",
+      "isPartner": false,
+      "pokemon": {
+        "id": 118,
+        "name": "goldeen",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/118.png",
+        "level": 42,
+        "attack": 402,
+        "defense": 193,
+        "speed": 234
+      },
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "nickname": "jinhoon",
+      "isPartner": false,
+      "pokemon": {
+        "id": 3,
+        "name": "venusaur",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
+        "level": 68,
+        "attack": 600,
+        "defense": 369,
+        "speed": 296
+      },
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "nickname": "jinhoon",
+      "isPartner": false,
+      "pokemon": {
+        "id": 134,
+        "name": "vaporeon",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/134.png",
+        "level": 58,
+        "attack": 786,
+        "defense": 920,
+        "speed": 986
+      },
+      "id": 8
+    }
+  ],
   "products": [
     {
       "id": 1,

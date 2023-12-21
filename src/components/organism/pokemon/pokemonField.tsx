@@ -5,11 +5,11 @@ import useBox from '@hooks/useBox';
 
 const PokemonField = () => {
   const { user }: IUseUserHook = useUser();
-  const { useGetPokemonsQuery, getRandomPokemonNumbers } = usePokemon();
+  const { useGetPokemonsQuery, randomPokemonIds } = usePokemon();
   const { datas } = useGetPokemonsQuery();
-  const pokemonIds = getRandomPokemonNumbers();
-  const pokemons =
-    user && datas.filter((data: any) => pokemonIds.includes(data.id));
+  const pokemons = datas.filter((data: any) =>
+    randomPokemonIds.includes(data.id),
+  );
 
   const { findByUserId } = useBox();
   const hasPokemonIds =
