@@ -39,25 +39,45 @@ const UseBox = () => {
     return boxes.filter((box: IBox) => box.userId === userId);
   };
 
-  const getPartnerPokemon = useCallback(() => {
-    if (boxes.length === 0) {
-      return [];
-    }
-    return boxes.filter((box: IBox) => box.isPartner);
-  }, [boxes]);
+  const getPartnerPokemon = useCallback(
+    (userId: number) => {
+      if (boxes.length === 0) {
+        return [];
+      }
+      return boxes.filter(
+        (box: IBox) => box.isPartner && box.userId === userId,
+      );
+    },
+    [boxes],
+  );
 
-  const getNotPartnerPokemon = useCallback(() => {
-    if (boxes.length === 0) {
-      return [];
-    }
-    return boxes.filter((box: IBox) => !box.isPartner);
-  }, [boxes]);
+  const getNotPartnerPokemon = useCallback(
+    (userId: number) => {
+      if (boxes.length === 0) {
+        return [];
+      }
+      return boxes.filter(
+        (box: IBox) => !box.isPartner && box.userId === userId,
+      );
+    },
+    [boxes],
+  );
 
   const findBoxByUserIdAndPokemonId = (userId: number, pokemonId: number) => {
     return boxes.find(
       (box: IBox) => box.userId === userId && box.pokemon.id === pokemonId,
     );
   };
+
+  const isPossibleRegisterPartnerPokemon = useCallback(
+    (userId: number) => {
+      return (
+        boxes.filter((box: IBox) => box.userId === userId && box.isPartner)
+          .length < 6
+      );
+    },
+    [boxes],
+  );
 
   return {
     boxes,
@@ -66,6 +86,7 @@ const UseBox = () => {
     findByUserId,
     createBox,
     updateBox,
+    isPossibleRegisterPartnerPokemon,
     getPartnerPokemon,
     getNotPartnerPokemon,
   };

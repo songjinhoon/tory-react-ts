@@ -12,12 +12,29 @@ const PokemonStarButton = ({
   isYellow?: boolean;
 }) => {
   const { user }: IUseUserHook = useUser();
-  const { updateBox, findBoxByUserIdAndPokemonId } = useBox();
+  const {
+    updateBox,
+    findBoxByUserIdAndPokemonId,
+    isPossibleRegisterPartnerPokemon,
+  } = useBox();
 
   const _onClick = useCallback(() => {
-    const box = findBoxByUserIdAndPokemonId(user.id, id);
-    updateBox(box.id, { ...box, isPartner: true }).then((r) => console.log(r));
-  }, [findBoxByUserIdAndPokemonId, id, updateBox, user]);
+    if (isYellow) {
+      const box = findBoxByUserIdAndPokemonId(user.id, id);
+      updateBox(box.id, { ...box, isPartner: false }).then((r) =>
+        console.log(r),
+      );
+    } else {
+      if (isPossibleRegisterPartnerPokemon(user.id)) {
+        const box = findBoxByUserIdAndPokemonId(user.id, id);
+        updateBox(box.id, { ...box, isPartner: true }).then((r) =>
+          console.log(r),
+        );
+      } else {
+        alert('파트너 포멧몬은 6마리까지 등록 가능합니다.');
+      }
+    }
+  }, [findBoxByUserIdAndPokemonId, id, updateBox, user, isPossibleRegisterPartnerPokemon, isYellow]);
 
   return (
     <Container onClick={_onClick}>

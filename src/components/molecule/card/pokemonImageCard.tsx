@@ -21,7 +21,9 @@ const PokemonImageCard = ({ id, name, src }: Props) => {
 
 export default PokemonImageCard;
 
-const Container = styled.div``;
+const Container = styled.div`
+  width: 150px;
+`;
 
 const Title = styled.div`
   display: flex;

@@ -4,12 +4,13 @@ import useUser, { IUseUserHook } from '@hooks/useUser';
 import styled from '@emotion/styled';
 import PokemonSimpleCard from '@components/molecule/card/pokemonSimpleCard';
 import useBox from '@hooks/useBox';
+import { IBox } from '@type/box';
 
 const PokemonUserModal = () => {
   const [title] = useState('PokemonTrainer');
   const { user }: IUseUserHook = useUser();
-  const { findByUserId } = useBox();
-  const pokemons = findByUserId(user.id);
+  const { getPartnerPokemon } = useBox();
+  const boxes = getPartnerPokemon(user.id);
 
   return (
     <ModalLayout title={title} style={{ height: 700 }}>
@@ -26,9 +27,10 @@ const PokemonUserModal = () => {
         <p>{user.tellNum}</p>
       </Field>
       <PokemonBlock>
-        {pokemons.map((pokemonId: number) => (
-          <PokemonSimpleCard key={pokemonId} id={pokemonId} />
-        ))}
+        {boxes &&
+          boxes.map((box: IBox) => (
+            <PokemonSimpleCard key={box.id} id={box.pokemon.id} />
+          ))}
       </PokemonBlock>
     </ModalLayout>
   );

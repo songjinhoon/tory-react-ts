@@ -59,7 +59,7 @@
     {
       "userId": 1,
       "nickname": "jinhoon",
-      "isPartner": true,
+      "isPartner": false,
       "pokemon": {
         "id": 30,
         "name": "nidorina",
@@ -104,7 +104,7 @@
     {
       "userId": 1,
       "nickname": "jinhoon",
-      "isPartner": false,
+      "isPartner": true,
       "pokemon": {
         "id": 148,
         "name": "dragonair",
@@ -119,7 +119,7 @@
     {
       "userId": 1,
       "nickname": "jinhoon",
-      "isPartner": false,
+      "isPartner": true,
       "pokemon": {
         "id": 77,
         "name": "ponyta",
@@ -149,7 +149,7 @@
     {
       "userId": 1,
       "nickname": "jinhoon",
-      "isPartner": false,
+      "isPartner": true,
       "pokemon": {
         "id": 3,
         "name": "venusaur",
@@ -175,6 +175,36 @@
         "speed": 986
       },
       "id": 8
+    },
+    {
+      "userId": 1,
+      "nickname": "jinhoon",
+      "isPartner": true,
+      "pokemon": {
+        "id": 75,
+        "name": "graveler",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/75.png",
+        "level": 94,
+        "attack": 607,
+        "defense": 716,
+        "speed": 290
+      },
+      "id": 9
+    },
+    {
+      "userId": 1,
+      "nickname": "jinhoon",
+      "isPartner": false,
+      "pokemon": {
+        "id": 25,
+        "name": "pikachu",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+        "level": 79,
+        "attack": 218,
+        "defense": 987,
+        "speed": 933
+      },
+      "id": 10
     }
   ],
   "products": [

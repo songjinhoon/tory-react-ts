@@ -13,7 +13,7 @@ const PokemonBox = () => {
     <Container>
       <PartnerContainer>
         {user &&
-          getPartnerPokemon().map((box: IBox, index: number) => (
+          getPartnerPokemon(user.id).map((box: IBox, index: number) => (
             <PokemonImageCard
               key={index}
               id={box.pokemon.id}
@@ -23,16 +23,16 @@ const PokemonBox = () => {
           ))}
       </PartnerContainer>
       <NoPartnerContainer>
-      {user &&
-        getNotPartnerPokemon().map((box: IBox, index: number) => (
-          <PokemonCard
-            key={index}
-            id={box.pokemon.id}
-            src={box.pokemon.image}
-            name={box.pokemon.name}
-            isShowStar={true}
-          ></PokemonCard>
-        ))}
+        {user &&
+          getNotPartnerPokemon(user.id).map((box: IBox, index: number) => (
+            <PokemonCard
+              key={index}
+              id={box.pokemon.id}
+              src={box.pokemon.image}
+              name={box.pokemon.name}
+              isShowStar={true}
+            ></PokemonCard>
+          ))}
       </NoPartnerContainer>
     </Container>
   );
@@ -44,10 +44,9 @@ const Container = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-`
+`;
 
 const PartnerContainer = styled.div`
-  width: 100%;
   height: 20%;
   background-color: #b9b9b9;
   display: flex;
@@ -56,7 +55,7 @@ const PartnerContainer = styled.div`
 `;
 
 const NoPartnerContainer = styled.div`
-  width: 100%;
+  min-width: 1100px;
   height: 70%;
   display: flex;
   flex-wrap: wrap;
