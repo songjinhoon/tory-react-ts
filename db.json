@@ -179,7 +179,7 @@
     {
       "userId": 1,
       "nickname": "jinhoon",
-      "isPartner": true,
+      "isPartner": false,
       "pokemon": {
         "id": 75,
         "name": "graveler",
@@ -205,6 +205,111 @@
         "speed": 933
       },
       "id": 10
+    },
+    {
+      "userId": 1,
+      "nickname": "jinhoon",
+      "isPartner": false,
+      "pokemon": {
+        "id": 57,
+        "name": "primeape",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/57.png",
+        "level": 99,
+        "attack": 570,
+        "defense": 745,
+        "speed": 115
+      },
+      "id": 11
+    },
+    {
+      "userId": 1,
+      "nickname": "jinhoon",
+      "isPartner": false,
+      "pokemon": {
+        "id": 432,
+        "name": "purugly",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/432.png",
+        "level": 40,
+        "attack": 764,
+        "defense": 276,
+        "speed": 923
+      },
+      "id": 12
+    },
+    {
+      "userId": 1,
+      "nickname": "jinhoon",
+      "isPartner": false,
+      "pokemon": {
+        "id": 262,
+        "name": "mightyena",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/262.png",
+        "level": 63,
+        "attack": 311,
+        "defense": 165,
+        "speed": 770
+      },
+      "id": 13
+    },
+    {
+      "userId": 1,
+      "nickname": "jinhoon",
+      "isPartner": true,
+      "pokemon": {
+        "id": 26,
+        "name": "raichu",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png",
+        "level": 27,
+        "attack": 925,
+        "defense": 4,
+        "speed": 781
+      },
+      "id": 14
+    },
+    {
+      "userId": 1,
+      "nickname": "jinhoon",
+      "isPartner": false,
+      "pokemon": {
+        "id": 491,
+        "name": "darkrai",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/491.png",
+        "level": 29,
+        "attack": 510,
+        "defense": 318,
+        "speed": 350
+      },
+      "id": 15
+    },
+    {
+      "userId": 1,
+      "nickname": "jinhoon",
+      "isPartner": false,
+      "pokemon": {
+        "id": 128,
+        "name": "tauros",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/128.png",
+        "level": 10,
+        "attack": 0,
+        "defense": 430,
+        "speed": 486
+      },
+      "id": 16
+    },
+    {
+      "userId": 1,
+      "nickname": "jinhoon",
+      "isPartner": false,
+      "pokemon": {
+        "id": 143,
+        "name": "snorlax",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/143.png",
+        "level": 46,
+        "attack": 609,
+        "defense": 808,
+        "speed": 677
+      },
+      "id": 17
     }
   ],
   "products": [

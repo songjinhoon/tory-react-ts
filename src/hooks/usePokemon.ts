@@ -6,6 +6,7 @@ const usePokemon = () => {
   const [randomPokemonIds, setRandomPokemonIds] = useState<number[]>(
     getRandomPokemonNumbers(),
   );
+
   const { data } = useSWR(
     `https://pokeapi.co/api/v2/pokemon?limit=1000`,
     pokemonFetcher,
@@ -15,28 +16,13 @@ const usePokemon = () => {
     },
   );
 
+  const getRandomPokemonIds = useCallback(() => {
+    return randomPokemonIds;
+  }, [randomPokemonIds]);
+
   const updateRandomPokemonIds = useCallback(() => {
     setRandomPokemonIds(getRandomPokemonNumbers());
   }, []);
-
-  const useGetPokemonsQuery = () => {
-    const { data } = useSWR(
-      `https://pokeapi.co/api/v2/pokemon?limit=1000`,
-      pokemonFetcher,
-      {
-        suspense: true,
-        revalidateIfStale: false,
-        revalidateOnFocus: false,
-        revalidateOnReconnect: false,
-      },
-    );
-    return {
-      datas: data.results.map((data: any) => ({
-        ...data,
-        id: getPokemonIdByUrl(data.url),
-      })),
-    };
-  };
 
   const getPokemonIdByUrl = useCallback((url: string) => {
     return Number(
@@ -53,9 +39,8 @@ const usePokemon = () => {
       ...data,
       id: getPokemonIdByUrl(data.url),
     })),
-    randomPokemonIds,
+    getRandomPokemonIds,
     updateRandomPokemonIds,
-    useGetPokemonsQuery,
     getPokemonIdByUrl,
     isCatchPokemon,
   };

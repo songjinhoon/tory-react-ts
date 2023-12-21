@@ -1,6 +1,7 @@
 import Api from './axiosConfig';
 import axios from 'axios';
 import { deleteAuth, getId } from './authConfig';
+import { toast } from 'react-toastify';
 
 const AxiosInterceptor = (navigate: any) => {
   Api.interceptors.request.use(
@@ -38,6 +39,11 @@ const AxiosInterceptor = (navigate: any) => {
 
           navigate('/sign-in');
 
+          return false;
+        } else {
+          toast.error(error.message, {
+            position: toast.POSITION.BOTTOM_CENTER,
+          });
           return false;
         }
       }

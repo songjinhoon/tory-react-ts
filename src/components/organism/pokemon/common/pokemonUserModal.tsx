@@ -9,8 +9,7 @@ import { IBox } from '@type/box';
 const PokemonUserModal = () => {
   const [title] = useState('PokemonTrainer');
   const { user }: IUseUserHook = useUser();
-  const { getPartnerPokemon } = useBox();
-  const boxes = getPartnerPokemon(user.id);
+  const { findByUserIdAndIsPartner } = useBox();
 
   return (
     <ModalLayout title={title} style={{ height: 700 }}>
@@ -27,8 +26,8 @@ const PokemonUserModal = () => {
         <p>{user.tellNum}</p>
       </Field>
       <PokemonBlock>
-        {boxes &&
-          boxes.map((box: IBox) => (
+        {user &&
+          findByUserIdAndIsPartner().map((box: IBox) => (
             <PokemonSimpleCard key={box.id} id={box.pokemon.id} />
           ))}
       </PokemonBlock>

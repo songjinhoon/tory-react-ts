@@ -16,10 +16,10 @@ import { createAuth, deleteAuth, getId } from '@utils/authConfig';
 export interface IUseUserHook {
   user: any;
   userMutate: any;
-  isLoading: any;
+  isLoading: boolean;
   signUp: any;
   signIn: any;
-  logout: any;
+  logout: () => void;
   userQuery: any;
   updateUser: any;
   isEqualPassword: any;
@@ -33,24 +33,18 @@ const useUser = () => {
     mutate: userMutate,
     isLoading,
   } = useSWR<IUser | boolean>(getId() ? `/users/${getId()}` : null, fetcher, {
-    // dedupingInterval: 60000, // 60초동안은 캐쉬에서 호출하겠다.
+    dedupingInterval: 60000,
   });
 
   const signUp = useCallback(
     async (params: ISignUpUser) => {
-      try {
-        const response = await Api.post(`/users`, params);
-        if (response.status === 201) {
-          toast.success('회원가입 성공~ 로그인 창으로 이동합니다~', {
-            position: toast.POSITION.BOTTOM_CENTER,
-          });
-          await userMutate();
-          navigate('/sign-in');
-        }
-      } catch (error: any) {
-        toast.error(error.message, {
+      const response = await Api.post(`/users`, params);
+      if (response.status === 201) {
+        toast.success('회원가입 성공~ 로그인 창으로 이동합니다~', {
           position: toast.POSITION.BOTTOM_CENTER,
         });
+        await userMutate();
+        navigate('/sign-in');
       }
     },
     [userMutate, navigate],
@@ -58,17 +52,10 @@ const useUser = () => {
 
   const signIn = useCallback(
     async (params: ISignInUser) => {
-      try {
-        const response = await Api.get(`/users`);
-        if (response.status === 200) {
-          createAuth(response.data[0].id);
-          // await userMutate(); 여기서 동작을 안한다 이유가 뭐지
-          navigate('/dashboard');
-        }
-      } catch (error: any) {
-        toast.error(error.message, {
-          position: toast.POSITION.BOTTOM_CENTER,
-        });
+      const response = await Api.get(`/users`);
+      if (response.status === 200) {
+        createAuth(response.data[0].id);
+        navigate('/dashboard');
       }
     },
     [navigate],
