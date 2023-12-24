@@ -52,10 +52,15 @@ const useUser = () => {
 
   const signIn = useCallback(
     async (params: ISignInUser) => {
-      const response = await Api.get(`/users`);
-      if (response.status === 200) {
+      const response = await Api.get(`/users?username=${params.username}`);
+      if (
+        response.status === 200 &&
+        response.data[0]?.password === params.password
+      ) {
         createAuth(response.data[0].id);
         navigate('/dashboard');
+      } else {
+        alert('계정 정보를 확인해주세요.')
       }
     },
     [navigate],
