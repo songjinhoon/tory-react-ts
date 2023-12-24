@@ -10,10 +10,6 @@ const usePokemon = () => {
   const { data } = useSWR(
     `https://pokeapi.co/api/v2/pokemon?limit=1000`,
     pokemonFetcher,
-    {
-      suspense: true,
-      dedupingInterval: 60000,
-    },
   );
 
   const getRandomPokemonIds = useCallback(() => {

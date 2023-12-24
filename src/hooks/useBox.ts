@@ -7,10 +7,7 @@ import useUser, { IUseUserHook } from '@hooks/useUser';
 
 const UseBox = () => {
   const { user }: IUseUserHook = useUser();
-  const { data: boxes, mutate: boxMutate } = useSWR('/boxes', pokemonFetcher, {
-    suspense: true,
-    dedupingInterval: 60000,
-  });
+  const { data: boxes, mutate: boxMutate } = useSWR('/boxes', pokemonFetcher);
 
   const createBox = useCallback(
     async (box: ICreateBox) => {

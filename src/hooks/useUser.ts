@@ -32,10 +32,7 @@ const useUser = () => {
     data: user,
     mutate: userMutate,
     isLoading,
-  } = useSWR<IUser | null>(getId() ? `/users/${getId()}` : null, fetcher, {
-    suspense: true,
-    dedupingInterval: 60000,
-  });
+  } = useSWR<IUser | null>(getId() ? `/users/${getId()}` : null, fetcher);
 
   const signUp = useCallback(
     async (params: ISignUpUser) => {

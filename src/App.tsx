@@ -11,6 +11,7 @@ import { refreshCheck } from '@utils/authConfig';
 import CommonLoading from '@components/molecule/loading/commonLoading';
 import { ThemeProvider } from '@context/theme';
 import ModalContainer from '@components/organism/skeleton/modal/modalContainer';
+import { SWRConfig } from 'swr';
 
 const SignIn = lazy(() =>
   Promise.all([
@@ -56,41 +57,51 @@ function App() {
   }, []);
 
   return (
-    <CookiesProvider>
-      <ModalProvider>
-        <ModeProvider>
-          <ThemeProvider>
-            <div className="App">
-              <BrowserRouter>
-                <NavigateFunctionComponent></NavigateFunctionComponent>
-                <Suspense fallback={<CommonLoading />}>
-                  <Routes>
-                    <Route path={'/'} element={<SignIn />}></Route>
-                    <Route path={'/sign-in'} element={<SignIn />}></Route>
-                    <Route path={'/sign-up'} element={<SignUp />}></Route>
-                    <Route path={'/dashboard'} element={<Dashboard />}></Route>
-                    <Route
-                      path={'/pokemon-field'}
-                      element={<PokemonField />}
-                    ></Route>
-                    <Route
-                      path={'/pokemon-dex'}
-                      element={<PokemonDex />}
-                    ></Route>
-                    <Route
-                      path={'/pokemon-box'}
-                      element={<PokemonBox />}
-                    ></Route>
-                  </Routes>
-                  <ModalContainer></ModalContainer>
-                </Suspense>
-              </BrowserRouter>
-              <ToastContainer></ToastContainer>
-            </div>
-          </ThemeProvider>
-        </ModeProvider>
-      </ModalProvider>
-    </CookiesProvider>
+    <SWRConfig
+      value={{
+        suspense: true,
+        dedupingInterval: 60000,
+      }}
+    >
+      <CookiesProvider>
+        <ModalProvider>
+          <ModeProvider>
+            <ThemeProvider>
+              <div className="App">
+                <BrowserRouter>
+                  <NavigateFunctionComponent></NavigateFunctionComponent>
+                  <Suspense fallback={<CommonLoading />}>
+                    <Routes>
+                      <Route path={'/'} element={<SignIn />}></Route>
+                      <Route path={'/sign-in'} element={<SignIn />}></Route>
+                      <Route path={'/sign-up'} element={<SignUp />}></Route>
+                      <Route
+                        path={'/dashboard'}
+                        element={<Dashboard />}
+                      ></Route>
+                      <Route
+                        path={'/pokemon-field'}
+                        element={<PokemonField />}
+                      ></Route>
+                      <Route
+                        path={'/pokemon-dex'}
+                        element={<PokemonDex />}
+                      ></Route>
+                      <Route
+                        path={'/pokemon-box'}
+                        element={<PokemonBox />}
+                      ></Route>
+                    </Routes>
+                    <ModalContainer></ModalContainer>
+                  </Suspense>
+                </BrowserRouter>
+                <ToastContainer></ToastContainer>
+              </div>
+            </ThemeProvider>
+          </ModeProvider>
+        </ModalProvider>
+      </CookiesProvider>
+    </SWRConfig>
   );
 }
 
