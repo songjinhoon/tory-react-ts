@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 import { pokemonFetcher } from '@utils/fetcher';
 import { IBox, ICreateBox } from '@type/box';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import PokemonApi from '@utils/pokemonApiConfig';
 import useUser, { IUseUserHook } from '@hooks/useUser';
 
@@ -71,6 +71,10 @@ const UseBox = () => {
         .length < 6
     );
   }, [boxes, user]);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   return {
     boxes,

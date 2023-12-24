@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import fetcher from '@utils/fetcher';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -32,7 +32,8 @@ const useUser = () => {
     data: user,
     mutate: userMutate,
     isLoading,
-  } = useSWR<IUser | boolean>(getId() ? `/users/${getId()}` : null, fetcher, {
+  } = useSWR<IUser | null>(getId() ? `/users/${getId()}` : null, fetcher, {
+    suspense: true,
     dedupingInterval: 60000,
   });
 
@@ -60,7 +61,7 @@ const useUser = () => {
         createAuth(response.data[0].id);
         navigate('/dashboard');
       } else {
-        alert('계정 정보를 확인해주세요.')
+        alert('계정 정보를 확인해주세요.');
       }
     },
     [navigate],
@@ -69,8 +70,9 @@ const useUser = () => {
   const logout = useCallback(async () => {
     // await Api.get(`/users/${getId()}/logout`);
     deleteAuth();
-    navigate('/sign-in');
-  }, [navigate]);
+    await userMutate(null);
+    // navigate('/sign-in');
+  }, [userMutate]);
 
   const isEqualPassword = useCallback((param: string) => {
     return param === '123';
@@ -158,6 +160,10 @@ const useUser = () => {
       }
     }
   }, []);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   return {
     user,
