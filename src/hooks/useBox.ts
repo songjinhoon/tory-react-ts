@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 import { pokemonFetcher } from '@utils/fetcher';
 import { IBox, ICreateBox } from '@type/box';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import PokemonApi from '@utils/pokemonApiConfig';
 import useUser, { IUseUserHook } from '@hooks/useUser';
 
@@ -9,7 +9,13 @@ const DOMAIN = '/boxes';
 
 const UseBox = () => {
   const { user }: IUseUserHook = useUser();
+
   const { data: boxes, mutate: boxMutate } = useSWR(DOMAIN, pokemonFetcher);
+
+  const { data: myBoxes, mutate: myBoxMutate } = useSWR(
+    user ? `${DOMAIN}?userID=${user.id}` : [],
+    pokemonFetcher,
+  );
 
   const createBox = useCallback(
     async (box: ICreateBox) => {
@@ -59,11 +65,18 @@ const UseBox = () => {
     );
   }, [boxes, user]);
 
+  useEffect(() => {
+    if (boxes) {
+      myBoxMutate().then(() => {});
+    }
+  }, [boxes, myBoxMutate]);
+
   return {
     boxes,
     boxMutate,
     createBox,
     updateBox,
+    myBoxes,
     findByUserId,
     findByUserIdAndIsPartner,
     findByUserIdAndNotIsPartner,

@@ -19,4 +19,10 @@ module.exports = function (app) {
       changeOrigin: true,
     }),
   );
+  app.use(
+    createProxyMiddleware('/pokemons', {
+      target: 'http://localhost:4000',
+      changeOrigin: true,
+    }),
+  );
 };

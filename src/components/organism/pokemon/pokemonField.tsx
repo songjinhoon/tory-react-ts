@@ -3,19 +3,19 @@ import PokemonCard from '@components/molecule/card/pokemonCard';
 import useBox from '@hooks/useBox';
 import { IPokemon } from '@type/pokemon';
 import { IBox } from '@type/box';
+import { useMemo } from 'react';
 
 const PokemonField = () => {
-  const { pokemons, getRandomPokemonIds } = usePokemon();
-  const renderPokemons = pokemons.filter((pokemon: IPokemon) =>
-    getRandomPokemonIds().includes(pokemon.id),
-  );
+  const { randomPokemons } = usePokemon();
+  const { myBoxes } = useBox();
 
-  const { findByUserId } = useBox();
-  const hasPokemonIds = findByUserId().map((box: IBox) => box.pokemon.id);
+  const hasPokemonIds = useMemo(() => {
+    return myBoxes.map((box: IBox) => box.pokemon.id);
+  }, [myBoxes]);
 
   return (
     <>
-      {renderPokemons.map((pokemon: IPokemon, index: number) => (
+      {randomPokemons.map((pokemon: IPokemon, index: number) => (
         <PokemonCard
           key={index}
           id={pokemon.id}

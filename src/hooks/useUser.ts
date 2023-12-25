@@ -73,8 +73,8 @@ const useUser = () => {
   const logout = useCallback(async () => {
     // await Api.get(`/users/${getId()}/logout`);
     deleteAuth();
-    await userMutate(null);
     navigate('/sign-in');
+    await userMutate(null);
   }, [userMutate, navigate]);
 
   const isEqualPassword = useCallback((param: string) => {

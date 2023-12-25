@@ -1,24 +1,21 @@
 import useSWR from 'swr';
 import { useCallback, useState } from 'react';
 import { pokemonFetcher } from '@utils/fetcher';
+import { IPokemon } from '@type/pokemon';
+
+const DOMAIN = '/pokemons';
 
 const usePokemon = () => {
-  const [randomPokemonIds, setRandomPokemonIds] = useState<number[]>(
-    getRandomPokemonNumbers(),
+  const { data: pokemons } = useSWR(DOMAIN, pokemonFetcher);
+
+  const randomPokemonIds = getRandomPokemonNumbers();
+
+  const [randomPokemons] = useState<IPokemon[]>(
+    pokemons &&
+      pokemons.filter((pokemon: IPokemon) =>
+        randomPokemonIds.includes(pokemon.id),
+      ),
   );
-
-  const { data: pokemons } = useSWR(
-    `https://pokeapi.co/api/v2/pokemon?limit=1000`,
-    pokemonFetcher,
-  );
-
-  const getRandomPokemonIds = useCallback(() => {
-    return randomPokemonIds;
-  }, [randomPokemonIds]);
-
-  const updateRandomPokemonIds = useCallback(() => {
-    setRandomPokemonIds(getRandomPokemonNumbers());
-  }, []);
 
   const getPokemonIdByUrl = useCallback((url: string) => {
     return Number(
@@ -31,9 +28,8 @@ const usePokemon = () => {
   }, []);
 
   return {
-    pokemons: pokemonDataInit(pokemons),
-    getRandomPokemonIds,
-    updateRandomPokemonIds,
+    pokemons,
+    randomPokemons,
     getPokemonIdByUrl,
     isCatchPokemon,
   };
@@ -47,15 +43,4 @@ function getRandomPokemonNumbers() {
     pokemonIds.push(Math.floor(Math.random() * 1000) + 1);
   }
   return pokemonIds;
-}
-
-function pokemonDataInit(pokemons: any) {
-  return pokemons.results.map((data: any) => ({
-    ...data,
-    id: Number(
-      data.url
-        .substring(data.url.lastIndexOf('/pokemon/') + 9)
-        .replace('/', ''),
-    ),
-  }));
 }
