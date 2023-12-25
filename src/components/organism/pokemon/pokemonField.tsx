@@ -1,31 +1,29 @@
 import usePokemon from '@hooks/usePokemon';
-import useUser, { IUseUserHook } from '@hooks/useUser';
 import PokemonCard from '@components/molecule/card/pokemonCard';
 import useBox from '@hooks/useBox';
+import { IPokemon } from '@type/pokemon';
+import { IBox } from '@type/box';
 
 const PokemonField = () => {
-  const { user }: IUseUserHook = useUser();
   const { pokemons, getRandomPokemonIds } = usePokemon();
-  const datas = pokemons.filter((data: any) =>
-    getRandomPokemonIds().includes(data.id),
+  const renderPokemons = pokemons.filter((pokemon: IPokemon) =>
+    getRandomPokemonIds().includes(pokemon.id),
   );
 
   const { findByUserId } = useBox();
-  const hasPokemonIds =
-    user && findByUserId().map((data: any) => data.pokemon.id);
+  const hasPokemonIds = findByUserId().map((box: IBox) => box.pokemon.id);
 
   return (
     <>
-      {user &&
-        datas.map((pokemon: any, index: number) => (
-          <PokemonCard
-            key={index}
-            id={pokemon.id}
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-            name={pokemon.name}
-            isShowPokeBall={!hasPokemonIds.includes(pokemon.id)}
-          ></PokemonCard>
-        ))}
+      {renderPokemons.map((pokemon: IPokemon, index: number) => (
+        <PokemonCard
+          key={index}
+          id={pokemon.id}
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+          name={pokemon.name}
+          isShowPokeBall={!hasPokemonIds.includes(pokemon.id)}
+        ></PokemonCard>
+      ))}
     </>
   );
 };

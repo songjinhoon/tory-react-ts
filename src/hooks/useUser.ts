@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import fetcher from '@utils/fetcher';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -17,6 +17,7 @@ export interface IUseUserHook {
   user: any;
   userMutate: any;
   isLoading: boolean;
+  users: IUser[];
   signUp: any;
   signIn: any;
   logout: () => void;
@@ -26,13 +27,18 @@ export interface IUseUserHook {
   getValidOption: any;
 }
 
+const DOMAIN = '/users';
+
 const useUser = () => {
   const navigate = useNavigate();
+
   const {
     data: user,
     mutate: userMutate,
     isLoading,
-  } = useSWR<IUser | null>(getId() ? `/users/${getId()}` : null, fetcher);
+  } = useSWR<IUser | null>(getId() ? `${DOMAIN}/${getId()}` : null, fetcher);
+
+  const { data: users } = useSWR(DOMAIN, fetcher);
 
   const signUp = useCallback(
     async (params: ISignUpUser) => {
@@ -68,8 +74,8 @@ const useUser = () => {
     // await Api.get(`/users/${getId()}/logout`);
     deleteAuth();
     await userMutate(null);
-    // navigate('/sign-in');
-  }, [userMutate]);
+    navigate('/sign-in');
+  }, [userMutate, navigate]);
 
   const isEqualPassword = useCallback((param: string) => {
     return param === '123';
@@ -158,14 +164,11 @@ const useUser = () => {
     }
   }, []);
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
-
   return {
     user,
     userMutate,
     isLoading,
+    users,
     signUp,
     signIn,
     logout,

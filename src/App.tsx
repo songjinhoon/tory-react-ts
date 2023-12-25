@@ -49,6 +49,12 @@ const PokemonBox = lazy(() =>
     new Promise((resolve) => setTimeout(resolve, 1000)),
   ]).then(([moduleExports]) => moduleExports),
 );
+const PokemonStat = lazy(() =>
+  Promise.all([
+    import('@components/page/pokemon/pokemonStatPage'),
+    new Promise((resolve) => setTimeout(resolve, 1000)),
+  ]).then(([moduleExports]) => moduleExports),
+);
 
 function App() {
   useEffect(() => {
@@ -60,7 +66,7 @@ function App() {
     <SWRConfig
       value={{
         suspense: true,
-        dedupingInterval: 60000,
+        // dedupingInterval: 60000,
       }}
     >
       <CookiesProvider>
@@ -90,6 +96,10 @@ function App() {
                       <Route
                         path={'/pokemon-box'}
                         element={<PokemonBox />}
+                      ></Route>
+                      <Route
+                        path={'/pokemon-stat'}
+                        element={<PokemonStat />}
                       ></Route>
                     </Routes>
                     <ModalContainer></ModalContainer>

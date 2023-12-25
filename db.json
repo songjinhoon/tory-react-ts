@@ -89,7 +89,7 @@
     {
       "userId": 1,
       "nickname": "jinhoon",
-      "isPartner": true,
+      "isPartner": false,
       "pokemon": {
         "id": 24,
         "name": "arbok",
@@ -104,7 +104,7 @@
     {
       "userId": 1,
       "nickname": "jinhoon",
-      "isPartner": true,
+      "isPartner": false,
       "pokemon": {
         "id": 148,
         "name": "dragonair",
@@ -149,7 +149,7 @@
     {
       "userId": 1,
       "nickname": "jinhoon",
-      "isPartner": true,
+      "isPartner": false,
       "pokemon": {
         "id": 3,
         "name": "venusaur",
@@ -254,7 +254,7 @@
     {
       "userId": 1,
       "nickname": "jinhoon",
-      "isPartner": true,
+      "isPartner": false,
       "pokemon": {
         "id": 26,
         "name": "raichu",
@@ -310,6 +310,111 @@
         "speed": 677
       },
       "id": 17
+    },
+    {
+      "userId": 2,
+      "nickname": "jinhoon1",
+      "isPartner": true,
+      "pokemon": {
+        "id": 126,
+        "name": "magmar",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/126.png",
+        "level": 4,
+        "attack": 686,
+        "defense": 562,
+        "speed": 573
+      },
+      "id": 18
+    },
+    {
+      "userId": 2,
+      "nickname": "jinhoon1",
+      "isPartner": true,
+      "pokemon": {
+        "id": 196,
+        "name": "espeon",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/196.png",
+        "level": 1,
+        "attack": 440,
+        "defense": 986,
+        "speed": 301
+      },
+      "id": 19
+    },
+    {
+      "userId": 2,
+      "nickname": "jinhoon1",
+      "isPartner": false,
+      "pokemon": {
+        "id": 153,
+        "name": "bayleef",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/153.png",
+        "level": 99,
+        "attack": 513,
+        "defense": 920,
+        "speed": 997
+      },
+      "id": 20
+    },
+    {
+      "userId": 2,
+      "nickname": "jinhoon1",
+      "isPartner": true,
+      "pokemon": {
+        "id": 144,
+        "name": "articuno",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/144.png",
+        "level": 13,
+        "attack": 283,
+        "defense": 874,
+        "speed": 62
+      },
+      "id": 21
+    },
+    {
+      "userId": 2,
+      "nickname": "jinhoon1",
+      "isPartner": true,
+      "pokemon": {
+        "id": 343,
+        "name": "baltoy",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/343.png",
+        "level": 34,
+        "attack": 169,
+        "defense": 590,
+        "speed": 14
+      },
+      "id": 22
+    },
+    {
+      "userId": 2,
+      "nickname": "jinhoon1",
+      "isPartner": true,
+      "pokemon": {
+        "id": 360,
+        "name": "wynaut",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/360.png",
+        "level": 82,
+        "attack": 996,
+        "defense": 992,
+        "speed": 796
+      },
+      "id": 23
+    },
+    {
+      "userId": 1,
+      "nickname": "Luis Fay-Feil",
+      "isPartner": false,
+      "pokemon": {
+        "id": 553,
+        "name": "krookodile",
+        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/553.png",
+        "level": 74,
+        "attack": 582,
+        "defense": 258,
+        "speed": 640
+      },
+      "id": 24
     }
   ],
   "products": [

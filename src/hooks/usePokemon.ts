@@ -7,7 +7,7 @@ const usePokemon = () => {
     getRandomPokemonNumbers(),
   );
 
-  const { data } = useSWR(
+  const { data: pokemons } = useSWR(
     `https://pokeapi.co/api/v2/pokemon?limit=1000`,
     pokemonFetcher,
   );
@@ -31,10 +31,7 @@ const usePokemon = () => {
   }, []);
 
   return {
-    pokemons: data.results.map((data: any) => ({
-      ...data,
-      id: getPokemonIdByUrl(data.url),
-    })),
+    pokemons: pokemonDataInit(pokemons),
     getRandomPokemonIds,
     updateRandomPokemonIds,
     getPokemonIdByUrl,
@@ -50,4 +47,15 @@ function getRandomPokemonNumbers() {
     pokemonIds.push(Math.floor(Math.random() * 1000) + 1);
   }
   return pokemonIds;
+}
+
+function pokemonDataInit(pokemons: any) {
+  return pokemons.results.map((data: any) => ({
+    ...data,
+    id: Number(
+      data.url
+        .substring(data.url.lastIndexOf('/pokemon/') + 9)
+        .replace('/', ''),
+    ),
+  }));
 }

@@ -3,36 +3,32 @@ import useBox from '@hooks/useBox';
 import { IBox } from '@type/box';
 import styled from '@emotion/styled';
 import PokemonImageCard from '@components/molecule/card/pokemonImageCard';
-import useUser, { IUseUserHook } from '@hooks/useUser';
 
 const PokemonBox = () => {
-  const { user }: IUseUserHook = useUser();
   const { findByUserIdAndIsPartner, findByUserIdAndNotIsPartner } = useBox();
 
   return (
     <Container>
       <PartnerContainer>
-        {user &&
-          findByUserIdAndIsPartner().map((box: IBox, index: number) => (
-            <PokemonImageCard
-              key={index}
-              id={box.pokemon.id}
-              src={box.pokemon.image}
-              name={box.pokemon.name}
-            ></PokemonImageCard>
-          ))}
+        {findByUserIdAndIsPartner().map((box: IBox, index: number) => (
+          <PokemonImageCard
+            key={index}
+            id={box.pokemon.id}
+            src={box.pokemon.image}
+            name={box.pokemon.name}
+          ></PokemonImageCard>
+        ))}
       </PartnerContainer>
       <NoPartnerContainer>
-        {user &&
-          findByUserIdAndNotIsPartner().map((box: IBox, index: number) => (
-            <PokemonCard
-              key={index}
-              id={box.pokemon.id}
-              src={box.pokemon.image}
-              name={box.pokemon.name}
-              isShowStar={true}
-            ></PokemonCard>
-          ))}
+        {findByUserIdAndNotIsPartner().map((box: IBox, index: number) => (
+          <PokemonCard
+            key={index}
+            id={box.pokemon.id}
+            src={box.pokemon.image}
+            name={box.pokemon.name}
+            isShowStar={true}
+          ></PokemonCard>
+        ))}
       </NoPartnerContainer>
     </Container>
   );

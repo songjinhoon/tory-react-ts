@@ -19,11 +19,16 @@ const UseMove = () => {
     navigate('/pokemon-box');
   };
 
+  const movePokemonStat = () => {
+    navigate('/pokemon-stat');
+  };
+
   return {
     moveDashboard,
     movePokemonField,
     movePokemonDex,
     movePokemonBox,
+    movePokemonStat,
   };
 };
 

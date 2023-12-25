@@ -2,9 +2,9 @@ import ModalLayout from '@components/organism/skeleton/modal/modalLayout';
 import { useState } from 'react';
 import useUser, { IUseUserHook } from '@hooks/useUser';
 import styled from '@emotion/styled';
-import PokemonSimpleCard from '@components/molecule/card/pokemonSimpleCard';
 import useBox from '@hooks/useBox';
 import { IBox } from '@type/box';
+import PokemonImageCard from '@components/molecule/card/pokemonImageCard';
 
 const PokemonUserModal = () => {
   const [title] = useState('PokemonTrainer');
@@ -28,7 +28,12 @@ const PokemonUserModal = () => {
       <PokemonBlock>
         {user &&
           findByUserIdAndIsPartner().map((box: IBox) => (
-            <PokemonSimpleCard key={box.id} id={box.pokemon.id} />
+            <PokemonImageCard
+              key={box.id}
+              id={box.pokemon.id}
+              name={box.pokemon.name}
+              src={box.pokemon.image}
+            />
           ))}
       </PokemonBlock>
     </ModalLayout>
@@ -45,6 +50,8 @@ const Field = styled.div`
 `;
 
 const PokemonBlock = styled.div`
-  max-height: 400px;
-  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 `;
