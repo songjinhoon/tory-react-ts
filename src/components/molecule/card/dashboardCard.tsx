@@ -29,7 +29,7 @@ const DashboardCard: FC<Props> = ({ type }) => {
       }}
       onClick={() => {
         if (type === 'blog') {
-          alert('기능 준비중...');
+          navigate('/blog');
         } else {
           navigate('/pokemon-field');
         }

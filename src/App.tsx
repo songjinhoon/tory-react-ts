@@ -31,6 +31,12 @@ const Dashboard = lazy(() =>
     new Promise((resolve) => setTimeout(resolve, 1000)),
   ]).then(([moduleExports]) => moduleExports),
 );
+const Blog = lazy(() =>
+  Promise.all([
+    import('@components/page/blog/blogPage'),
+    new Promise((resolve) => setTimeout(resolve, 1000)),
+  ]).then(([moduleExports]) => moduleExports),
+);
 const PokemonField = lazy(() =>
   Promise.all([
     import('@components/page/pokemon/pokemonFieldPage'),
@@ -85,6 +91,7 @@ function App() {
                         path={'/dashboard'}
                         element={<Dashboard />}
                       ></Route>
+                      <Route path={'/blog'} element={<Blog />}></Route>
                       <Route
                         path={'/pokemon-field'}
                         element={<PokemonField />}
