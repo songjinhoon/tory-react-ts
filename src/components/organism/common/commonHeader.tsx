@@ -1,15 +1,15 @@
-import LogoutButton from '@components/molecule/button/logoutButton';
+import { Container, EventIconContainer } from '@components/organism/styles';
+import { useLocation } from 'react-router-dom';
 import ToggleThemeButton from '@components/molecule/button/toggleThemeButton';
-import {
-  Container,
-  EventIconContainer,
-} from '@components/organism/styles';
 import ProfileButton from '@components/molecule/button/profileButton';
+import LogoutButton from '@components/molecule/button/logoutButton';
 
-const DashboardHeader = () => {
+const CommonHeader = () => {
+  const location = useLocation();
+
   return (
     <Container>
-      <h2>DEMO PROJECT</h2>
+      <h2>{location.pathname.replace('/', '').toUpperCase()}</h2>
       <EventIconContainer>
         <ToggleThemeButton></ToggleThemeButton>
         <ProfileButton></ProfileButton>
@@ -19,4 +19,4 @@ const DashboardHeader = () => {
   );
 };
 
-export default DashboardHeader;
+export default CommonHeader;

@@ -1,4 +1,4 @@
-import DashboardHeader from '@components/organism/dashboard/dashboardHeader';
+import CommonHeader from '@components/organism/common/commonHeader';
 import { useThemeState } from '@context/theme';
 import Dashboard from '@components/organism/dashboard/dashboard';
 import { Container, Content, Header } from "@components/template/styles";
@@ -9,7 +9,7 @@ const DashboardTemplate = () => {
   return (
     <Container className={themeState.theme}>
       <Header className={themeState.theme}>
-        <DashboardHeader></DashboardHeader>
+        <CommonHeader></CommonHeader>
       </Header>
       <Content>
         <Dashboard></Dashboard>
